@@ -2,17 +2,20 @@
    VARIABLES & RESET
 ============================================================ */
 :root {
-  --bg:          #08080f;
-  --bg-mid:      #0d0d1a;
-  --neon:        #c44dff;
-  --neon-glow:   rgba(196, 77, 255, 0.55);
-  --neon-dark:   rgba(196, 77, 255, 0.12);
-  --accent:      #ff44cc;
-  --text:        #f0f0ff;
-  --text-dim:    #7070a0;
-  --card:        #0e0e1c;
-  --border:      rgba(196, 77, 255, 0.22);
-  --radius:      12px;
+  --bg:           #08080f;
+  --bg-mid:       #0d0d1a;
+  --neon:         #c44dff;
+  --neon-glow:    rgba(196, 77, 255, 0.55);
+  --neon-dark:    rgba(196, 77, 255, 0.12);
+  --cyan:         #00f0ff;
+  --cyan-glow:    rgba(0, 240, 255, 0.5);
+  --cyan-dark:    rgba(0, 240, 255, 0.1);
+  --accent:       #ff44cc;
+  --text:         #f0f0ff;
+  --text-dim:     #7070a0;
+  --card:         #0e0e1c;
+  --border:       rgba(196, 77, 255, 0.22);
+  --radius:       12px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,12 +93,12 @@ a { text-decoration: none; color: inherit; }
 
 .btn-outline {
   background: transparent;
-  color: var(--neon);
-  border: 1.5px solid var(--neon);
+  color: var(--cyan);
+  border: 1.5px solid var(--cyan);
 }
 .btn-outline:hover {
-  background: var(--neon-dark);
-  box-shadow: 0 0 20px var(--neon-glow);
+  background: var(--cyan-dark);
+  box-shadow: 0 0 20px var(--cyan-glow);
   transform: translateY(-2px);
 }
 
@@ -219,7 +222,7 @@ a { text-decoration: none; color: inherit; }
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #cc00aa 0%, transparent 70%);
+  background: radial-gradient(circle, #00aacc 0%, transparent 70%);
   bottom: -150px;
   right: -150px;
   animation-delay: -3s;
@@ -227,11 +230,11 @@ a { text-decoration: none; color: inherit; }
 .orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #5500ff 0%, transparent 70%);
+  background: radial-gradient(circle, #00ccff 0%, transparent 70%);
   top: calc(50% - 200px);
   left: calc(50% - 200px);
   animation-delay: -6s;
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 @keyframes float {
@@ -272,7 +275,8 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 2.5rem;
 }
 .hero-subtitle .sep {
-  color: var(--neon);
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan-glow);
   margin: 0 0.6rem;
 }
 
@@ -299,9 +303,9 @@ a { text-decoration: none; color: inherit; }
 .scroll-dot {
   width: 4px;
   height: 8px;
-  background: var(--neon);
+  background: var(--cyan);
   border-radius: 2px;
-  box-shadow: 0 0 8px var(--neon);
+  box-shadow: 0 0 8px var(--cyan);
   animation: scroll-bounce 2s ease-in-out infinite;
 }
 @keyframes scroll-bounce {
@@ -377,7 +381,7 @@ a { text-decoration: none; color: inherit; }
 
 .skill-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--neon), var(--accent));
+  background: linear-gradient(90deg, var(--neon), var(--cyan));
   border-radius: 3px;
   width: 0;
   transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -403,9 +407,14 @@ a { text-decoration: none; color: inherit; }
   cursor: pointer;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
-.video-card:hover {
+.video-card:nth-child(odd):hover {
   border-color: var(--neon);
-  box-shadow: 0 0 28px rgba(196, 77, 255, 0.22), 0 8px 35px rgba(0,0,0,0.45);
+  box-shadow: 0 0 28px rgba(196, 77, 255, 0.25), 0 8px 35px rgba(0,0,0,0.45);
+  transform: translateY(-6px);
+}
+.video-card:nth-child(even):hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.2), 0 8px 35px rgba(0,0,0,0.45);
   transform: translateY(-6px);
 }
 
@@ -629,7 +638,7 @@ footer {
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-mid);
-  box-shadow: 0 0 60px rgba(196, 77, 255, 0.28);
+  box-shadow: 0 0 40px rgba(196, 77, 255, 0.22), 0 0 80px rgba(0, 240, 255, 0.12);
 }
 
 .modal-close {
