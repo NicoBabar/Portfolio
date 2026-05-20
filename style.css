@@ -362,30 +362,27 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 2rem;
 }
 
-.skill { margin-bottom: 1.6rem; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
 
-.skill-header {
-  display: flex;
-  justify-content: space-between;
+.skill-chip {
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   font-size: 0.9rem;
-  margin-bottom: 0.55rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  cursor: default;
 }
-.skill-header span:last-child { color: var(--neon); font-weight: 600; }
-
-.skill-bar {
-  height: 5px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--neon), var(--cyan));
-  border-radius: 3px;
-  width: 0;
-  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px var(--neon-glow);
+.skill-chip:hover {
+  border-color: var(--neon);
+  box-shadow: 0 0 14px var(--neon-glow);
+  transform: translateY(-2px);
 }
 
 /* ============================================================

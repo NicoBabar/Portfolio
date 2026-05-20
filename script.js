@@ -21,21 +21,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Animation barres de compétences
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.skill-fill').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-      skillObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-
-const aboutSection = document.getElementById('about');
-if (aboutSection) skillObserver.observe(aboutSection);
-
 // Modal vidéo YouTube
 const modal      = document.getElementById('videoModal');
 const iframe     = document.getElementById('modalIframe');
