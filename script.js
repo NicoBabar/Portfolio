@@ -30,6 +30,8 @@ document.querySelectorAll('.video-card').forEach(card => {
   card.addEventListener('click', () => {
     const id = card.dataset.videoId;
     if (!id || id.startsWith('VOTRE_ID')) return;
+    const isVertical = card.classList.contains('vertical-card');
+    modal.classList.toggle('modal-vertical', isVertical);
     iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -37,7 +39,7 @@ document.querySelectorAll('.video-card').forEach(card => {
 });
 
 function closeModal() {
-  modal.classList.remove('active');
+  modal.classList.remove('active', 'modal-vertical');
   iframe.src = '';
   document.body.style.overflow = '';
 }
