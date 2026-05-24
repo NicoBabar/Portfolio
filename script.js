@@ -46,18 +46,36 @@ closeBtn.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// Formulaire de contact (feedback visuel simple)
-document.getElementById('contactForm').addEventListener('submit', e => {
+// Formulaire de contact via Formspree
+document.getElementById('contactForm').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = e.target.querySelector('button[type="submit"]');
   const original = btn.textContent;
-  btn.textContent = 'Message envoyé ✓';
-  btn.style.background = '#22c55e';
+  btn.textContent = 'Envoi en cours...';
   btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xpqnleaw', {
+      method: 'POST',
+      body: new FormData(e.target),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      btn.textContent = 'Message envoyé ✓';
+      btn.style.background = '#22c55e';
+      e.target.reset();
+    } else {
+      btn.textContent = 'Erreur, réessayez';
+      btn.style.background = '#ef4444';
+    }
+  } catch {
+    btn.textContent = 'Erreur, réessayez';
+    btn.style.background = '#ef4444';
+  }
+
   setTimeout(() => {
     btn.textContent = original;
     btn.style.background = '';
     btn.disabled = false;
-    e.target.reset();
   }, 3000);
 });
