@@ -131,13 +131,16 @@ a { text-decoration: none; color: inherit; }
   position: relative;
 }
 
-.nav-logo {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
+.nav-logo { display: flex; align-items: center; }
+
+.nav-logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px var(--neon-glow));
+  transition: filter 0.3s;
 }
-.nav-logo .neon-dot { color: var(--neon); }
+.nav-logo-img:hover { filter: drop-shadow(0 0 16px var(--neon-glow)); }
 
 .nav-links {
   display: flex;
@@ -323,10 +326,21 @@ a { text-decoration: none; color: inherit; }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 280px 1fr 1fr;
+  gap: 3.5rem;
   align-items: start;
   margin-top: 3rem;
+}
+
+.about-photo { flex-shrink: 0; }
+
+.about-img {
+  width: 100%;
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  box-shadow: 0 0 30px rgba(196, 77, 255, 0.2);
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
 }
 
 .about-text p {
@@ -533,33 +547,6 @@ a { text-decoration: none; color: inherit; }
 }
 .contact-item p { font-size: 1rem; }
 
-.social-links {
-  display: flex;
-  gap: 0.9rem;
-  margin-top: 2.5rem;
-}
-
-.social-btn {
-  width: 46px;
-  height: 46px;
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  transition: all 0.3s;
-}
-.social-btn svg { width: 20px; height: 20px; }
-.social-btn:hover {
-  background: var(--neon);
-  border-color: var(--neon);
-  color: #fff;
-  box-shadow: 0 0 20px var(--neon-glow);
-  transform: translateY(-3px);
-}
-
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -689,8 +676,14 @@ footer {
 ============================================================ */
 @media (max-width: 960px) {
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .about-photo { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 220px; }
 }
 
 @media (max-width: 600px) {
