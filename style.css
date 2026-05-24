@@ -131,7 +131,16 @@ a { text-decoration: none; color: inherit; }
   position: relative;
 }
 
-.nav-logo { display: flex; align-items: center; }
+.nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+
+.nav-logo-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--neon);
+  text-shadow: 0 0 12px var(--neon-glow), 0 0 28px rgba(196,77,255,0.3);
+  letter-spacing: 0.04em;
+}
 
 .nav-logo-img {
   height: 52px;
