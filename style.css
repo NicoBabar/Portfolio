@@ -604,49 +604,39 @@ a { text-decoration: none; color: inherit; }
 }
 
 .clients-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
   margin-top: 3.5rem;
 }
 
-.client-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  opacity: 0.7;
-  transition: opacity 0.3s, transform 0.3s;
-  filter: grayscale(1) brightness(1.4);
-}
-.client-logo:hover {
-  opacity: 1;
-  transform: translateY(-3px);
-  filter: grayscale(0);
-}
-.client-logo img {
-  height: 52px;
-  width: auto;
-  object-fit: contain;
-  max-width: 140px;
-}
-.client-logo span {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.client-placeholder {
-  padding: 1.2rem 2.5rem;
+.client-card {
+  padding: 1.4rem 1.6rem;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  color: var(--text-dim);
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.client-card:hover {
+  border-color: var(--neon);
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(196, 77, 255, 0.18);
+}
+
+.client-name {
+  font-family: 'Orbitron', monospace;
   font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.client-type {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
 }
 
 /* ============================================================
@@ -830,6 +820,7 @@ footer {
   .about-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .about-photo { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .clients-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 700px) {
@@ -853,6 +844,11 @@ footer {
   .nav-links.open { display: flex; }
   .nav-toggle { display: flex; }
   .portfolio-grid { grid-template-columns: 1fr; }
-  .horizontal-videos { grid-template-columns: 1fr; }
+  .clients-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-btns { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .horizontal-videos { grid-template-columns: 1fr; }
+  .clients-grid { grid-template-columns: 1fr 1fr; }
 }
