@@ -216,69 +216,73 @@ a { text-decoration: none; color: inherit; }
 }
 
 .aurora-1 {
-  width: 75vw;
-  height: 75vh;
-  background: radial-gradient(circle, rgba(140, 0, 210, 0.75) 0%, transparent 68%);
-  filter: blur(90px);
-  top: -25vh;
-  left: -15vw;
-  animation: aurora-1 20s ease-in-out infinite;
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(140, 0, 210, 0.28) 0%, rgba(140, 0, 210, 0.1) 40%, transparent 65%);
+  filter: blur(100px);
+  top: -30vh;
+  left: -20vw;
+  animation: aurora-1 16s ease-in-out infinite;
 }
 
 .aurora-2 {
-  width: 70vw;
-  height: 70vh;
-  background: radial-gradient(circle, rgba(0, 180, 220, 0.7) 0%, transparent 68%);
-  filter: blur(90px);
-  bottom: -25vh;
-  right: -15vw;
-  animation: aurora-2 26s ease-in-out infinite;
-  animation-delay: -9s;
+  width: 75vw;
+  height: 75vh;
+  background: radial-gradient(circle, rgba(0, 180, 220, 0.25) 0%, rgba(0, 180, 220, 0.08) 40%, transparent 65%);
+  filter: blur(100px);
+  bottom: -30vh;
+  right: -20vw;
+  animation: aurora-2 20s ease-in-out infinite;
+  animation-delay: -7s;
 }
 
 .aurora-3 {
-  width: 55vw;
-  height: 55vh;
-  background: radial-gradient(circle, rgba(196, 77, 255, 0.45) 0%, transparent 68%);
-  filter: blur(75px);
-  top: 20vh;
-  left: 10vw;
-  animation: aurora-3 18s ease-in-out infinite;
-  animation-delay: -5s;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(196, 77, 255, 0.18) 0%, transparent 60%);
+  filter: blur(80px);
+  top: 15vh;
+  left: 5vw;
+  animation: aurora-3 14s ease-in-out infinite;
+  animation-delay: -4s;
 }
 
 .aurora-4 {
-  width: 50vw;
-  height: 50vh;
-  background: radial-gradient(circle, rgba(0, 230, 255, 0.4) 0%, transparent 68%);
-  filter: blur(75px);
-  top: 45vh;
-  right: 8vw;
-  animation: aurora-4 23s ease-in-out infinite;
-  animation-delay: -13s;
+  width: 55vw;
+  height: 55vh;
+  background: radial-gradient(circle, rgba(0, 220, 255, 0.16) 0%, transparent 60%);
+  filter: blur(80px);
+  top: 40vh;
+  right: 5vw;
+  animation: aurora-4 18s ease-in-out infinite;
+  animation-delay: -11s;
 }
 
 @keyframes aurora-1 {
-  0%, 100% { transform: translate(0,    0);    }
-  30%       { transform: translate(6vw,  5vh);  }
-  60%       { transform: translate(-4vw, -6vh); }
-  80%       { transform: translate(8vw,  2vh);  }
+  0%   { transform: translate(0,      0)     scale(1);    }
+  20%  { transform: translate(10vw,   7vh)   scale(1.1);  }
+  45%  { transform: translate(-5vw,  -10vh)  scale(0.9);  }
+  70%  { transform: translate(14vw,   4vh)   scale(1.05); }
+  100% { transform: translate(0,      0)     scale(1);    }
 }
 @keyframes aurora-2 {
-  0%, 100% { transform: translate(0,     0);    }
-  25%       { transform: translate(-7vw, -5vh); }
-  55%       { transform: translate(5vw,   8vh); }
-  80%       { transform: translate(-5vw,  3vh); }
+  0%   { transform: translate(0,      0)     scale(1);    }
+  25%  { transform: translate(-12vw, -8vh)   scale(1.08); }
+  50%  { transform: translate(8vw,   12vh)   scale(0.92); }
+  75%  { transform: translate(-6vw,   5vh)   scale(1.04); }
+  100% { transform: translate(0,      0)     scale(1);    }
 }
 @keyframes aurora-3 {
-  0%, 100% { transform: translate(0,    0);    }
-  40%       { transform: translate(10vw, -7vh); }
-  70%       { transform: translate(-6vw,  5vh); }
+  0%   { transform: translate(0,      0)     scale(1);    }
+  30%  { transform: translate(15vw,  -9vh)   scale(1.12); }
+  60%  { transform: translate(-8vw,   8vh)   scale(0.88); }
+  100% { transform: translate(0,      0)     scale(1);    }
 }
 @keyframes aurora-4 {
-  0%, 100% { transform: translate(0,     0);    }
-  35%       { transform: translate(-8vw,  6vh); }
-  65%       { transform: translate(7vw,  -8vh); }
+  0%   { transform: translate(0,      0)     scale(1);    }
+  35%  { transform: translate(-10vw,  9vh)   scale(1.1);  }
+  65%  { transform: translate(12vw,  -11vh)  scale(0.9);  }
+  100% { transform: translate(0,      0)     scale(1);    }
 }
 
 /* ============================================================
