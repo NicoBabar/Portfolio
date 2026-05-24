@@ -137,9 +137,12 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Orbitron', monospace;
   font-size: 1.1rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.logo-babar { color: #ffffff; }
+.logo-studio {
   color: var(--neon);
   text-shadow: 0 0 12px var(--neon-glow), 0 0 28px rgba(196,77,255,0.3);
-  letter-spacing: 0.04em;
 }
 
 .nav-logo-img {
@@ -162,7 +165,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--cyan);
   transition: color 0.3s;
   position: relative;
 }
@@ -173,11 +176,11 @@ a { text-decoration: none; color: inherit; }
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--neon);
-  box-shadow: 0 0 8px var(--neon);
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
   transition: width 0.3s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
 
 .nav-toggle {
@@ -347,7 +350,6 @@ a { text-decoration: none; color: inherit; }
   padding: 8rem 0;
   position: relative;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(8,8,15,0.7) 0%, rgba(13,13,26,0.75) 50%, rgba(8,8,15,0.7) 100%);
 }
 
 .about-grid {
@@ -536,7 +538,6 @@ a { text-decoration: none; color: inherit; }
   padding: 8rem 0;
   position: relative;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(8,8,15,0.7) 0%, rgba(13,13,26,0.75) 50%, rgba(8,8,15,0.7) 100%);
 }
 
 .contact-grid {
