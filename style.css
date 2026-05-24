@@ -208,91 +208,77 @@ a { text-decoration: none; color: inherit; }
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
 }
 
 .aurora {
   position: absolute;
   border-radius: 50%;
-  filter: blur(72px);
 }
 
-/* Nappe violette haute gauche */
 .aurora-1 {
-  width: 130%;
-  height: 55%;
-  background: radial-gradient(ellipse at 40% 50%,
-    rgba(136, 0, 204, 0.55) 0%,
-    rgba(196, 77, 255, 0.25) 45%,
-    transparent 70%);
-  top: -22%;
-  left: -15%;
-  animation: aurora-1 22s ease-in-out infinite;
+  width: 75vw;
+  height: 75vh;
+  background: radial-gradient(circle, rgba(140, 0, 210, 0.75) 0%, transparent 68%);
+  filter: blur(90px);
+  top: -25vh;
+  left: -15vw;
+  animation: aurora-1 20s ease-in-out infinite;
 }
 
-/* Nappe cyan bas droite */
 .aurora-2 {
-  width: 130%;
-  height: 55%;
-  background: radial-gradient(ellipse at 60% 50%,
-    rgba(0, 160, 200, 0.5) 0%,
-    rgba(0, 240, 255, 0.2) 45%,
-    transparent 70%);
-  bottom: -22%;
-  right: -15%;
-  animation: aurora-2 28s ease-in-out infinite;
+  width: 70vw;
+  height: 70vh;
+  background: radial-gradient(circle, rgba(0, 180, 220, 0.7) 0%, transparent 68%);
+  filter: blur(90px);
+  bottom: -25vh;
+  right: -15vw;
+  animation: aurora-2 26s ease-in-out infinite;
   animation-delay: -9s;
 }
 
-/* Nappe violet/cyan centre gauche */
 .aurora-3 {
-  width: 100%;
-  height: 45%;
-  background: radial-gradient(ellipse at 50% 50%,
-    rgba(0, 220, 255, 0.22) 0%,
-    rgba(140, 0, 220, 0.15) 55%,
-    transparent 72%);
-  top: 30%;
-  left: -20%;
-  animation: aurora-3 20s ease-in-out infinite;
+  width: 55vw;
+  height: 55vh;
+  background: radial-gradient(circle, rgba(196, 77, 255, 0.45) 0%, transparent 68%);
+  filter: blur(75px);
+  top: 20vh;
+  left: 10vw;
+  animation: aurora-3 18s ease-in-out infinite;
   animation-delay: -5s;
 }
 
-/* Nappe cyan/violet centre droite */
 .aurora-4 {
-  width: 95%;
-  height: 48%;
-  background: radial-gradient(ellipse at 50% 50%,
-    rgba(196, 77, 255, 0.28) 0%,
-    rgba(0, 180, 220, 0.12) 55%,
-    transparent 72%);
-  top: 45%;
-  right: -12%;
-  animation: aurora-4 25s ease-in-out infinite;
-  animation-delay: -14s;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(circle, rgba(0, 230, 255, 0.4) 0%, transparent 68%);
+  filter: blur(75px);
+  top: 45vh;
+  right: 8vw;
+  animation: aurora-4 23s ease-in-out infinite;
+  animation-delay: -13s;
 }
 
 @keyframes aurora-1 {
-  0%, 100% { transform: translateX(0%)   translateY(0%)   scaleX(1);    }
-  28%       { transform: translateX(8%)   translateY(5%)   scaleX(1.08); }
-  58%       { transform: translateX(-6%)  translateY(-7%)  scaleX(0.94); }
-  80%       { transform: translateX(11%)  translateY(2%)   scaleX(1.04); }
+  0%, 100% { transform: translate(0,    0);    }
+  30%       { transform: translate(6vw,  5vh);  }
+  60%       { transform: translate(-4vw, -6vh); }
+  80%       { transform: translate(8vw,  2vh);  }
 }
 @keyframes aurora-2 {
-  0%, 100% { transform: translateX(0%)   translateY(0%)   scaleX(1);    }
-  22%       { transform: translateX(-9%)  translateY(-6%)  scaleX(1.1);  }
-  54%       { transform: translateX(7%)   translateY(9%)   scaleX(0.91); }
-  78%       { transform: translateX(-7%)  translateY(3%)   scaleX(1.05); }
+  0%, 100% { transform: translate(0,     0);    }
+  25%       { transform: translate(-7vw, -5vh); }
+  55%       { transform: translate(5vw,   8vh); }
+  80%       { transform: translate(-5vw,  3vh); }
 }
 @keyframes aurora-3 {
-  0%, 100% { transform: translateX(0%)   translateY(0%)   scaleY(1);    }
-  38%       { transform: translateX(14%)  translateY(-9%)  scaleY(1.14); }
-  68%       { transform: translateX(-9%)  translateY(6%)   scaleY(0.87); }
+  0%, 100% { transform: translate(0,    0);    }
+  40%       { transform: translate(10vw, -7vh); }
+  70%       { transform: translate(-6vw,  5vh); }
 }
 @keyframes aurora-4 {
-  0%, 100% { transform: translateX(0%)   translateY(0%)   scale(1);     }
-  32%       { transform: translateX(-11%) translateY(7%)   scale(1.11);  }
-  64%       { transform: translateX(9%)   translateY(-10%) scale(0.89);  }
+  0%, 100% { transform: translate(0,     0);    }
+  35%       { transform: translate(-8vw,  6vh); }
+  65%       { transform: translate(7vw,  -8vh); }
 }
 
 /* ============================================================
