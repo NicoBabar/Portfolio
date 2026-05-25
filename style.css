@@ -640,6 +640,115 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ============================================================
+   TARIFS
+============================================================ */
+#tarifs {
+  padding: 8rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tarifs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+.tarif-group-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan-glow);
+  margin-bottom: 1.4rem;
+}
+
+.tarif-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.tarif-card:hover {
+  border-color: var(--neon);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(196, 77, 255, 0.15);
+}
+
+.tarif-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.tarif-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tarif-price {
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--neon);
+  text-shadow: 0 0 12px var(--neon-glow);
+  white-space: nowrap;
+}
+
+.tarif-devis {
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.tarif-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+}
+
+.tarif-pack {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.pack-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.pack-price {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.tarif-note {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--neon-dark);
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
    CONTACT
 ============================================================ */
 #contact {
@@ -826,6 +935,7 @@ footer {
 @media (max-width: 700px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 220px; }
+  .tarifs-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
