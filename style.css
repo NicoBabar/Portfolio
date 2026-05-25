@@ -519,6 +519,11 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+.text-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan-glow);
+}
+
 .grid-divider::before,
 .grid-divider::after {
   content: '';
