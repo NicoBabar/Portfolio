@@ -655,7 +655,7 @@ a { text-decoration: none; color: inherit; }
 
 .tarifs-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 1rem;
 }
@@ -763,6 +763,36 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
   color: var(--cyan);
   text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.tarif-equipment {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(196, 77, 255, 0.1);
+}
+
+.tarif-equip-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.tarif-equip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tarif-equip-chip {
+  padding: 0.3rem 0.7rem;
+  background: var(--neon-dark);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  color: var(--text);
 }
 
 .tarif-note {
@@ -961,12 +991,15 @@ footer {
   .about-photo { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  .tarifs-cards { grid-template-columns: 1fr 1fr; }
+  .tarif-big-card:nth-child(3) { grid-column: 1 / -1; max-width: 520px; margin-left: auto; margin-right: auto; }
 }
 
 @media (max-width: 700px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 220px; }
   .tarifs-cards { grid-template-columns: 1fr; }
+  .tarif-big-card:nth-child(3) { grid-column: auto; max-width: none; }
 }
 
 @media (max-width: 600px) {
