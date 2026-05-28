@@ -166,14 +166,6 @@
     }
     .choice-card:hover .choice-cta { transform: scale(1.06); }
 
-    .landing-footer {
-      position: relative;
-      z-index: 1;
-      color: var(--text-dim);
-      font-size: 0.8rem;
-      text-align: center;
-    }
-
     @media (max-width: 600px) {
       .landing-choices { grid-template-columns: 1fr; max-width: 420px; }
       .choice-card { padding: 2.5rem 2rem; }
@@ -189,6 +181,7 @@
     <div class="aurora aurora-4"></div>
   </div>
 
+  <!-- ===== LANDING CHOIX ===== -->
   <main class="landing">
 
     <div class="landing-header">
@@ -218,9 +211,50 @@
 
     </div>
 
-    <p class="landing-footer">&copy; 2026 Nicolas Barette — Tous droits réservés</p>
-
   </main>
 
+  <!-- ===== À PROPOS ===== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">À <span class="neon-text">propos</span></h2>
+      <div class="about-grid reveal">
+        <div class="about-photo">
+          <img src="IMG_1839.jpg" alt="Nicolas Barette" class="about-img">
+        </div>
+        <div class="about-text">
+          <p>Ancien sous-officier technicien radar dans l'Armée de l'air et de l'espace, j'ai passé 6 ans à maintenir des systèmes d'armes de défense anti-aérienne. En 2025, j'ai choisi de tout plaquer pour me lancer dans ce qui me tenait à cœur : le montage vidéo.</p>
+          <p>La rigueur et le sens du détail que j'ai forgés dans l'armée, je les mets aujourd'hui au service de vos projets. Publicités, contenus YouTube, vidéos d'entreprise ou UGC : je m'investis à fond dans chaque projet, du premier cut au rendu final.</p>
+          <div class="about-tags">
+            <span class="tag">Court-Métrage</span>
+            <span class="tag">Motion Design</span>
+            <span class="tag">YouTube</span>
+            <span class="tag">Publicité</span>
+            <span class="tag">Color Grading</span>
+            <span class="tag">UGC</span>
+          </div>
+        </div>
+        <div class="about-skills">
+          <h3>Outils &amp; Compétences</h3>
+          <div class="skills-grid">
+            <div class="skill-chip">🎬 DaVinci Resolve</div>
+            <div class="skill-chip">🎨 Color Grading</div>
+            <div class="skill-chip">✨ Motion Design</div>
+            <div class="skill-chip">🔊 Sound Design</div>
+            <div class="skill-chip">🎥 Montage Vidéo</div>
+            <div class="skill-chip">📐 Étalonnage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Nicolas Barette — Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
