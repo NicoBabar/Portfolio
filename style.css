@@ -11,6 +11,8 @@
   --cyan-glow:    rgba(201, 168, 76, 0.5);
   --cyan-dark:    rgba(201, 168, 76, 0.1);
   --accent:       #ff4422;
+  --price:        #22cc66;
+  --price-glow:   rgba(34, 204, 102, 0.45);
   --text:         #f0ebe5;
   --text-dim:     #7a6a60;
   --card:         #150c0a;
@@ -733,8 +735,8 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Orbitron', monospace;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--neon);
-  text-shadow: 0 0 12px var(--neon-glow);
+  color: var(--price);
+  text-shadow: 0 0 12px var(--price-glow);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -761,8 +763,8 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Orbitron', monospace;
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--cyan);
-  text-shadow: 0 0 8px var(--cyan-glow);
+  color: var(--price);
+  text-shadow: 0 0 8px var(--price-glow);
 }
 
 .tarif-equipment {
