@@ -16,7 +16,7 @@
   --text:         #f0ebe5;
   --text-dim:     #7a6a60;
   --card:         #150c0a;
-  --border:       rgba(204, 34, 0, 0.22);
+  --border:       rgba(201, 168, 76, 0.22);
   --radius:       12px;
 }
 
@@ -707,7 +707,7 @@ a { text-decoration: none; color: inherit; }
 }
 .tarif-pack-row + .tarif-line,
 .tarif-line + .tarif-line {
-  border-top: 1px solid rgba(204, 34, 0, 0.1);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
 }
 
 .tarif-line-info {
@@ -766,7 +766,7 @@ a { text-decoration: none; color: inherit; }
 .tarif-equipment {
   margin-top: 0.5rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(204, 34, 0, 0.1);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
 }
 
 .tarif-equip-label {
