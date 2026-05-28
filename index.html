@@ -3,15 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicolas Barette | Montage Vidéo</title>
+  <title>BabarStudio | Montage Vidéo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      gap: 3rem;
+    }
+
+    .landing-header { text-align: center; }
+
+    .landing-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .landing-logo img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(204, 34, 0, 0.55));
+    }
+
+    .landing-sub {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .landing-question {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .landing-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .choice-card {
+      position: relative;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.2rem;
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .choice-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .choice-card.classique::before {
+      background: radial-gradient(ellipse at 50% 110%, rgba(204, 34, 0, 0.18) 0%, transparent 65%);
+    }
+    .choice-card.ugc::before {
+      background: radial-gradient(ellipse at 50% 110%, rgba(201, 168, 76, 0.18) 0%, transparent 65%);
+    }
+
+    .choice-card:hover { transform: translateY(-8px); }
+    .choice-card:hover::before { opacity: 1; }
+
+    .choice-card.classique:hover {
+      border-color: var(--neon);
+      box-shadow: 0 0 45px rgba(204, 34, 0, 0.22), 0 24px 60px rgba(0,0,0,0.55);
+    }
+    .choice-card.ugc:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 45px rgba(201, 168, 76, 0.22), 0 24px 60px rgba(0,0,0,0.55);
+    }
+
+    .choice-icon {
+      font-size: 2.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .choice-label {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+    .choice-card.classique .choice-label {
+      color: var(--neon);
+      text-shadow: 0 0 22px rgba(204, 34, 0, 0.45);
+    }
+    .choice-card.ugc .choice-label {
+      color: var(--cyan);
+      text-shadow: 0 0 22px rgba(201, 168, 76, 0.45);
+    }
+
+    .choice-desc {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 280px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .choice-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.8rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      margin-top: 0.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .choice-card.classique .choice-cta {
+      background: var(--neon);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(204, 34, 0, 0.3);
+    }
+    .choice-card.ugc .choice-cta {
+      background: var(--cyan);
+      color: #0a0605;
+      box-shadow: 0 0 18px rgba(201, 168, 76, 0.3);
+    }
+    .choice-card:hover .choice-cta { transform: scale(1.06); }
+
+    .landing-footer {
+      position: relative;
+      z-index: 1;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .landing-choices { grid-template-columns: 1fr; max-width: 420px; }
+      .choice-card { padding: 2.5rem 2rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ===== BACKGROUND LIGHTS (fixed, full page) ===== -->
   <div class="page-bg" aria-hidden="true">
     <div class="aurora aurora-1"></div>
     <div class="aurora aurora-2"></div>
@@ -19,432 +189,38 @@
     <div class="aurora aurora-4"></div>
   </div>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo"><img src="Logo.png" alt="BabarStudio" class="nav-logo-img"><span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span></a>
-      <ul class="nav-links">
-        <li><a href="#hero">Accueil</a></li>
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  <main class="landing">
 
-  <!-- ===== HERO ===== -->
-  <section id="hero">
-    <div class="hero-content">
-      <p class="hero-greeting">Bonjour, je suis</p>
-      <h1 class="hero-title">Nicolas<br><span class="neon-text">Barette</span></h1>
-      <p class="hero-subtitle">Monteur Vidéo <span class="sep">|</span> Créateur de Contenu</p>
-      <div class="hero-btns">
-        <a href="#portfolio" class="btn btn-primary">Voir mon travail</a>
-        <a href="#contact" class="btn btn-outline">Me contacter</a>
+    <div class="landing-header">
+      <div class="landing-logo">
+        <img src="Logo.png" alt="BabarStudio">
+        <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </div>
+      <p class="landing-sub">Nicolas Barette · Montage Vidéo</p>
+      <h1 class="landing-question">Quel type de contenu vous intéresse ?</h1>
     </div>
-    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
-  </section>
 
-  <!-- ===== À PROPOS ===== -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">À <span class="neon-text">propos</span></h2>
-      <div class="about-grid reveal">
-        <div class="about-photo">
-          <img src="IMG_1839.jpg" alt="Nicolas Barette" class="about-img">
-        </div>
-        <div class="about-text">
-          <p>Ancien sous-officier technicien radar dans l'Armée de l'air et de l'espace, j'ai passé 6 ans à maintenir des systèmes d'armes de défense anti-aérienne. En 2025, j'ai choisi de tout plaquer pour me lancer dans ce qui me tenait à cœur : le montage vidéo.</p>
-          <p>La rigueur et le sens du détail que j'ai forgés dans l'armée, je les mets aujourd'hui au service de vos projets. Publicités, contenus YouTube, vidéos d'entreprise ou UGC : je m'investis à fond dans chaque projet, du premier cut au rendu final.</p>
-          <div class="about-tags">
-            <span class="tag">Court-Métrage</span>
-            <span class="tag">Motion Design</span>
-            <span class="tag">YouTube</span>
-            <span class="tag">Publicité</span>
-            <span class="tag">Color Grading</span>
-            <span class="tag">UGC</span>
-          </div>
-        </div>
-        <div class="about-skills">
-          <h3>Outils &amp; Compétences</h3>
-          <div class="skills-grid">
-            <div class="skill-chip">🎬 DaVinci Resolve</div>
-            <div class="skill-chip">🎨 Color Grading</div>
-            <div class="skill-chip">✨ Motion Design</div>
-            <div class="skill-chip">🔊 Sound Design</div>
-            <div class="skill-chip">🎥 Montage Vidéo</div>
-            <div class="skill-chip">📐 Étalonnage</div>
-          </div>
-        </div>
-      </div>
+    <div class="landing-choices">
+
+      <a href="classique.html" class="choice-card classique">
+        <div class="choice-icon">🎬</div>
+        <span class="choice-label">Vidéo Classique</span>
+        <p class="choice-desc">YouTube, vidéo d'entreprise, publicité, documentaire, montage cinématique &amp; tournage.</p>
+        <span class="choice-cta">Découvrir →</span>
+      </a>
+
+      <a href="ugc.html" class="choice-card ugc">
+        <div class="choice-icon">📱</div>
+        <span class="choice-label">Vidéo UGC</span>
+        <p class="choice-desc">Reels, TikTok, Shorts — contenus natifs pour créateurs, e-commerce et marques.</p>
+        <span class="choice-cta">Découvrir →</span>
+      </a>
+
     </div>
-  </section>
 
-  <!-- ===== PORTFOLIO ===== -->
-  <section id="portfolio">
-    <div class="container">
-      <h2 class="section-title">Mon <span class="neon-text">Portfolio</span></h2>
-      <p class="section-subtitle">Quelques projets qui me représentent</p>
-      <div class="portfolio-grid">
+    <p class="landing-footer">&copy; 2026 Nicolas Barette — Tous droits réservés</p>
 
-        <div class="grid-divider">
-          <span>Formats <span class="text-cyan">Horizontaux</span></span>
-        </div>
+  </main>
 
-        <div class="horizontal-videos">
-
-          <div class="video-card reveal" data-video-id="zdWbBPdNTyc">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/zdWbBPdNTyc/hqdefault.jpg" alt="Dream of Farm" loading="lazy">
-              <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-info">
-              <span class="video-cat">Interview</span>
-              <h3>Dream of Farm</h3>
-              <p>Location saisonnière à la ferme, vie au grand air et produits bio et locaux.</p>
-            </div>
-          </div>
-
-          <div class="video-card reveal" data-video-id="qSYP_4bzUGI">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/qSYP_4bzUGI/hqdefault.jpg" alt="LeBunkerBTC" loading="lazy">
-              <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-info">
-              <span class="video-cat">YouTube</span>
-              <h3>LeBunkerBTC : Trailer</h3>
-              <p>Trailer de lancement de la chaîne YouTube crypto &amp; blockchain LeBunkerBTC.</p>
-            </div>
-          </div>
-
-          <div class="video-card reveal" data-video-id="kVLXleCpIW0">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/kVLXleCpIW0/hqdefault.jpg" alt="Bulgarie Edit" loading="lazy">
-              <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-info">
-              <span class="video-cat">Vlog Edit</span>
-              <h3>Bulgarie Edit</h3>
-              <p>Montage cinématique de vacances en Bulgarie, paysages et moments forts.</p>
-            </div>
-          </div>
-
-          <div class="video-card reveal" data-video-id="X0KjoYI2nD8">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/X0KjoYI2nD8/hqdefault.jpg" alt="Harley-Davidson Fat Bob" loading="lazy">
-              <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-info">
-              <span class="video-cat">Film Moto</span>
-              <h3>Harley-Davidson Dyna Fat Bob 2017</h3>
-              <p>Présentation cinématique d'une Harley-Davidson Dyna Fat Bob 2017, tourné et monté de A à Z.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="grid-divider">
-          <span>Formats <span class="text-cyan">Verticaux</span></span>
-        </div>
-
-        <div class="video-card vertical-card reveal" data-video-id="T-bBaKqZy_k">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/T-bBaKqZy_k/hqdefault.jpg" alt="Boutique vêtements" loading="lazy">
-            <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-cat">Short · Mode</span>
-            <h3>Boutique Vêtements</h3>
-            <p>Montage d'une vidéo promotionnelle pour une boutique de mode.</p>
-          </div>
-        </div>
-
-        <div class="video-card vertical-card reveal" data-video-id="r27FqKOnuK4">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/r27FqKOnuK4/hqdefault.jpg" alt="Présentation" loading="lazy">
-            <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-cat">Short · Présentation</span>
-            <h3>Qui suis-je ?</h3>
-            <p>Présentation personnelle entièrement réalisée, du script jusqu'au montage.</p>
-          </div>
-        </div>
-
-        <div class="video-card vertical-card reveal" data-video-id="kZ1iMu0Qw80">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/kZ1iMu0Qw80/hqdefault.jpg" alt="UGC Produit" loading="lazy">
-            <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-cat">UGC</span>
-            <h3>Million Lords</h3>
-            <p>Création UGC clé en main : concept, tournage et montage.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ILS M'ONT FAIT CONFIANCE ===== -->
-  <section id="clients">
-    <div class="container">
-      <h2 class="section-title">Ils m'ont fait <span class="neon-text">confiance</span></h2>
-      <div class="clients-grid reveal">
-        <div class="client-card">
-          <p class="client-name">Dream of Farm</p>
-          <p class="client-type">Location saisonnière</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">LeBunkerBTC</p>
-          <p class="client-type">Crypto &amp; Bitcoin</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Million Lords</p>
-          <p class="client-type">Jeu mobile</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">McChloe</p>
-          <p class="client-type">Influenceuse moto</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Nuclever</p>
-          <p class="client-type">Compléments alimentaires</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">EziClic</p>
-          <p class="client-type">Sacs à dos vintage</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Daisuki</p>
-          <p class="client-type">Nouilles instantanées</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">SG4F</p>
-          <p class="client-type">Association Stargate</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Aya Media</p>
-          <p class="client-type">Production audiovisuelle</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Skill &amp; You</p>
-          <p class="client-type">Formation en ligne</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">Cupidonic</p>
-          <p class="client-type">Marque de parfums</p>
-        </div>
-        <div class="client-card">
-          <p class="client-name">OceaneUGC</p>
-          <p class="client-type">Créatrice UGC</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TARIFS ===== -->
-  <section id="tarifs">
-    <div class="container">
-      <h2 class="section-title">Mes <span class="neon-text">Tarifs</span></h2>
-      <p class="section-subtitle">Des formules claires, sans surprise</p>
-      <div class="tarifs-cards reveal">
-
-        <div class="tarif-big-card">
-          <div class="tarif-card-header">
-            <h3 class="tarif-card-title">Formats <span class="neon-text">Verticaux</span></h3>
-            <p class="tarif-card-subtitle">Reels · TikTok · Shorts</p>
-          </div>
-          <div class="tarif-card-body">
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">Simple · 1 min</span>
-                <span class="tarif-line-desc">Cuts, sous-titres, transitions légères</span>
-              </div>
-              <span class="tarif-line-price">40€</span>
-            </div>
-            <div class="tarif-pack-row">
-              <span>Pack 10 vidéos</span><span class="pack-price">325€</span>
-            </div>
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">Avec animations · 1 min</span>
-                <span class="tarif-line-desc">Motion design, effets visuels</span>
-              </div>
-              <span class="tarif-line-price">80€</span>
-            </div>
-            <div class="tarif-pack-row">
-              <span>Pack 10 vidéos</span><span class="pack-price">700€</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tarif-big-card">
-          <div class="tarif-card-header">
-            <h3 class="tarif-card-title">Formats <span class="neon-text">Horizontaux</span></h3>
-            <p class="tarif-card-subtitle">YouTube · Entreprise · Documentaire</p>
-          </div>
-          <div class="tarif-card-body">
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">YouTube / Vlog</span>
-                <span class="tarif-line-desc">Jusqu'à 10 minutes</span>
-              </div>
-              <span class="tarif-line-price">100-150€</span>
-            </div>
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">YouTube long</span>
-                <span class="tarif-line-desc">10 à 20 minutes</span>
-              </div>
-              <span class="tarif-line-price">150-250€</span>
-            </div>
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">Vidéo entreprise / pub</span>
-                <span class="tarif-line-desc">2 à 5 minutes</span>
-              </div>
-              <span class="tarif-line-price">200-350€</span>
-            </div>
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">Interview / Documentaire</span>
-                <span class="tarif-line-desc">Projet complexe, durée variable</span>
-              </div>
-              <span class="tarif-line-price tarif-devis">Sur devis</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tarif-big-card">
-          <div class="tarif-card-header">
-            <h3 class="tarif-card-title"><span class="neon-text">Tournage</span></h3>
-            <p class="tarif-card-subtitle">Prise de vue · Sur site</p>
-          </div>
-          <div class="tarif-card-body">
-            <div class="tarif-line">
-              <div class="tarif-line-info">
-                <span class="tarif-line-name">Demi-journée</span>
-              </div>
-              <span class="tarif-line-price">400€</span>
-            </div>
-            <div class="tarif-equipment">
-              <span class="tarif-equip-label">Équipements inclus</span>
-              <div class="tarif-equip-grid">
-                <span class="tarif-equip-chip">🎤 Micros cravate</span>
-                <span class="tarif-equip-chip">📷 Lumix S5 II</span>
-                <span class="tarif-equip-chip">💡 2 spots LED</span>
-                <span class="tarif-equip-chip">📐 Trépied</span>
-                <span class="tarif-equip-chip">🟩 Fond vert</span>
-                <span class="tarif-equip-chip">🚁 Drone stabilisé</span>
-                <span class="tarif-equip-chip">🎮 Drone FPV</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <p class="tarif-note reveal">Pour un devis personnalisé, contactez-moi directement via le formulaire en bas de page.</p>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="section-title">Me <span class="neon-text">contacter</span></h2>
-      <p class="section-subtitle">Contactez-moi par mail ou via le formulaire ci-dessous.</p>
-      <div class="contact-grid reveal">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <div>
-              <h4>Email</h4>
-              <p>nicolas.babarstudio@gmail.com</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <h4>Localisation</h4>
-              <p>Miramas (13)</p>
-            </div>
-          </div>
-        </div>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" placeholder="Votre nom" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="secteur">Secteur d'activité</label>
-            <input type="text" id="secteur" name="secteur" placeholder="Ex : e-commerce, YouTube, immobilier...">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Envoyer le message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Nicolas Barette — Tous droits réservés</p>
-    </div>
-  </footer>
-
-  <!-- ===== VIDEO MODAL ===== -->
-  <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Fermer">✕</button>
-      <div class="modal-iframe-wrapper">
-        <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen title="Vidéo YouTube"></iframe>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>

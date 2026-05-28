@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BabarStudio | Vidéo UGC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .soon-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+      gap: 2rem;
+    }
+    .soon-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .soon-logo img {
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.5));
+    }
+    .soon-badge {
+      display: inline-block;
+      padding: 0.35rem 1.1rem;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .soon-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--cyan);
+      text-shadow: 0 0 30px rgba(201, 168, 76, 0.4), 0 0 70px rgba(201, 168, 76, 0.15);
+    }
+    .soon-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+    .soon-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      background: transparent;
+      border: 1.5px solid var(--cyan);
+      color: var(--cyan);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .soon-back:hover {
+      background: rgba(201, 168, 76, 0.1);
+      box-shadow: 0 0 22px rgba(201, 168, 76, 0.25);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-bg" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="aurora aurora-4"></div>
+  </div>
+
+  <main class="soon-page">
+
+    <div class="soon-logo">
+      <img src="Logo.png" alt="BabarStudio">
+      <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
+    </div>
+
+    <span class="soon-badge">Bientôt disponible</span>
+
+    <h1 class="soon-title">Vidéo<br>UGC</h1>
+
+    <p class="soon-sub">La page dédiée aux contenus UGC — Reels, TikTok, Shorts et créations pour marques — est en cours de construction. Revenez bientôt !</p>
+
+    <a href="./" class="soon-back">← Retour à l'accueil</a>
+
+  </main>
+
+</body>
+</html>
