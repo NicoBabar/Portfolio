@@ -9,59 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .landing {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .choices-section {
+      padding: 6rem 0 8rem;
       position: relative;
       z-index: 1;
-      padding: 2rem;
-      gap: 3rem;
     }
-
-    .landing-header { text-align: center; }
-
-    .landing-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
-    }
-    .landing-logo img {
-      height: 80px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 12px rgba(204, 34, 0, 0.55));
-    }
-
-    .landing-sub {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .landing-question {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
     .landing-choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      width: 100%;
-      max-width: 860px;
+      margin-top: 1rem;
     }
-
     .choice-card {
       position: relative;
       background: var(--card);
@@ -78,7 +36,6 @@
       overflow: hidden;
       transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
-
     .choice-card::before {
       content: '';
       position: absolute;
@@ -93,10 +50,8 @@
     .choice-card.ugc::before {
       background: radial-gradient(ellipse at 50% 110%, rgba(201, 168, 76, 0.18) 0%, transparent 65%);
     }
-
     .choice-card:hover { transform: translateY(-8px); }
     .choice-card:hover::before { opacity: 1; }
-
     .choice-card.classique:hover {
       border-color: var(--neon);
       box-shadow: 0 0 45px rgba(204, 34, 0, 0.22), 0 24px 60px rgba(0,0,0,0.55);
@@ -105,13 +60,7 @@
       border-color: var(--cyan);
       box-shadow: 0 0 45px rgba(201, 168, 76, 0.22), 0 24px 60px rgba(0,0,0,0.55);
     }
-
-    .choice-icon {
-      font-size: 2.8rem;
-      position: relative;
-      z-index: 1;
-    }
-
+    .choice-icon { font-size: 2.8rem; position: relative; z-index: 1; }
     .choice-label {
       font-family: 'Orbitron', monospace;
       font-size: clamp(1.2rem, 2.5vw, 1.65rem);
@@ -129,7 +78,6 @@
       color: var(--cyan);
       text-shadow: 0 0 22px rgba(201, 168, 76, 0.45);
     }
-
     .choice-desc {
       font-size: 0.92rem;
       color: var(--text-dim);
@@ -138,7 +86,6 @@
       position: relative;
       z-index: 1;
     }
-
     .choice-cta {
       display: inline-flex;
       align-items: center;
@@ -165,9 +112,8 @@
       box-shadow: 0 0 18px rgba(201, 168, 76, 0.3);
     }
     .choice-card:hover .choice-cta { transform: scale(1.06); }
-
     @media (max-width: 600px) {
-      .landing-choices { grid-template-columns: 1fr; max-width: 420px; }
+      .landing-choices { grid-template-columns: 1fr; }
       .choice-card { padding: 2.5rem 2rem; }
     }
   </style>
@@ -181,37 +127,44 @@
     <div class="aurora aurora-4"></div>
   </div>
 
-  <!-- ===== LANDING CHOIX ===== -->
-  <main class="landing">
-
-    <div class="landing-header">
-      <div class="landing-logo">
-        <img src="Logo.png" alt="BabarStudio">
-        <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Bonjour, je suis</p>
+      <h1 class="hero-title">Nicolas<br><span class="neon-text">Barette</span></h1>
+      <p class="hero-subtitle">Monteur Vidéo <span class="sep">|</span> Créateur de Contenu</p>
+      <div class="hero-btns">
+        <a href="classique.html" class="btn btn-primary">Vidéo Classique</a>
+        <a href="ugc.html" class="btn btn-outline">Vidéo UGC</a>
       </div>
-      <p class="landing-sub">Nicolas Barette · Montage Vidéo</p>
-      <h1 class="landing-question">Quel type de contenu vous intéresse ?</h1>
     </div>
+    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+  </section>
 
-    <div class="landing-choices">
+  <!-- ===== CHOIX ===== -->
+  <section class="choices-section">
+    <div class="container">
+      <h2 class="section-title">Quel type de <span class="neon-text">contenu</span> ?</h2>
+      <p class="section-subtitle">Choisissez la formule adaptée à votre projet</p>
+      <div class="landing-choices reveal">
 
-      <a href="classique.html" class="choice-card classique">
-        <div class="choice-icon">🎬</div>
-        <span class="choice-label">Vidéo Classique</span>
-        <p class="choice-desc">YouTube, vidéo d'entreprise, publicité, documentaire, montage cinématique &amp; tournage.</p>
-        <span class="choice-cta">Découvrir →</span>
-      </a>
+        <a href="classique.html" class="choice-card classique">
+          <div class="choice-icon">🎬</div>
+          <span class="choice-label">Vidéo Classique</span>
+          <p class="choice-desc">YouTube, vidéo d'entreprise, publicité, documentaire, montage cinématique &amp; tournage.</p>
+          <span class="choice-cta">Découvrir →</span>
+        </a>
 
-      <a href="ugc.html" class="choice-card ugc">
-        <div class="choice-icon">📱</div>
-        <span class="choice-label">Vidéo UGC</span>
-        <p class="choice-desc">Reels, TikTok, Shorts — contenus natifs pour créateurs, e-commerce et marques.</p>
-        <span class="choice-cta">Découvrir →</span>
-      </a>
+        <a href="ugc.html" class="choice-card ugc">
+          <div class="choice-icon">📱</div>
+          <span class="choice-label">Vidéo UGC</span>
+          <p class="choice-desc">Reels, TikTok, Shorts — contenus natifs pour créateurs, e-commerce et marques.</p>
+          <span class="choice-cta">Découvrir →</span>
+        </a>
 
+      </div>
     </div>
-
-  </main>
+  </section>
 
   <!-- ===== À PROPOS ===== -->
   <section id="about">
