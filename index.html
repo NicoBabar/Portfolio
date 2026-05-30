@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .choices-section {
+    .specialites-section {
       padding: 6rem 0 8rem;
       position: relative;
       z-index: 1;
@@ -78,13 +78,30 @@
       color: var(--cyan);
       text-shadow: 0 0 22px rgba(201, 168, 76, 0.45);
     }
-    .choice-desc {
-      font-size: 0.92rem;
-      color: var(--text-dim);
-      line-height: 1.75;
-      max-width: 280px;
+    .choice-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
       position: relative;
       z-index: 1;
+    }
+    .choice-tag {
+      padding: 0.28rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .choice-card.classique .choice-tag {
+      background: rgba(204, 34, 0, 0.1);
+      border: 1px solid rgba(204, 34, 0, 0.25);
+      color: var(--text-dim);
+    }
+    .choice-card.ugc .choice-tag {
+      background: rgba(201, 168, 76, 0.08);
+      border: 1px solid rgba(201, 168, 76, 0.22);
+      color: var(--text-dim);
     }
     .choice-cta {
       display: inline-flex;
@@ -132,34 +149,46 @@
     <div class="hero-content">
       <p class="hero-greeting">Bonjour, je suis</p>
       <h1 class="hero-title">Nicolas<br><span class="neon-text">Barette</span></h1>
-      <p class="hero-subtitle">Monteur Vidéo <span class="sep">|</span> Créateur de Contenu</p>
+      <p class="hero-subtitle">Du Reel TikTok au film d'entreprise<span class="sep">—</span>je monte des vidéos qui marquent</p>
       <div class="hero-btns">
-        <a href="classique.html" class="btn btn-primary">Vidéo Classique</a>
-        <a href="ugc.html" class="btn btn-outline">Vidéo UGC</a>
+        <a href="#specialites" class="btn btn-primary">Découvrir mon travail</a>
+        <a href="classique.html#contact" class="btn btn-outline">Me contacter</a>
       </div>
     </div>
     <div class="scroll-indicator"><div class="scroll-dot"></div></div>
   </section>
 
-  <!-- ===== CHOIX ===== -->
-  <section class="choices-section">
+  <!-- ===== MES SPÉCIALITÉS ===== -->
+  <section id="specialites" class="specialites-section">
     <div class="container">
-      <h2 class="section-title">Quel type de <span class="neon-text">contenu</span> ?</h2>
-      <p class="section-subtitle">Choisissez la formule adaptée à votre projet</p>
+      <h2 class="section-title">Mes <span class="neon-text">spécialités</span></h2>
+      <p class="section-subtitle">Deux univers, un seul niveau d'exigence</p>
       <div class="landing-choices reveal">
 
         <a href="classique.html" class="choice-card classique">
           <div class="choice-icon">🎬</div>
           <span class="choice-label">Vidéo Classique</span>
-          <p class="choice-desc">YouTube, vidéo d'entreprise, publicité, documentaire, montage cinématique &amp; tournage.</p>
-          <span class="choice-cta">Découvrir →</span>
+          <div class="choice-tags">
+            <span class="choice-tag">YouTube</span>
+            <span class="choice-tag">Entreprise</span>
+            <span class="choice-tag">Documentaire</span>
+            <span class="choice-tag">Tournage</span>
+            <span class="choice-tag">Publicité</span>
+          </div>
+          <span class="choice-cta">Voir le portfolio →</span>
         </a>
 
         <a href="ugc.html" class="choice-card ugc">
           <div class="choice-icon">📱</div>
           <span class="choice-label">Vidéo UGC</span>
-          <p class="choice-desc">Reels, TikTok, Shorts — contenus natifs pour créateurs, e-commerce et marques.</p>
-          <span class="choice-cta">Découvrir →</span>
+          <div class="choice-tags">
+            <span class="choice-tag">Reels</span>
+            <span class="choice-tag">TikTok</span>
+            <span class="choice-tag">Shorts</span>
+            <span class="choice-tag">E-commerce</span>
+            <span class="choice-tag">Marques</span>
+          </div>
+          <span class="choice-cta">Voir le portfolio →</span>
         </a>
 
       </div>
