@@ -506,6 +506,16 @@ a { text-decoration: none; color: inherit; }
 
 .vertical-card .video-thumb { aspect-ratio: 9 / 16; }
 
+.instagram-thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
 .grid-divider {
   grid-column: 1 / -1;
   display: flex;

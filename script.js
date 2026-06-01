@@ -25,7 +25,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Modal vidéo YouTube
+// Modal vidéo
 const modal    = document.getElementById('videoModal');
 const iframe   = document.getElementById('modalIframe');
 const closeBtn = document.getElementById('modalClose');
@@ -37,7 +37,10 @@ if (modal && iframe && closeBtn) {
       if (!id || id.startsWith('VOTRE_ID')) return;
       const isVertical = card.classList.contains('vertical-card');
       modal.classList.toggle('modal-vertical', isVertical);
-      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      const platform = card.dataset.platform || 'youtube';
+      iframe.src = platform === 'instagram'
+        ? `https://www.instagram.com/reel/${id}/embed/`
+        : `https://www.youtube.com/embed/${id}?autoplay=1`;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
