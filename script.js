@@ -16,14 +16,59 @@ if (navToggle && navLinks) {
   });
 }
 
+// Apparition en cascade : délais progressifs sur les enfants des conteneurs .stagger
+document.querySelectorAll('.stagger').forEach(container => {
+  Array.from(container.children).forEach((child, i) => {
+    child.style.transition = 'opacity 0.65s ease, transform 0.65s ease';
+    child.style.transitionDelay = `${Math.min(i * 0.09, 0.9)}s`;
+  });
+});
+
 // Scroll reveal général
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    el.classList.add('visible');
+    revealObserver.unobserve(el);
+
+    // Cascade terminée : on rend la main aux transitions de hover des cartes
+    if (el.classList.contains('stagger')) {
+      setTimeout(() => {
+        Array.from(el.children).forEach(c => {
+          c.style.transition = '';
+          c.style.transitionDelay = '';
+        });
+        el.classList.remove('stagger');
+      }, 1800);
+    }
   });
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Compteurs animés de la section "Pourquoi la vidéo"
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    statObserver.unobserve(el);
+    const target = parseInt(el.dataset.count, 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const start = performance.now();
+    const tick = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
 
 // Modal vidéo
 const modal    = document.getElementById('videoModal');
