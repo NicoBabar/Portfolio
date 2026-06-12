@@ -20,8 +20,19 @@
 
   <!-- ===== CHEMIN DE PROGRESSION ===== -->
   <div class="scroll-path" aria-hidden="true">
-    <div class="scroll-path-track"></div>
-    <div class="scroll-path-progress"></div>
+    <svg class="scroll-path-svg" viewBox="0 0 24 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="scrollProgressClip">
+          <rect id="scrollProgressRect" x="0" y="0" width="24" height="0"/>
+        </clipPath>
+        <linearGradient id="scrollPathGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c9a84c"/>
+          <stop offset="100%" stop-color="#cc2200"/>
+        </linearGradient>
+      </defs>
+      <path class="scroll-path-track" d="M12,0 C5,50 19,150 12,200 C6,250 18,350 12,400 C5,450 20,550 12,600 C6,650 18,750 12,800 C5,850 19,950 12,1000"/>
+      <path class="scroll-path-progress" clip-path="url(#scrollProgressClip)" d="M12,0 C5,50 19,150 12,200 C6,250 18,350 12,400 C5,450 20,550 12,600 C6,650 18,750 12,800 C5,850 19,950 12,1000"/>
+    </svg>
   </div>
 
   <!-- ===== NAVIGATION ===== -->

@@ -1020,64 +1020,54 @@ footer {
    CHEMIN DE PROGRESSION
 ============================================================ */
 .scroll-path {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  z-index: 0;
+  position: fixed;
+  left: 12px;
+  top: 0;
+  height: 100vh;
+  width: 24px;
+  z-index: 2;
   pointer-events: none;
 }
 
+.scroll-path-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
 .scroll-path-track {
-  position: absolute;
-  inset: 0;
-  background: rgba(201, 168, 76, 0.12);
+  fill: none;
+  stroke: rgba(201, 168, 76, 0.15);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .scroll-path-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  background: linear-gradient(to bottom, var(--cyan), var(--neon));
-  box-shadow: 0 0 10px var(--neon-glow), 0 0 26px rgba(204, 34, 0, 0.3);
+  fill: none;
+  stroke: url(#scrollPathGradient);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px rgba(204, 34, 0, 0.7));
 }
 
 .path-dot {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--bg-mid);
-  border: 2px solid rgba(201, 168, 76, 0.35);
-  transition: background 0.4s, border-color 0.4s;
+  fill: #110808;
+  stroke: rgba(201, 168, 76, 0.45);
+  stroke-width: 1.5;
+  transition: fill 0.4s, stroke 0.4s;
 }
 
-/* Point de passage allumé : braise qui pulse */
 .path-dot.lit {
-  background: var(--neon);
-  border-color: var(--cyan);
+  fill: #cc2200;
+  stroke: #c9a84c;
   animation: dot-flame 1.8s ease-in-out infinite;
-}
-.path-dot.lit::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 140, 40, 0.6);
-  animation: dot-burst 0.7s ease-out forwards;
 }
 
 @keyframes dot-flame {
-  0%, 100% { box-shadow: 0 0 10px var(--neon-glow), 0 0 26px rgba(255, 120, 30, 0.4); }
-  50%      { box-shadow: 0 0 18px var(--neon-glow), 0 0 44px rgba(255, 140, 40, 0.65); }
-}
-@keyframes dot-burst {
-  from { transform: scale(0.6); opacity: 1; }
-  to   { transform: scale(2.4); opacity: 0; }
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(204, 34, 0, 0.7)); }
+  50%       { filter: drop-shadow(0 0 7px rgba(204, 34, 0, 1)) drop-shadow(0 0 12px rgba(255, 140, 40, 0.65)); }
 }
 
 /* Cartes inclinables en 3D (rotation gérée en JS) */

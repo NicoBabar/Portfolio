@@ -40,49 +40,56 @@ document.querySelectorAll('.video-card, .tarif-big-card, .client-card').forEach(
   });
 });
 
-// Chemin de progression central : se remplit au scroll,
-// chaque point de passage s'embrase quand on l'atteint
-const scrollPath = document.querySelector('.scroll-path');
-if (scrollPath) {
-  const progress = scrollPath.querySelector('.scroll-path-progress');
-  const sections = document.querySelectorAll('#about, #portfolio, #clients, #tarifs, #contact');
+// Chemin de progression latéral : SVG tracé main-droite, se remplit au scroll
+const scrollPathEl = document.querySelector('.scroll-path');
+if (scrollPathEl) {
+  const progressRect = document.getElementById('scrollProgressRect');
+  const svg = scrollPathEl.querySelector('.scroll-path-svg');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const sections = ['about', 'portfolio', 'clients', 'tarifs', 'contact']
+    .map(id => document.getElementById(id)).filter(Boolean);
   const dots = [];
-  let pathTop = 0;
-  let pathHeight = 0;
 
   sections.forEach(section => {
-    const el = document.createElement('div');
-    el.className = 'path-dot';
-    scrollPath.appendChild(el);
-    dots.push({ el, section, y: 0 });
+    const circle = document.createElementNS(svgNS, 'circle');
+    circle.setAttribute('cx', '12');
+    circle.setAttribute('r', '6');
+    circle.classList.add('path-dot');
+    svg.appendChild(circle);
+    dots.push({ circle, section, triggerY: 0 });
   });
 
-  function layoutPath() {
-    const hero = document.getElementById('hero');
+  function getRange() {
+    const first = document.getElementById('about');
     const footer = document.querySelector('footer');
-    pathTop = hero ? hero.offsetTop + hero.offsetHeight : 0;
+    const start = first ? first.offsetTop : 0;
     const end = footer ? footer.offsetTop : document.body.scrollHeight;
-    pathHeight = Math.max(end - pathTop, 0);
-    scrollPath.style.top = pathTop + 'px';
-    scrollPath.style.height = pathHeight + 'px';
+    return { start, end };
+  }
+
+  function layout() {
+    const { start, end } = getRange();
+    const range = Math.max(end - start, 1);
     dots.forEach(d => {
-      d.y = d.section.offsetTop + 60; // niveau du titre de section
-      d.el.style.top = (d.y - pathTop) + 'px';
+      const ratio = Math.min(Math.max((d.section.offsetTop - start) / range, 0), 1);
+      d.circle.setAttribute('cy', ratio * 960 + 20);
+      d.triggerY = d.section.offsetTop + 60;
     });
   }
 
-  function updatePath() {
-    const marker = window.scrollY + window.innerHeight * 0.5;
-    const filled = Math.min(Math.max(marker - pathTop, 0), pathHeight);
-    progress.style.height = filled + 'px';
-    dots.forEach(d => d.el.classList.toggle('lit', marker >= d.y));
+  function update() {
+    const { start, end } = getRange();
+    const marker = window.scrollY + window.innerHeight * 0.4;
+    const p = Math.min(Math.max((marker - start) / (end - start), 0), 1);
+    progressRect.setAttribute('height', p * 1000);
+    dots.forEach(d => d.circle.classList.toggle('lit', marker >= d.triggerY));
   }
 
-  layoutPath();
-  updatePath();
-  window.addEventListener('scroll', updatePath, { passive: true });
-  window.addEventListener('resize', () => { layoutPath(); updatePath(); });
-  window.addEventListener('load', () => { layoutPath(); updatePath(); });
+  layout();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { layout(); update(); });
+  window.addEventListener('load', () => { layout(); update(); });
 }
 
 // Modal vidéo
