@@ -48,22 +48,6 @@ a { text-decoration: none; color: inherit; }
     0 0 20px var(--neon-glow),
     0 0 50px var(--neon-glow),
     0 0 90px rgba(204, 34, 0, 0.25);
-  animation: neon-pulse 3.5s ease-in-out infinite;
-}
-
-@keyframes neon-pulse {
-  0%, 100% {
-    text-shadow:
-      0 0 20px var(--neon-glow),
-      0 0 50px var(--neon-glow),
-      0 0 90px rgba(204, 34, 0, 0.25);
-  }
-  50% {
-    text-shadow:
-      0 0 28px var(--neon-glow),
-      0 0 70px var(--neon-glow),
-      0 0 120px rgba(204, 34, 0, 0.4);
-  }
 }
 
 .section-title {
@@ -387,123 +371,6 @@ a { text-decoration: none; color: inherit; }
   50%       { transform: translateY(10px); opacity: 0.3; }
 }
 
-/* Animation d'entrée du hero au chargement */
-@keyframes hero-in {
-  from { opacity: 0; transform: translateY(34px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-greeting,
-.hero-title,
-.hero-subtitle,
-.hero-btns {
-  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.hero-title       { animation-delay: 0.15s; }
-.hero-subtitle    { animation-delay: 0.3s; }
-.hero-btns        { animation-delay: 0.45s; }
-.scroll-indicator { animation: hero-in 0.9s ease 0.8s both; }
-
-/* ============================================================
-   POURQUOI LA VIDÉO
-============================================================ */
-#pourquoi {
-  padding: 8rem 0 6rem;
-  position: relative;
-  z-index: 1;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.4rem;
-  margin-bottom: 4rem;
-}
-
-.stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem 1.4rem;
-  text-align: center;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-.stat-card:hover {
-  border-color: var(--cyan);
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(201, 168, 76, 0.18);
-}
-
-.stat-number {
-  font-family: 'Orbitron', monospace;
-  font-size: 2.6rem;
-  font-weight: 900;
-  color: var(--cyan);
-  text-shadow: 0 0 18px var(--cyan-glow), 0 0 45px rgba(201, 168, 76, 0.25);
-  display: block;
-  margin-bottom: 0.6rem;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.55;
-}
-
-.pourquoi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.8rem;
-}
-
-.pourquoi-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2.2rem;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-.pourquoi-card:hover {
-  border-color: var(--neon);
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px rgba(204, 34, 0, 0.15);
-}
-
-.pourquoi-icon {
-  font-size: 1.8rem;
-  width: 62px;
-  height: 62px;
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.3rem;
-  animation: float-icon 4s ease-in-out infinite;
-}
-.pourquoi-card:nth-child(2) .pourquoi-icon { animation-delay: -1s; }
-.pourquoi-card:nth-child(3) .pourquoi-icon { animation-delay: -2s; }
-.pourquoi-card:nth-child(4) .pourquoi-icon { animation-delay: -3s; }
-
-@keyframes float-icon {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-7px); }
-}
-
-.pourquoi-card h3 {
-  font-family: 'Orbitron', monospace;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.7rem;
-}
-
-.pourquoi-card p {
-  font-size: 0.92rem;
-  color: var(--text-dim);
-  line-height: 1.7;
-}
-
 /* ============================================================
    ABOUT
 ============================================================ */
@@ -638,6 +505,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 .vertical-card .video-thumb { aspect-ratio: 9 / 16; }
+
+.instagram-thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
 
 .grid-divider {
   grid-column: 1 / -1;
@@ -1139,19 +1016,75 @@ footer {
   transform: translateY(0);
 }
 
-/* Apparition en cascade : le conteneur reste visible,
-   ce sont ses enfants qui apparaissent un à un (délais gérés en JS) */
-.reveal.stagger {
-  opacity: 1;
-  transform: none;
+/* ============================================================
+   CHEMIN DE PROGRESSION
+============================================================ */
+.scroll-path {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  z-index: 0;
+  pointer-events: none;
 }
-.stagger > * {
-  opacity: 0;
-  transform: translateY(26px);
+
+.scroll-path-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(201, 168, 76, 0.12);
 }
-.stagger.visible > * {
-  opacity: 1;
-  transform: translateY(0);
+
+.scroll-path-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(to bottom, var(--cyan), var(--neon));
+  box-shadow: 0 0 10px var(--neon-glow), 0 0 26px rgba(204, 34, 0, 0.3);
+}
+
+.path-dot {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-mid);
+  border: 2px solid rgba(201, 168, 76, 0.35);
+  transition: background 0.4s, border-color 0.4s;
+}
+
+/* Point de passage allumé : braise qui pulse */
+.path-dot.lit {
+  background: var(--neon);
+  border-color: var(--cyan);
+  animation: dot-flame 1.8s ease-in-out infinite;
+}
+.path-dot.lit::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 140, 40, 0.6);
+  animation: dot-burst 0.7s ease-out forwards;
+}
+
+@keyframes dot-flame {
+  0%, 100% { box-shadow: 0 0 10px var(--neon-glow), 0 0 26px rgba(255, 120, 30, 0.4); }
+  50%      { box-shadow: 0 0 18px var(--neon-glow), 0 0 44px rgba(255, 140, 40, 0.65); }
+}
+@keyframes dot-burst {
+  from { transform: scale(0.6); opacity: 1; }
+  to   { transform: scale(2.4); opacity: 0; }
+}
+
+/* Cartes inclinables en 3D (rotation gérée en JS) */
+.video-card,
+.tarif-big-card,
+.client-card {
+  will-change: transform;
 }
 
 /* ============================================================
@@ -1164,14 +1097,13 @@ footer {
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .tarifs-cards { grid-template-columns: 1fr 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 700px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 220px; }
   .tarifs-cards { grid-template-columns: 1fr; }
-  .pourquoi-grid { grid-template-columns: 1fr; }
+  .scroll-path { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -1197,18 +1129,4 @@ footer {
 @media (max-width: 480px) {
   .horizontal-videos { grid-template-columns: 1fr; }
   .clients-grid { grid-template-columns: 1fr 1fr; }
-  .stats-grid { grid-template-columns: 1fr; }
-}
-
-/* Accessibilité : motion réduite */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .reveal, .stagger > * {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
