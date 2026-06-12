@@ -1016,60 +1016,6 @@ footer {
   transform: translateY(0);
 }
 
-/* ============================================================
-   CHEMIN DE PROGRESSION
-============================================================ */
-.scroll-path {
-  position: fixed;
-  left: 12px;
-  top: 0;
-  height: 100vh;
-  width: 24px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.scroll-path-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.scroll-path-track {
-  fill: none;
-  stroke: rgba(201, 168, 76, 0.15);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.scroll-path-progress {
-  fill: none;
-  stroke: url(#scrollPathGradient);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 4px rgba(204, 34, 0, 0.7));
-}
-
-.path-dot {
-  fill: #110808;
-  stroke: rgba(201, 168, 76, 0.45);
-  stroke-width: 1.5;
-  transition: fill 0.4s, stroke 0.4s;
-}
-
-.path-dot.lit {
-  fill: #cc2200;
-  stroke: #c9a84c;
-  animation: dot-flame 1.8s ease-in-out infinite;
-}
-
-@keyframes dot-flame {
-  0%, 100% { filter: drop-shadow(0 0 3px rgba(204, 34, 0, 0.7)); }
-  50%       { filter: drop-shadow(0 0 7px rgba(204, 34, 0, 1)) drop-shadow(0 0 12px rgba(255, 140, 40, 0.65)); }
-}
-
 /* Cartes inclinables en 3D (rotation gérée en JS) */
 .video-card,
 .tarif-big-card,
@@ -1093,7 +1039,6 @@ footer {
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 220px; }
   .tarifs-cards { grid-template-columns: 1fr; }
-  .scroll-path { display: none; }
 }
 
 @media (max-width: 600px) {

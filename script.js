@@ -40,58 +40,6 @@ document.querySelectorAll('.video-card, .tarif-big-card, .client-card').forEach(
   });
 });
 
-// Chemin de progression latéral : SVG tracé main-droite, se remplit au scroll
-const scrollPathEl = document.querySelector('.scroll-path');
-if (scrollPathEl) {
-  const progressRect = document.getElementById('scrollProgressRect');
-  const svg = scrollPathEl.querySelector('.scroll-path-svg');
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const sections = ['about', 'portfolio', 'clients', 'tarifs', 'contact']
-    .map(id => document.getElementById(id)).filter(Boolean);
-  const dots = [];
-
-  sections.forEach(section => {
-    const circle = document.createElementNS(svgNS, 'circle');
-    circle.setAttribute('cx', '12');
-    circle.setAttribute('r', '6');
-    circle.classList.add('path-dot');
-    svg.appendChild(circle);
-    dots.push({ circle, section, triggerY: 0 });
-  });
-
-  function getRange() {
-    const first = document.getElementById('about');
-    const footer = document.querySelector('footer');
-    const start = first ? first.offsetTop : 0;
-    const end = footer ? footer.offsetTop : document.body.scrollHeight;
-    return { start, end };
-  }
-
-  function layout() {
-    const { start, end } = getRange();
-    const range = Math.max(end - start, 1);
-    dots.forEach(d => {
-      const ratio = Math.min(Math.max((d.section.offsetTop - start) / range, 0), 1);
-      d.circle.setAttribute('cy', ratio * 960 + 20);
-      d.triggerY = d.section.offsetTop + 60;
-    });
-  }
-
-  function update() {
-    const { start, end } = getRange();
-    const marker = window.scrollY + window.innerHeight * 0.4;
-    const p = Math.min(Math.max((marker - start) / (end - start), 0), 1);
-    progressRect.setAttribute('height', p * 1000);
-    dots.forEach(d => d.circle.classList.toggle('lit', marker >= d.triggerY));
-  }
-
-  layout();
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', () => { layout(); update(); });
-  window.addEventListener('load', () => { layout(); update(); });
-}
-
 // Modal vidéo
 const modal    = document.getElementById('videoModal');
 const iframe   = document.getElementById('modalIframe');
