@@ -345,32 +345,6 @@ a { text-decoration: none; color: inherit; }
   flex-wrap: wrap;
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 38px;
-  border: 2px solid rgba(204, 34, 0, 0.45);
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  padding-top: 6px;
-}
-.scroll-dot {
-  width: 4px;
-  height: 8px;
-  background: var(--cyan);
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--cyan);
-  animation: scroll-bounce 2s ease-in-out infinite;
-}
-@keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50%       { transform: translateY(10px); opacity: 0.3; }
-}
-
 /* ============================================================
    ABOUT
 ============================================================ */
