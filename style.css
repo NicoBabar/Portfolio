@@ -291,7 +291,7 @@ a { text-decoration: none; color: inherit; }
    HERO
 ============================================================ */
 #hero {
-  min-height: 100vh;
+  min-height: 78vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,7 +349,7 @@ a { text-decoration: none; color: inherit; }
    ABOUT
 ============================================================ */
 #about {
-  padding: 8rem 0;
+  padding: 4rem 0 8rem;
   position: relative;
   z-index: 1;
 }
