@@ -10,7 +10,6 @@
   --cyan:         #c9a84c;
   --cyan-glow:    rgba(201, 168, 76, 0.5);
   --cyan-dark:    rgba(201, 168, 76, 0.1);
-  --accent:       #ff4422;
   --price:        #22cc66;
   --price-glow:   rgba(34, 204, 102, 0.45);
   --text:         #f0ebe5;
@@ -65,6 +64,24 @@ a { text-decoration: none; color: inherit; }
   color: var(--text-dim);
   font-size: 1.05rem;
   margin-bottom: 3.5rem;
+}
+
+/* Texte réservé aux lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Navigation au clavier bien visible */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 /* ============================================================
@@ -332,12 +349,6 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: 0.12em;
   margin-bottom: 2.5rem;
 }
-.hero-subtitle .sep {
-  color: var(--cyan);
-  text-shadow: 0 0 12px var(--cyan-glow);
-  margin: 0 0.6rem;
-}
-
 .hero-btns {
   display: flex;
   gap: 1.2rem;
@@ -362,24 +373,18 @@ a { text-decoration: none; color: inherit; }
   margin-top: 3rem;
 }
 
-.about-photo {
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
+.about-photo { flex-shrink: 0; }
+
+/* Photo déjà recadrée en 3:4 à la source : aucun transform nécessaire */
+.about-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
   border-radius: 16px;
   border: 2px solid rgba(201, 168, 76, 0.8);
   box-shadow: 0 0 10px rgba(201, 168, 76, 0.5), 0 0 28px rgba(201, 168, 76, 0.25), 0 0 55px rgba(201, 168, 76, 0.1);
-  aspect-ratio: 3 / 4;
-}
-
-.about-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.3);
-  transform-origin: 50% 68%;
 }
 
 .about-text p {
@@ -464,8 +469,8 @@ a { text-decoration: none; color: inherit; }
   cursor: pointer;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
-.video-card:nth-child(odd):hover,
-.video-card:nth-child(even):hover {
+.video-card:hover,
+.video-card:focus-visible {
   border-color: var(--cyan);
   box-shadow: 0 0 28px rgba(201, 168, 76, 0.25), 0 8px 35px rgba(0,0,0,0.45);
   transform: translateY(-6px);
@@ -489,16 +494,6 @@ a { text-decoration: none; color: inherit; }
 
 .vertical-card .video-thumb { aspect-ratio: 9 / 16; }
 
-.instagram-thumb-placeholder {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
 .grid-divider {
   grid-column: 1 / -1;
   display: flex;
@@ -521,17 +516,6 @@ a { text-decoration: none; color: inherit; }
   flex: 1;
   height: 1px;
   background: var(--border);
-}
-
-.video-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #1a0a08, #2a1008);
-  font-size: 3rem;
-  opacity: 0.65;
 }
 
 .thumb-overlay {
@@ -870,6 +854,8 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 0.3rem;
 }
 .contact-item p { font-size: 1rem; }
+.contact-item p a { transition: color 0.3s; }
+.contact-item p a:hover { color: var(--cyan); }
 
 .contact-form {
   display: flex;
@@ -999,11 +985,17 @@ footer {
   transform: translateY(0);
 }
 
-/* Cartes inclinables en 3D (rotation gérée en JS) */
-.video-card,
-.tarif-big-card,
-.client-card {
-  will-change: transform;
+/* Respect du réglage système "réduire les animations" */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
 }
 
 /* ============================================================

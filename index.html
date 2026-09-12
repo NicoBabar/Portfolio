@@ -3,11 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BabarStudio | Montage Vidéo</title>
+
+  <title>BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise</title>
+  <meta name="description" content="Nicolas Barette, monteur vidéo à Miramas (13). De la vidéo UGC au film d'entreprise : montage, motion design, étalonnage et tournage. Devis rapide et sans surprise.">
+  <link rel="canonical" href="https://babarstudio.fr/">
+  <meta name="theme-color" content="#0a0605">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Aperçu lors du partage du lien (WhatsApp, LinkedIn, Instagram...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BabarStudio">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://babarstudio.fr/">
+  <meta property="og:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta property="og:description" content="Nicolas Barette, monteur vidéo à Miramas (13). De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta property="og:image" content="https://babarstudio.fr/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta name="twitter:description" content="Nicolas Barette, monteur vidéo à Miramas (13). De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta name="twitter:image" content="https://babarstudio.fr/og-image.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "BabarStudio",
+    "description": "Montage vidéo, motion design, étalonnage et tournage : vidéo UGC, contenus YouTube et films d'entreprise.",
+    "url": "https://babarstudio.fr/",
+    "image": "https://babarstudio.fr/og-image.jpg",
+    "email": "nicolas.babarstudio@gmail.com",
+    "priceRange": "€€",
+    "founder": { "@type": "Person", "name": "Nicolas Barette", "jobTitle": "Monteur vidéo" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Miramas", "postalCode": "13140", "addressCountry": "FR" },
+    "areaServed": "France",
+    "knowsLanguage": "fr"
+  }
+  </script>
 </head>
 <body>
 
@@ -22,21 +63,23 @@
   <nav id="navbar">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <img src="Logo.png" alt="BabarStudio" class="nav-logo-img">
+        <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about">À propos</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Menu">
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+
+  <main>
 
   <!-- ===== HERO ===== -->
   <section id="hero">
@@ -57,7 +100,7 @@
       <h2 class="section-title">À <span class="neon-text">propos</span></h2>
       <div class="about-grid reveal">
         <div class="about-photo">
-          <img src="PANA9449_lab.JPG" alt="Nicolas Barette" class="about-img">
+          <img src="nicolas-barette.jpg" alt="Portrait de Nicolas Barette, monteur vidéo" class="about-img" width="800" height="1067" loading="lazy" decoding="async">
         </div>
         <div class="about-text">
           <p>Ancien sous-officier technicien radar dans l'Armée de l'air et de l'espace, j'ai passé 6 ans à maintenir des systèmes d'armes de défense anti-aérienne. En 2025, j'ai choisi de tout plaquer pour me lancer dans ce qui me tenait à cœur : le montage vidéo.</p>
@@ -100,13 +143,13 @@
 
         <div class="horizontal-videos">
 
-          <div class="video-card reveal" data-video-id="zdWbBPdNTyc">
+          <div class="video-card reveal" data-video-id="zdWbBPdNTyc" role="button" tabindex="0" aria-label="Lire la vidéo : Dream of Farm">
             <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/zdWbBPdNTyc/hqdefault.jpg" alt="Dream of Farm" loading="lazy">
+              <img class="video-thumb-img" src="https://img.youtube.com/vi/zdWbBPdNTyc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
+                <span class="play-btn" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
+                </span>
               </div>
             </div>
             <div class="video-info">
@@ -116,13 +159,13 @@
             </div>
           </div>
 
-          <div class="video-card reveal" data-video-id="qSYP_4bzUGI">
+          <div class="video-card reveal" data-video-id="qSYP_4bzUGI" role="button" tabindex="0" aria-label="Lire la vidéo : LeBunkerBTC, trailer">
             <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/qSYP_4bzUGI/hqdefault.jpg" alt="LeBunkerBTC" loading="lazy">
+              <img class="video-thumb-img" src="https://img.youtube.com/vi/qSYP_4bzUGI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
+                <span class="play-btn" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
+                </span>
               </div>
             </div>
             <div class="video-info">
@@ -132,13 +175,13 @@
             </div>
           </div>
 
-          <div class="video-card reveal" data-video-id="kVLXleCpIW0">
+          <div class="video-card reveal" data-video-id="kVLXleCpIW0" role="button" tabindex="0" aria-label="Lire la vidéo : Bulgarie Edit">
             <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/kVLXleCpIW0/hqdefault.jpg" alt="Bulgarie Edit" loading="lazy">
+              <img class="video-thumb-img" src="https://img.youtube.com/vi/kVLXleCpIW0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
+                <span class="play-btn" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
+                </span>
               </div>
             </div>
             <div class="video-info">
@@ -148,13 +191,13 @@
             </div>
           </div>
 
-          <div class="video-card reveal" data-video-id="X0KjoYI2nD8">
+          <div class="video-card reveal" data-video-id="X0KjoYI2nD8" role="button" tabindex="0" aria-label="Lire la vidéo : Harley-Davidson Dyna Fat Bob 2017">
             <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/X0KjoYI2nD8/hqdefault.jpg" alt="Harley-Davidson Fat Bob" loading="lazy">
+              <img class="video-thumb-img" src="https://img.youtube.com/vi/X0KjoYI2nD8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
               <div class="thumb-overlay">
-                <button class="play-btn" aria-label="Lire la vidéo">
+                <span class="play-btn" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </button>
+                </span>
               </div>
             </div>
             <div class="video-info">
@@ -170,13 +213,13 @@
           <span>Formats <span class="text-cyan">Verticaux</span></span>
         </div>
 
-        <div class="video-card vertical-card reveal" data-video-id="T-bBaKqZy_k">
+        <div class="video-card vertical-card reveal" data-video-id="T-bBaKqZy_k" role="button" tabindex="0" aria-label="Lire la vidéo : Boutique Vêtements">
           <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/T-bBaKqZy_k/hqdefault.jpg" alt="Boutique vêtements" loading="lazy">
+            <img class="video-thumb-img" src="https://img.youtube.com/vi/T-bBaKqZy_k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
             <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
+              <span class="play-btn" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
+              </span>
             </div>
           </div>
           <div class="video-info">
@@ -186,13 +229,13 @@
           </div>
         </div>
 
-        <div class="video-card vertical-card reveal" data-video-id="GKtKZHxiiGo">
+        <div class="video-card vertical-card reveal" data-video-id="GKtKZHxiiGo" role="button" tabindex="0" aria-label="Lire la vidéo : Villa de Luxe">
           <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/GKtKZHxiiGo/hqdefault.jpg" alt="Villa de Luxe" loading="lazy">
+            <img class="video-thumb-img" src="https://img.youtube.com/vi/GKtKZHxiiGo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
             <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
+              <span class="play-btn" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
+              </span>
             </div>
           </div>
           <div class="video-info">
@@ -202,13 +245,13 @@
           </div>
         </div>
 
-        <div class="video-card vertical-card reveal" data-video-id="kZ1iMu0Qw80">
+        <div class="video-card vertical-card reveal" data-video-id="kZ1iMu0Qw80" role="button" tabindex="0" aria-label="Lire la vidéo : Million Lords">
           <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/kZ1iMu0Qw80/hqdefault.jpg" alt="UGC Produit" loading="lazy">
+            <img class="video-thumb-img" src="https://img.youtube.com/vi/kZ1iMu0Qw80/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
             <div class="thumb-overlay">
-              <button class="play-btn" aria-label="Lire la vidéo">
+              <span class="play-btn" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </button>
+              </span>
             </div>
           </div>
           <div class="video-info">
@@ -351,22 +394,22 @@
       <div class="contact-grid reveal">
         <div class="contact-info">
           <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <div><h4>Email</h4><p>nicolas.babarstudio@gmail.com</p></div>
+            <div class="contact-icon" aria-hidden="true">📧</div>
+            <div><h4>Email</h4><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon" aria-hidden="true">📍</div>
             <div><h4>Localisation</h4><p>Miramas (13)</p></div>
           </div>
         </div>
         <form class="contact-form" id="contactForm">
           <div class="form-group">
             <label for="name">Nom</label>
-            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            <input type="text" id="name" name="name" placeholder="Votre nom" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            <input type="email" id="email" name="email" placeholder="votre@email.com" autocomplete="email" required>
           </div>
           <div class="form-group">
             <label for="secteur">Secteur d'activité</label>
@@ -377,10 +420,13 @@
             <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Envoyer le message</button>
+          <span id="formStatus" class="sr-only" role="status" aria-live="polite"></span>
         </form>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>
@@ -390,15 +436,15 @@
   </footer>
 
   <!-- ===== VIDEO MODAL ===== -->
-  <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
+  <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo" aria-hidden="true">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Fermer">✕</button>
+      <button class="modal-close" id="modalClose" aria-label="Fermer la vidéo">✕</button>
       <div class="modal-iframe-wrapper">
-        <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen title="Vidéo YouTube"></iframe>
+        <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen title="Lecteur vidéo YouTube"></iframe>
       </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
