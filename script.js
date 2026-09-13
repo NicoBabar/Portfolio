@@ -79,7 +79,8 @@ if (modal && iframe && closeBtn) {
     if (!id) return;
     lastFocused = card;
     modal.classList.toggle('modal-vertical', card.classList.contains('vertical-card'));
-    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+    // youtube-nocookie : pas de cookie publicitaire déposé tant que la vidéo n'est pas lue
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';

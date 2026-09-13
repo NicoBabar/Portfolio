@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Politique de confidentialité | BabarStudio</title>
   <meta name="description" content="Politique de confidentialité et traitement des données personnelles du site babarstudio.fr, conformément au RGPD.">
@@ -12,9 +14,8 @@
   <meta name="theme-color" content="#0a0605">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/orbitron.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -88,7 +89,7 @@
       <ul>
         <li><strong>Formspree, Inc.</strong> (États-Unis) — acheminement des messages envoyés depuis le formulaire de contact.</li>
         <li><strong>GitHub, Inc.</strong> (États-Unis) — hébergement du site via GitHub Pages et journaux techniques associés.</li>
-        <li><strong>Google Ireland Limited / Google LLC</strong> — fourniture des polices de caractères (Google Fonts) et lecture des vidéos intégrées (YouTube).</li>
+        <li><strong>Google Ireland Limited / Google LLC</strong> — lecture des vidéos intégrées (YouTube), uniquement si vous lancez une vidéo.</li>
       </ul>
       <p><strong>Transferts hors Union européenne.</strong> Certains de ces prestataires sont établis aux États-Unis. Ces transferts sont encadrés par les garanties appropriées prévues au chapitre V du RGPD, notamment les clauses contractuelles types de la Commission européenne et, le cas échéant, la certification au titre du cadre de protection des données UE–États-Unis (EU-US Data Privacy Framework).</p>
 
@@ -103,11 +104,11 @@
       <h2>6. Cookies et traceurs</h2>
       <p>Le site ne dépose <strong>aucun cookie</strong> de mesure d'audience, de publicité ou de suivi comportemental. Aucun bandeau de consentement n'est donc nécessaire pour la simple consultation du site.</p>
       <p>En revanche, <strong>la lecture d'une vidéo du portfolio</strong> déclenche le chargement du lecteur YouTube, susceptible de déposer des cookies et de collecter des données de navigation relevant de la politique de confidentialité de Google. Aucune vidéo ne se charge tant que vous n'avez pas cliqué pour la lire.</p>
-      <p>Le chargement des polices de caractères depuis Google Fonts implique la transmission de votre adresse IP à Google, nécessaire à la délivrance du fichier.</p>
+      <p>Les polices de caractères sont <strong>hébergées sur ce site</strong> : leur affichage n'entraîne aucune requête ni transmission de votre adresse IP vers un service tiers.</p>
       <p>Pour en savoir plus : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité de Google</a>.</p>
 
       <h2>7. Sécurité</h2>
-      <p>Le site est intégralement servi en HTTPS. Le responsable de traitement met en œuvre des mesures techniques et organisationnelles appropriées pour protéger les données contre la perte, l'accès non autorisé ou la divulgation. Les accès aux boîtes de réception et aux outils de gestion sont protégés par des identifiants personnels.</p>
+      <p>Le site est intégralement servi en HTTPS et applique une politique de sécurité du contenu (Content-Security-Policy) qui restreint les ressources autorisées aux seules strictement nécessaires, limitant les risques d'injection de code. Le responsable de traitement met en œuvre des mesures techniques et organisationnelles appropriées pour protéger les données contre la perte, l'accès non autorisé ou la divulgation. Les accès aux boîtes de réception et aux outils de gestion sont protégés par des identifiants personnels.</p>
 
       <h2>8. Vos droits</h2>
       <p>Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants sur vos données :</p>

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy policy | BabarStudio</title>
   <meta name="description" content="Privacy policy and personal data processing for babarstudio.fr, in accordance with the GDPR.">
@@ -12,9 +14,8 @@
   <meta name="theme-color" content="#0a0605">
   <link rel="icon" href="../favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/orbitron.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -90,7 +91,7 @@
       <ul>
         <li><strong>Formspree, Inc.</strong> (United States) — delivery of messages sent via the contact form.</li>
         <li><strong>GitHub, Inc.</strong> (United States) — site hosting via GitHub Pages and the associated technical logs.</li>
-        <li><strong>Google Ireland Limited / Google LLC</strong> — typeface delivery (Google Fonts) and playback of embedded videos (YouTube).</li>
+        <li><strong>Google Ireland Limited / Google LLC</strong> — playback of embedded videos (YouTube), only if you start a video.</li>
       </ul>
       <p><strong>Transfers outside the European Union.</strong> Some of these providers are established in the United States. Such transfers are covered by the appropriate safeguards set out in Chapter V of the GDPR, in particular the European Commission's standard contractual clauses and, where applicable, certification under the EU–US Data Privacy Framework.</p>
 
@@ -105,11 +106,11 @@
       <h2>6. Cookies and trackers</h2>
       <p>This site sets <strong>no cookies</strong> for analytics, advertising or behavioural tracking. No consent banner is therefore required simply to browse the site.</p>
       <p>However, <strong>playing a portfolio video</strong> loads the YouTube player, which may set cookies and collect browsing data governed by Google's privacy policy. No video loads until you click to play it.</p>
-      <p>Loading typefaces from Google Fonts involves transmitting your IP address to Google, which is necessary to deliver the file.</p>
+      <p>Typefaces are <strong>hosted on this site</strong>: displaying them involves no request to, and no transmission of your IP address to, any third-party service.</p>
       <p>Find out more: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
 
       <h2>7. Security</h2>
-      <p>The site is served entirely over HTTPS. The controller implements appropriate technical and organisational measures to protect data against loss, unauthorised access or disclosure. Access to mailboxes and management tools is protected by personal credentials.</p>
+      <p>The site is served entirely over HTTPS and enforces a Content Security Policy restricting permitted resources to those strictly necessary, limiting the risk of code injection. The controller implements appropriate technical and organisational measures to protect data against loss, unauthorised access or disclosure. Access to mailboxes and management tools is protected by personal credentials.</p>
 
       <h2>8. Your rights</h2>
       <p>Under Articles 15 to 22 of the GDPR, you have the following rights over your data:</p>
