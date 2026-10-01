@@ -1095,13 +1095,16 @@ footer {
   opacity: 0;
   visibility: hidden; /* fermé : ni visible, ni atteignable au clavier */
   pointer-events: none;
-  transition: opacity 0.3s, visibility 0.3s;
+  /* À la fermeture, la visibilité ne bascule qu'après le fondu... */
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
   backdrop-filter: blur(12px);
 }
 .modal.active {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+  /* ...mais à l'ouverture elle est immédiate, pour que le bouton Fermer reçoive le focus */
+  transition: opacity 0.3s, visibility 0s;
 }
 
 .modal-content {
@@ -1130,7 +1133,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 .modal-close:hover { background: var(--neon); border-color: var(--neon); }
 
@@ -1274,7 +1277,7 @@ footer {
 .legal strong { color: var(--text); font-weight: 600; }
 
 /* Souligné en permanence : un lien ne doit pas se distinguer par sa seule couleur */
-.legal a {
+.legal a:not(.btn) {
   color: var(--neon-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -1282,7 +1285,7 @@ footer {
   overflow-wrap: anywhere;
   transition: color 0.3s;
 }
-.legal a:hover { color: var(--cyan); }
+.legal a:not(.btn):hover { color: var(--cyan); }
 
 .legal-box {
   background: var(--card);
@@ -1358,9 +1361,9 @@ footer {
   .tarifs-cards { grid-template-columns: 1fr; }
 }
 
-/* Menu complet trop large sous 900px (tablettes, téléphones à l'horizontale) :
+/* Menu complet trop large sous 960px (tablettes, téléphones à l'horizontale) :
    on passe au menu burger */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -1391,6 +1394,8 @@ footer {
     margin-left: auto;
   }
   .nav-links.nav-static + .lang-switch { margin-left: 1.4rem; margin-right: 0; }
+  /* Page 404 : ni menu ni bouton burger, le sélecteur de langue reste calé à droite */
+  .nav-logo + .lang-switch { margin-right: 0; }
 }
 
 @media (max-width: 600px) {
