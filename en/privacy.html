@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy policy | BabarStudio</title>
@@ -25,14 +25,14 @@
     <div class="aurora aurora-2"></div>
   </div>
 
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar" class="scrolled" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="./" class="nav-logo" aria-label="BabarStudio, home">
         <img src="../Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Back to site</a></li>
+      <ul class="nav-links nav-static">
+        <li><a href="./">Back to site</a></li>
       </ul>
       <div class="lang-switch">
         <a href="../confidentialite.html" hreflang="fr">FR</a>
@@ -45,7 +45,7 @@
   <main class="legal">
     <div class="container">
       <h1>Privacy <span class="neon-text">policy</span></h1>
-      <p class="legal-updated">Last updated: 12 September 2026</p>
+      <p class="legal-updated">Last updated: 1 October 2026</p>
 
       <p class="legal-todo">This is a courtesy translation. In the event of any discrepancy, the <a href="../confidentialite.html">French version</a> prevails.</p>
 
@@ -83,29 +83,32 @@
         <li><strong>Performing the service and managing the client relationship</strong> — performance of a contract (Article 6(1)(b)).</li>
         <li><strong>Issuing and retaining invoices</strong> — compliance with accounting and tax obligations (Article 6(1)(c)).</li>
         <li><strong>Ensuring the security and proper operation of the site</strong> — legitimate interests of the controller (Article 6(1)(f)).</li>
+        <li><strong>Informing clients about similar services</strong> (direct marketing) — legitimate interests of the controller (Article 6(1)(f)). You may object at any time, free of charge, by simple email.</li>
       </ul>
 
       <h2>4. Recipients and processors</h2>
       <p>Your data is never sold, rented or transferred to third parties for commercial purposes.</p>
-      <p>It is processed by the controller and by the following technical providers, acting either as processors or as controllers for their own purposes:</p>
+      <p>It is processed by the controller and by the following technical providers:</p>
       <ul>
-        <li><strong>Formspree, Inc.</strong> (United States) — delivery of messages sent via the contact form.</li>
-        <li><strong>GitHub, Inc.</strong> (United States) — site hosting via GitHub Pages and the associated technical logs.</li>
-        <li><strong>Google Ireland Limited / Google LLC</strong> — playback of embedded videos (YouTube), only if you start a video.</li>
+        <li><strong>Formspree, Inc.</strong> (United States), processor — delivery of messages sent via the contact form to my inbox.</li>
+        <li><strong>Google (Gmail service)</strong> — email service on which contact form messages and your emails are received.</li>
+        <li><strong>GitHub, Inc.</strong> (United States), hosting provider — site hosting via GitHub Pages and the associated technical logs.</li>
+        <li><strong>Google Ireland Limited / Google LLC</strong> (YouTube), controller for its own purposes — display of the portfolio video thumbnails and playback of the videos you start (see Article 6).</li>
       </ul>
       <p><strong>Transfers outside the European Union.</strong> Some of these providers are established in the United States. Such transfers are covered by the appropriate safeguards set out in Chapter V of the GDPR, in particular the European Commission's standard contractual clauses and, where applicable, certification under the EU–US Data Privacy Framework.</p>
 
       <h2>5. Retention periods</h2>
       <ul>
         <li><strong>Enquiries and prospects</strong>: 3 years from the last contact.</li>
-        <li><strong>Client data</strong>: for the duration of the contractual relationship, then 3 years for prospecting purposes.</li>
+        <li><strong>Client data</strong>: for the duration of the contractual relationship, then 3 years for prospecting purposes, unless you object.</li>
         <li><strong>Accounting records and supporting documents</strong>: 10 years, in accordance with Article L.123-22 of the French Commercial Code.</li>
         <li><strong>Connection logs</strong>: as determined by the hosting provider, generally no more than 12 months.</li>
       </ul>
 
       <h2>6. Cookies and trackers</h2>
       <p>This site sets <strong>no cookies</strong> for analytics, advertising or behavioural tracking. No consent banner is therefore required simply to browse the site.</p>
-      <p>However, <strong>playing a portfolio video</strong> loads the YouTube player, which may set cookies and collect browsing data governed by Google's privacy policy. No video loads until you click to play it.</p>
+      <p>The <strong>video preview images</strong> in the portfolio are loaded from YouTube's (Google's) servers when the Portfolio section is displayed: your IP address and technical information about your browser are then sent to Google.</p>
+      <p><strong>Playing a portfolio video</strong> loads the YouTube player, which may set cookies and collect browsing data governed by Google's privacy policy. The player does not load until you click a video to play it.</p>
       <p>Typefaces are <strong>hosted on this site</strong>: displaying them involves no request to, and no transmission of your IP address to, any third-party service.</p>
       <p>Find out more: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
 
@@ -144,7 +147,7 @@
     <div class="container">
       <p>&copy; 2026 Nicolas Barette — EI BabarStudio — All rights reserved</p>
       <nav class="footer-links" aria-label="Legal information">
-        <a href="index.html">Home</a>
+        <a href="./">Home</a>
         <a href="legal-notice.html">Legal notice</a>
         <a href="terms.html">Terms of sale</a>
         <a href="privacy.html">Privacy</a>

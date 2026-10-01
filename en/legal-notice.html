@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Legal notice | BabarStudio</title>
@@ -25,14 +25,14 @@
     <div class="aurora aurora-2"></div>
   </div>
 
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar" class="scrolled" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="./" class="nav-logo" aria-label="BabarStudio, home">
         <img src="../Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Back to site</a></li>
+      <ul class="nav-links nav-static">
+        <li><a href="./">Back to site</a></li>
       </ul>
       <div class="lang-switch">
         <a href="../mentions-legales.html" hreflang="fr">FR</a>
@@ -109,7 +109,7 @@
     <div class="container">
       <p>&copy; 2026 Nicolas Barette — EI BabarStudio — All rights reserved</p>
       <nav class="footer-links" aria-label="Legal information">
-        <a href="index.html">Home</a>
+        <a href="./">Home</a>
         <a href="legal-notice.html">Legal notice</a>
         <a href="terms.html">Terms of sale</a>
         <a href="privacy.html">Privacy</a>

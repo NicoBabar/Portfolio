@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'sha256-vrWzVyqw8WQuf6XllVmprQZTcqCwaQiI6JX6AXR2BMc='; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -21,6 +21,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BabarStudio">
   <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:url" content="https://babarstudio.fr/">
   <meta property="og:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
   <meta property="og:description" content="Nicolas Barette, monteur vidéo à Miramas (13). De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
@@ -32,26 +33,40 @@
   <meta name="twitter:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
   <meta name="twitter:description" content="Nicolas Barette, monteur vidéo à Miramas (13). De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
   <meta name="twitter:image" content="https://babarstudio.fr/og-image.jpg">
+  <meta name="twitter:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
 
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/orbitron.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "BabarStudio",
-    "description": "Montage vidéo, motion design, étalonnage et tournage : vidéo UGC, contenus YouTube et films d'entreprise.",
-    "url": "https://babarstudio.fr/",
-    "image": "https://babarstudio.fr/og-image.jpg",
-    "email": "nicolas.babarstudio@gmail.com",
-    "priceRange": "€€",
-    "founder": { "@type": "Person", "name": "Nicolas Barette", "jobTitle": "Monteur vidéo" },
-    "address": { "@type": "PostalAddress", "addressLocality": "Miramas", "postalCode": "13140", "addressCountry": "FR" },
-    "areaServed": "France",
-    "knowsLanguage": "fr"
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://babarstudio.fr/#business",
+      "name": "BabarStudio",
+      "description": "Montage vidéo, motion design, étalonnage et tournage : vidéo UGC, contenus YouTube et films d'entreprise.",
+      "url": "https://babarstudio.fr/",
+      "logo": "https://babarstudio.fr/Logo.png",
+      "image": "https://babarstudio.fr/og-image.jpg",
+      "email": "nicolas.babarstudio@gmail.com",
+      "priceRange": "€€",
+      "founder": { "@type": "Person", "name": "Nicolas Barette", "jobTitle": "Monteur vidéo" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Miramas", "postalCode": "13140", "addressCountry": "FR" },
+      "areaServed": ["France", "Worldwide"],
+      "knowsLanguage": ["fr", "en"]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://babarstudio.fr/#website",
+      "name": "BabarStudio",
+      "url": "https://babarstudio.fr/",
+      "inLanguage": ["fr", "en"],
+      "publisher": { "@id": "https://babarstudio.fr/#business" }
+    }
+  ]
   </script>
 </head>
 <body>
@@ -64,12 +79,15 @@
   </div>
 
   <!-- ===== NAVIGATION ===== -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Navigation principale">
     <div class="nav-container">
-      <a href="#hero" class="nav-logo">
+      <a href="#hero" class="nav-logo" aria-label="BabarStudio, haut de page">
         <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks" data-label-open="Ouvrir le menu" data-label-close="Fermer le menu">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">À propos</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
@@ -78,13 +96,10 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="lang-switch">
-        <a href="index.html" hreflang="fr" class="active" aria-current="true">FR</a>
+        <a href="./" hreflang="fr" class="active" aria-current="true">FR</a>
         <span aria-hidden="true">/</span>
-        <a href="en/index.html" hreflang="en">EN</a>
+        <a href="en/" hreflang="en">EN</a>
       </div>
-      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </nav>
 
@@ -95,7 +110,7 @@
     <div class="hero-content">
       <p class="hero-greeting">Bonjour, je suis</p>
       <h1 class="hero-title">Nicolas<br><span class="neon-text">Barette</span></h1>
-      <p class="hero-subtitle">De la vidéo UGC à votre film d'entreprise, laissez moi donner vie à vos idées</p>
+      <p class="hero-subtitle">De la vidéo UGC à votre film d'entreprise, laissez-moi donner vie à vos idées</p>
       <div class="hero-btns">
         <a href="#portfolio" class="btn btn-primary">Voir mon travail</a>
         <a href="#contact" class="btn btn-outline">Me contacter</a>
@@ -109,7 +124,10 @@
       <h2 class="section-title">À <span class="neon-text">propos</span></h2>
       <div class="about-grid reveal">
         <div class="about-photo">
-          <img src="nicolas-barette.jpg" alt="Portrait de Nicolas Barette, monteur vidéo" class="about-img" width="800" height="1067" loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="nicolas-barette-400.webp 400w, nicolas-barette-800.webp 800w" sizes="(max-width: 700px) 220px, (max-width: 960px) 260px, 280px">
+            <img src="nicolas-barette.jpg" alt="Portrait de Nicolas Barette, monteur vidéo" class="about-img" width="800" height="1067" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="about-text">
           <p>Ancien sous-officier technicien radar dans l'Armée de l'air et de l'espace, j'ai passé 6 ans à maintenir des systèmes d'armes de défense anti-aérienne. En 2025, j'ai choisi de tout plaquer pour me lancer dans ce qui me tenait à cœur : le montage vidéo.</p>
@@ -127,23 +145,23 @@
         <div class="about-skills">
           <h3>Outils &amp; Compétences</h3>
           <div class="skills-grid">
-            <div class="skill-chip">🎬 DaVinci Resolve</div>
-            <div class="skill-chip">🎨 Color Grading</div>
-            <div class="skill-chip">✨ Motion Design</div>
-            <div class="skill-chip">🔊 Sound Design</div>
-            <div class="skill-chip">🎥 Montage Vidéo</div>
-            <div class="skill-chip">📐 Étalonnage</div>
+            <div class="skill-chip"><span aria-hidden="true">🎬</span> DaVinci Resolve</div>
+            <div class="skill-chip"><span aria-hidden="true">🎨</span> Color Grading</div>
+            <div class="skill-chip"><span aria-hidden="true">✨</span> Motion Design</div>
+            <div class="skill-chip"><span aria-hidden="true">🔊</span> Sound Design</div>
+            <div class="skill-chip"><span aria-hidden="true">🎥</span> Montage Vidéo</div>
+            <div class="skill-chip"><span aria-hidden="true">📐</span> Étalonnage</div>
           </div>
 
           <h3 class="gear-title">Matériel de tournage</h3>
           <div class="gear-grid">
-            <span class="gear-chip">📷 Lumix S5 II</span>
-            <span class="gear-chip">🎤 Micros cravate</span>
-            <span class="gear-chip">💡 2 spots LED</span>
-            <span class="gear-chip">📐 Trépied</span>
-            <span class="gear-chip">🟩 Fond vert</span>
-            <span class="gear-chip">🚁 Drone stabilisé</span>
-            <span class="gear-chip">🎮 Drone FPV</span>
+            <span class="gear-chip"><span aria-hidden="true">📷</span> Lumix S5 II</span>
+            <span class="gear-chip"><span aria-hidden="true">🎤</span> Micros cravate</span>
+            <span class="gear-chip"><span aria-hidden="true">💡</span> 2 spots LED</span>
+            <span class="gear-chip"><span aria-hidden="true">📐</span> Trépied</span>
+            <span class="gear-chip"><span aria-hidden="true">🟩</span> Fond vert</span>
+            <span class="gear-chip"><span aria-hidden="true">🚁</span> Drone stabilisé</span>
+            <span class="gear-chip"><span aria-hidden="true">🎮</span> Drone FPV</span>
           </div>
         </div>
       </div>
@@ -223,7 +241,7 @@
             <div class="video-info">
               <span class="video-cat">Film Moto</span>
               <h3>Harley-Davidson Dyna Fat Bob 2017</h3>
-              <p>Présentation cinématique d'une Harley-Davidson Dyna Fat Bob 2017, tourné et monté de A à Z.</p>
+              <p>Présentation cinématique d'une Harley-Davidson Dyna Fat Bob 2017, tournée et montée de A à Z.</p>
             </div>
           </div>
 
@@ -282,6 +300,7 @@
         </div>
 
       </div>
+      <p class="portfolio-cta reveal">Un projet dans ce style ? <a href="#contact" class="btn btn-outline">Parlons-en</a></p>
     </div>
   </section>
 
@@ -324,14 +343,14 @@
           <div class="tarif-card-body">
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Simple · 1 min</span><span class="tarif-line-desc">Cuts, sous-titres, transitions légères</span></div>
-              <span class="tarif-line-price">40€</span>
+              <span class="tarif-line-price">40&nbsp;€</span>
             </div>
-            <div class="tarif-pack-row"><span>Pack 10 vidéos</span><span class="pack-price">325€</span></div>
+            <div class="tarif-pack-row"><span>Pack 10 vidéos</span><span class="pack-price">325&nbsp;€</span></div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Avec animations · 1 min</span><span class="tarif-line-desc">Motion design, effets visuels</span></div>
-              <span class="tarif-line-price">80€</span>
+              <span class="tarif-line-price">80&nbsp;€</span>
             </div>
-            <div class="tarif-pack-row"><span>Pack 10 vidéos</span><span class="pack-price">700€</span></div>
+            <div class="tarif-pack-row"><span>Pack 10 vidéos</span><span class="pack-price">700&nbsp;€</span></div>
           </div>
         </div>
 
@@ -343,19 +362,19 @@
           <div class="tarif-card-body">
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">YouTube / Vlog</span><span class="tarif-line-desc">Jusqu'à 10 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">Sur devis</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Sur devis</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">YouTube long</span><span class="tarif-line-desc">10 à 20 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">Sur devis</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Sur devis</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Vidéo entreprise / pub</span><span class="tarif-line-desc">2 à 5 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">Sur devis</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Sur devis</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Interview / Documentaire</span><span class="tarif-line-desc">Projet complexe, durée variable</span></div>
-              <span class="tarif-line-price tarif-devis">Sur devis</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Sur devis</a>
             </div>
           </div>
         </div>
@@ -368,7 +387,7 @@
           <div class="tarif-card-body">
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Vidéo 30 secondes</span><span class="tarif-line-desc">Script + tournage + montage</span></div>
-              <span class="tarif-line-price">250€</span>
+              <span class="tarif-line-price">250&nbsp;€</span>
             </div>
             <div class="tarif-ugc-note">
               <p>Contenu clé en main, adapté à votre audience et à vos codes de marque.</p>
@@ -378,7 +397,7 @@
         </div>
 
       </div>
-      <p class="tarif-note reveal">Pour un devis personnalisé, contactez-moi directement via le formulaire en bas de page.</p>
+      <p class="tarif-note reveal">Pour un devis personnalisé, contactez-moi directement via le <a href="#contact">formulaire en bas de page</a>.</p>
     </div>
   </section>
 
@@ -386,19 +405,28 @@
   <section id="contact">
     <div class="container">
       <h2 class="section-title">Me <span class="neon-text">contacter</span></h2>
-      <p class="section-subtitle">Contactez-moi par mail ou via le formulaire ci-dessous.</p>
+      <p class="section-subtitle">Contactez-moi par mail ou via le formulaire ci-dessous. Devis gratuit et sans engagement.</p>
       <div class="contact-grid reveal">
         <div class="contact-info">
           <div class="contact-item">
             <div class="contact-icon" aria-hidden="true">📧</div>
-            <div><h4>Email</h4><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
+            <div><h3>Email</h3><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon" aria-hidden="true">📍</div>
-            <div><h4>Localisation</h4><p>Miramas (13)</p></div>
+            <div><h3>Localisation</h3><p>Miramas (13)</p></div>
+          </div>
+          <div class="contact-steps">
+            <h3>Comment ça se passe</h3>
+            <ol>
+              <li>Vous me décrivez votre projet via le formulaire ou par mail.</li>
+              <li>On échange sur vos besoins, par téléphone ou par mail.</li>
+              <li>Vous recevez un devis gratuit et sans engagement.</li>
+            </ol>
+            <p class="contact-steps-note">Deux séries de retouches sont incluses dans chaque prestation.</p>
           </div>
         </div>
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqnleaw" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqnleaw" method="POST" data-sending="Envoi en cours…">
           <div class="form-group">
             <label for="name">Nom</label>
             <input type="text" id="name" name="name" placeholder="Votre nom" autocomplete="name" required>
@@ -408,7 +436,7 @@
             <input type="email" id="email" name="email" placeholder="votre@email.com" autocomplete="email" required>
           </div>
           <div class="form-group">
-            <label for="secteur">Secteur d'activité</label>
+            <label for="secteur">Secteur d'activité <span class="form-optional">(facultatif)</span></label>
             <input type="text" id="secteur" name="secteur" placeholder="Ex : e-commerce, YouTube, immobilier...">
           </div>
           <div class="form-group">
@@ -419,14 +447,23 @@
             <label for="_gotcha">Ne pas remplir</label>
             <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
+          <p class="form-privacy">Vos informations servent uniquement à répondre à votre demande et à établir un devis. Elles transitent par Formspree (États-Unis). <a href="confidentialite.html">En savoir plus</a></p>
           <button type="submit" class="btn btn-primary">Envoyer le message</button>
-          <span id="formStatus" class="sr-only" role="status" aria-live="polite"></span>
+          <p id="formStatus" class="form-status" role="status"></p>
+          <template id="formOk"><span class="form-ok">Merci, votre message est bien arrivé !</span> Je vous réponds au plus vite à l'adresse indiquée (pensez à vérifier vos spams).</template>
+          <template id="formErr"><span class="form-err">L'envoi a échoué.</span> Votre message est toujours dans le formulaire : réessayez, ou écrivez-moi directement à <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a>.</template>
         </form>
       </div>
     </div>
   </section>
 
   </main>
+
+  <!-- ===== BOUTON CONTACT FLOTTANT ===== -->
+  <a href="#contact" class="sticky-cta">
+    <svg class="sticky-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span>Contactez-moi<span class="sticky-cta-extra"> · devis gratuit</span></span>
+  </a>
 
   <!-- ===== FOOTER ===== -->
   <footer>

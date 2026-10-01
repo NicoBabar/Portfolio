@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'sha256-8zx5lJiLsSUcR50fR4v/xNn5OhD5lNvfpdPbI8wyDQg='; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,6 +32,7 @@
   <meta name="twitter:title" content="BabarStudio | Video Editor — UGC, YouTube &amp; Corporate Films">
   <meta name="twitter:description" content="Nicolas Barette, freelance video editor. From UGC content to corporate films, let me bring your ideas to life.">
   <meta name="twitter:image" content="https://babarstudio.fr/og-image.jpg">
+  <meta name="twitter:image:alt" content="BabarStudio — Nicolas Barette, video editor">
 
   <link rel="preload" href="../fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/orbitron.woff2" as="font" type="font/woff2" crossorigin>
@@ -41,15 +42,18 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://babarstudio.fr/#business",
     "name": "BabarStudio",
     "description": "Video editing, motion design, colour grading and filming: UGC content, YouTube videos and corporate films.",
-    "url": "https://babarstudio.fr/en/",
+    "url": "https://babarstudio.fr/",
+    "logo": "https://babarstudio.fr/Logo.png",
     "image": "https://babarstudio.fr/og-image.jpg",
     "email": "nicolas.babarstudio@gmail.com",
     "priceRange": "€€",
     "founder": { "@type": "Person", "name": "Nicolas Barette", "jobTitle": "Video editor" },
     "address": { "@type": "PostalAddress", "addressLocality": "Miramas", "postalCode": "13140", "addressCountry": "FR" },
-    "areaServed": "Worldwide"
+    "areaServed": ["France", "Worldwide"],
+    "knowsLanguage": ["fr", "en"]
   }
   </script>
 </head>
@@ -63,12 +67,15 @@
   </div>
 
   <!-- ===== NAVIGATION ===== -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="#hero" class="nav-logo">
+      <a href="#hero" class="nav-logo" aria-label="BabarStudio, back to top">
         <img src="../Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" data-label-open="Open menu" data-label-close="Close menu">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
@@ -77,13 +84,10 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="lang-switch">
-        <a href="../index.html" hreflang="fr">FR</a>
+        <a href="../" hreflang="fr">FR</a>
         <span aria-hidden="true">/</span>
-        <a href="index.html" hreflang="en" class="active" aria-current="true">EN</a>
+        <a href="./" hreflang="en" class="active" aria-current="true">EN</a>
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </nav>
 
@@ -108,7 +112,10 @@
       <h2 class="section-title">About <span class="neon-text">me</span></h2>
       <div class="about-grid reveal">
         <div class="about-photo">
-          <img src="../nicolas-barette.jpg" alt="Portrait of Nicolas Barette, video editor" class="about-img" width="800" height="1067" loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="../nicolas-barette-400.webp 400w, ../nicolas-barette-800.webp 800w" sizes="(max-width: 700px) 220px, (max-width: 960px) 260px, 280px">
+            <img src="../nicolas-barette.jpg" alt="Portrait of Nicolas Barette, video editor" class="about-img" width="800" height="1067" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="about-text">
           <p>I spent six years as a radar systems technician and non-commissioned officer in the French Air and Space Force, maintaining air-defence weapon systems. In 2025, I left it all behind to pursue what I really cared about: video editing.</p>
@@ -126,23 +133,23 @@
         <div class="about-skills">
           <h3>Tools &amp; Skills</h3>
           <div class="skills-grid">
-            <div class="skill-chip">🎬 DaVinci Resolve</div>
-            <div class="skill-chip">🎨 Colour Grading</div>
-            <div class="skill-chip">✨ Motion Design</div>
-            <div class="skill-chip">🔊 Sound Design</div>
-            <div class="skill-chip">🎥 Video Editing</div>
-            <div class="skill-chip">📐 Finishing</div>
+            <div class="skill-chip"><span aria-hidden="true">🎬</span> DaVinci Resolve</div>
+            <div class="skill-chip"><span aria-hidden="true">🎨</span> Colour Grading</div>
+            <div class="skill-chip"><span aria-hidden="true">✨</span> Motion Design</div>
+            <div class="skill-chip"><span aria-hidden="true">🔊</span> Sound Design</div>
+            <div class="skill-chip"><span aria-hidden="true">🎥</span> Video Editing</div>
+            <div class="skill-chip"><span aria-hidden="true">📐</span> Finishing</div>
           </div>
 
           <h3 class="gear-title">Filming Equipment</h3>
           <div class="gear-grid">
-            <span class="gear-chip">📷 Lumix S5 II</span>
-            <span class="gear-chip">🎤 Lavalier mics</span>
-            <span class="gear-chip">💡 2 LED panels</span>
-            <span class="gear-chip">📐 Tripod</span>
-            <span class="gear-chip">🟩 Green screen</span>
-            <span class="gear-chip">🚁 Stabilised drone</span>
-            <span class="gear-chip">🎮 FPV drone</span>
+            <span class="gear-chip"><span aria-hidden="true">📷</span> Lumix S5 II</span>
+            <span class="gear-chip"><span aria-hidden="true">🎤</span> Lavalier mics</span>
+            <span class="gear-chip"><span aria-hidden="true">💡</span> 2 LED panels</span>
+            <span class="gear-chip"><span aria-hidden="true">📐</span> Tripod</span>
+            <span class="gear-chip"><span aria-hidden="true">🟩</span> Green screen</span>
+            <span class="gear-chip"><span aria-hidden="true">🚁</span> Stabilised drone</span>
+            <span class="gear-chip"><span aria-hidden="true">🎮</span> FPV drone</span>
           </div>
         </div>
       </div>
@@ -281,6 +288,7 @@
         </div>
 
       </div>
+      <p class="portfolio-cta reveal">Want something like this? <a href="#contact" class="btn btn-outline">Let's talk</a></p>
     </div>
   </section>
 
@@ -342,19 +350,19 @@
           <div class="tarif-card-body">
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">YouTube / Vlog</span><span class="tarif-line-desc">Up to 10 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">On quote</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Custom quote</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Long-form YouTube</span><span class="tarif-line-desc">10 to 20 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">On quote</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Custom quote</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Corporate video / advert</span><span class="tarif-line-desc">2 to 5 minutes</span></div>
-              <span class="tarif-line-price tarif-devis">On quote</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Custom quote</a>
             </div>
             <div class="tarif-line">
               <div class="tarif-line-info"><span class="tarif-line-name">Interview / Documentary</span><span class="tarif-line-desc">Complex project, variable length</span></div>
-              <span class="tarif-line-price tarif-devis">On quote</span>
+              <a href="#contact" class="tarif-line-price tarif-devis">Custom quote</a>
             </div>
           </div>
         </div>
@@ -377,7 +385,7 @@
         </div>
 
       </div>
-      <p class="tarif-note reveal">For a tailored quote, get in touch directly using the form below.</p>
+      <p class="tarif-note reveal">For a tailored quote, get in touch directly using the <a href="#contact">form below</a>.</p>
     </div>
   </section>
 
@@ -385,19 +393,28 @@
   <section id="contact">
     <div class="container">
       <h2 class="section-title">Get in <span class="neon-text">touch</span></h2>
-      <p class="section-subtitle">Reach me by email or through the form below.</p>
+      <p class="section-subtitle">Reach me by email or through the form below. Free, no-obligation quote.</p>
       <div class="contact-grid reveal">
         <div class="contact-info">
           <div class="contact-item">
             <div class="contact-icon" aria-hidden="true">📧</div>
-            <div><h4>Email</h4><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
+            <div><h3>Email</h3><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon" aria-hidden="true">📍</div>
-            <div><h4>Based in</h4><p>Miramas, France — working worldwide</p></div>
+            <div><h3>Based in</h3><p>Miramas, France — working worldwide</p></div>
+          </div>
+          <div class="contact-steps">
+            <h3>How it works</h3>
+            <ol>
+              <li>Tell me about your project using the form or by email.</li>
+              <li>We discuss your needs, by phone or by email.</li>
+              <li>You receive a free, no-obligation quote.</li>
+            </ol>
+            <p class="contact-steps-note">Two rounds of revisions are included with every project.</p>
           </div>
         </div>
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqnleaw" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqnleaw" method="POST" data-sending="Sending…">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
@@ -407,7 +424,7 @@
             <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
           </div>
           <div class="form-group">
-            <label for="secteur">Industry</label>
+            <label for="secteur">Industry <span class="form-optional">(optional)</span></label>
             <input type="text" id="secteur" name="secteur" placeholder="e.g. e-commerce, YouTube, real estate...">
           </div>
           <div class="form-group">
@@ -418,14 +435,23 @@
             <label for="_gotcha">Do not fill this in</label>
             <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
+          <p class="form-privacy">Your details are only used to reply to your request and prepare a quote. They are sent through Formspree (United States). <a href="privacy.html">Learn more</a></p>
           <button type="submit" class="btn btn-primary">Send message</button>
-          <span id="formStatus" class="sr-only" role="status" aria-live="polite"></span>
+          <p id="formStatus" class="form-status" role="status"></p>
+          <template id="formOk"><span class="form-ok">Thank you, your message has arrived!</span> I'll get back to you as soon as possible at the address you gave (please check your spam folder).</template>
+          <template id="formErr"><span class="form-err">Sending failed.</span> Your message is still in the form: try again, or email me directly at <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a>.</template>
         </form>
       </div>
     </div>
   </section>
 
   </main>
+
+  <!-- ===== FLOATING CONTACT BUTTON ===== -->
+  <a href="#contact" class="sticky-cta">
+    <svg class="sticky-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span>Contact me<span class="sticky-cta-extra"> · free quote</span></span>
+  </a>
 
   <!-- ===== FOOTER ===== -->
   <footer>

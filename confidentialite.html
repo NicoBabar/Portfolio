@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Politique de confidentialité | BabarStudio</title>
@@ -25,14 +25,14 @@
     <div class="aurora aurora-2"></div>
   </div>
 
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar" class="scrolled" aria-label="Navigation principale">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="./" class="nav-logo" aria-label="BabarStudio, accueil">
         <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Retour au site</a></li>
+      <ul class="nav-links nav-static">
+        <li><a href="./">Retour au site</a></li>
       </ul>
       <div class="lang-switch">
         <a href="confidentialite.html" hreflang="fr" class="active" aria-current="true">FR</a>
@@ -45,7 +45,7 @@
   <main class="legal">
     <div class="container">
       <h1>Politique de <span class="neon-text">confidentialité</span></h1>
-      <p class="legal-updated">Dernière mise à jour : 12 septembre 2026</p>
+      <p class="legal-updated">Dernière mise à jour : 1er octobre 2026</p>
 
       <p>La présente politique décrit la manière dont les données personnelles des visiteurs et clients du site babarstudio.fr sont collectées et traitées, conformément au Règlement (UE) 2016/679 (RGPD) et à la loi n° 78-17 du 6 janvier 1978 modifiée.</p>
 
@@ -81,29 +81,32 @@
         <li><strong>Exécuter la prestation et gérer la relation client</strong> — exécution du contrat (article 6.1.b).</li>
         <li><strong>Établir et conserver la facturation</strong> — obligation légale comptable et fiscale (article 6.1.c).</li>
         <li><strong>Assurer la sécurité et le bon fonctionnement du site</strong> — intérêt légitime du responsable de traitement (article 6.1.f).</li>
+        <li><strong>Informer les clients de prestations analogues</strong> (prospection commerciale) — intérêt légitime du responsable de traitement (article 6.1.f). Vous pouvez vous y opposer à tout moment, gratuitement, par simple email.</li>
       </ul>
 
       <h2>4. Destinataires et sous-traitants</h2>
       <p>Vos données ne sont ni vendues, ni louées, ni cédées à des tiers à des fins commerciales.</p>
-      <p>Elles sont traitées par le responsable de traitement et par les prestataires techniques suivants, agissant en qualité de sous-traitants ou de responsables de traitement pour leurs propres finalités :</p>
+      <p>Elles sont traitées par le responsable de traitement et par les prestataires techniques suivants :</p>
       <ul>
-        <li><strong>Formspree, Inc.</strong> (États-Unis) — acheminement des messages envoyés depuis le formulaire de contact.</li>
-        <li><strong>GitHub, Inc.</strong> (États-Unis) — hébergement du site via GitHub Pages et journaux techniques associés.</li>
-        <li><strong>Google Ireland Limited / Google LLC</strong> — lecture des vidéos intégrées (YouTube), uniquement si vous lancez une vidéo.</li>
+        <li><strong>Formspree, Inc.</strong> (États-Unis), sous-traitant — acheminement des messages envoyés depuis le formulaire de contact jusqu'à ma messagerie.</li>
+        <li><strong>Google (service Gmail)</strong> — messagerie électronique sur laquelle sont reçus les messages du formulaire et vos emails.</li>
+        <li><strong>GitHub, Inc.</strong> (États-Unis), hébergeur — hébergement du site via GitHub Pages et journaux techniques associés.</li>
+        <li><strong>Google Ireland Limited / Google LLC</strong> (YouTube), responsable de traitement pour ses propres finalités — affichage des miniatures des vidéos du portfolio et lecture des vidéos que vous lancez (voir article 6).</li>
       </ul>
       <p><strong>Transferts hors Union européenne.</strong> Certains de ces prestataires sont établis aux États-Unis. Ces transferts sont encadrés par les garanties appropriées prévues au chapitre V du RGPD, notamment les clauses contractuelles types de la Commission européenne et, le cas échéant, la certification au titre du cadre de protection des données UE–États-Unis (EU-US Data Privacy Framework).</p>
 
       <h2>5. Durées de conservation</h2>
       <ul>
         <li><strong>Demandes de contact et prospects</strong> : 3 ans à compter du dernier contact.</li>
-        <li><strong>Données de clients</strong> : durée de la relation contractuelle, puis 3 ans à des fins de prospection.</li>
+        <li><strong>Données de clients</strong> : durée de la relation contractuelle, puis 3 ans à des fins de prospection, sauf opposition de votre part.</li>
         <li><strong>Documents comptables et pièces justificatives</strong> : 10 ans, conformément à l'article L.123-22 du Code de commerce.</li>
         <li><strong>Journaux de connexion</strong> : durée fixée par l'hébergeur, généralement 12 mois au maximum.</li>
       </ul>
 
       <h2>6. Cookies et traceurs</h2>
       <p>Le site ne dépose <strong>aucun cookie</strong> de mesure d'audience, de publicité ou de suivi comportemental. Aucun bandeau de consentement n'est donc nécessaire pour la simple consultation du site.</p>
-      <p>En revanche, <strong>la lecture d'une vidéo du portfolio</strong> déclenche le chargement du lecteur YouTube, susceptible de déposer des cookies et de collecter des données de navigation relevant de la politique de confidentialité de Google. Aucune vidéo ne se charge tant que vous n'avez pas cliqué pour la lire.</p>
+      <p>Les <strong>images d'aperçu des vidéos</strong> du portfolio sont chargées depuis les serveurs de YouTube (Google) lorsque la section Portfolio s'affiche : votre adresse IP et des informations techniques sur votre navigateur sont alors transmises à Google.</p>
+      <p><strong>La lecture d'une vidéo du portfolio</strong> déclenche le chargement du lecteur YouTube, susceptible de déposer des cookies et de collecter des données de navigation relevant de la politique de confidentialité de Google. Le lecteur ne se charge pas tant que vous n'avez pas cliqué sur une vidéo pour la lire.</p>
       <p>Les polices de caractères sont <strong>hébergées sur ce site</strong> : leur affichage n'entraîne aucune requête ni transmission de votre adresse IP vers un service tiers.</p>
       <p>Pour en savoir plus : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">politique de confidentialité de Google</a>.</p>
 
@@ -142,7 +145,7 @@
     <div class="container">
       <p>&copy; 2026 Nicolas Barette — EI BabarStudio — Tous droits réservés</p>
       <nav class="footer-links" aria-label="Informations légales">
-        <a href="index.html">Accueil</a>
+        <a href="./">Accueil</a>
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="cgv.html">CGV</a>
         <a href="confidentialite.html">Confidentialité</a>

@@ -16,29 +16,60 @@ if (navbar) {
   }, { passive: true });
 }
 
-// Menu mobile
+// Menu mobile (libellés lus dans le HTML pour suivre la langue de la page)
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks  = document.querySelector('.nav-links');
 if (navToggle && navLinks) {
   const setMenu = open => {
     navLinks.classList.toggle('open', open);
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    navToggle.setAttribute('aria-label', open ? navToggle.dataset.labelClose : navToggle.dataset.labelOpen);
   };
   navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape' || !navLinks.classList.contains('open')) return;
+    setMenu(false);
+    navToggle.focus();
+  });
 }
 
-// Apparition au scroll : on arrête d'observer une fois l'élément révélé
+// Apparition au scroll : dès qu'un bout de l'élément entre à l'écran (un seuil en %
+// laisserait invisibles les blocs très hauts, par exemple avec un fort zoom)
 const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.classList.add('visible');
     observer.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Bouton « Contactez-moi » flottant : visible une fois les boutons du haut de page
+// dépassés, masqué tant que la section contact est à l'écran
+const stickyCta = document.querySelector('.sticky-cta');
+const heroBtns  = document.querySelector('.hero-btns');
+const contact   = document.getElementById('contact');
+if (stickyCta && heroBtns && contact) {
+  const onScreen = new Map([[heroBtns, true], [contact, false]]);
+
+  const ctaObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => onScreen.set(entry.target, entry.isIntersecting));
+    const show = !onScreen.get(heroBtns) && !onScreen.get(contact);
+
+    // Si le bouton a le focus quand il disparaît, le focus passe au titre de la
+    // section contact : l'utilisateur au clavier n'est pas renvoyé en haut de page
+    if (!show && document.activeElement === stickyCta) {
+      const title = contact.querySelector('h2');
+      title.setAttribute('tabindex', '-1');
+      title.focus({ preventScroll: true });
+    }
+    stickyCta.classList.toggle('show', show);
+  });
+  ctaObserver.observe(heroBtns);
+  ctaObserver.observe(contact);
+}
 
 // Effet 3D sur les cartes : uniquement à la souris, et jamais si l'utilisateur
 // a demandé des animations réduites
@@ -73,16 +104,22 @@ const closeBtn = document.getElementById('modalClose');
 
 if (modal && iframe && closeBtn) {
   let lastFocused = null;
+  // Tant que la vidéo est ouverte, le reste de la page est inerte : ni clic,
+  // ni tabulation, ni lecteur d'écran ne peuvent s'y égarer derrière la vidéo
+  const background = [...document.body.children].filter(el => el !== modal && el.tagName !== 'SCRIPT');
+  const setBackgroundInert = on => background.forEach(el => { el.inert = on; });
 
   function openModal(card) {
     const id = card.dataset.videoId;
-    if (!id) return;
+    // Un identifiant YouTube fait toujours 11 caractères parmi [A-Za-z0-9_-]
+    if (!/^[A-Za-z0-9_-]{11}$/.test(id || '')) return;
     lastFocused = card;
     modal.classList.toggle('modal-vertical', card.classList.contains('vertical-card'));
     // youtube-nocookie : pas de cookie publicitaire déposé tant que la vidéo n'est pas lue
     iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    setBackgroundInert(true);
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
   }
@@ -92,6 +129,7 @@ if (modal && iframe && closeBtn) {
     modal.classList.remove('active', 'modal-vertical');
     modal.setAttribute('aria-hidden', 'true');
     iframe.src = '';
+    setBackgroundInert(false);
     document.body.style.overflow = '';
     if (lastFocused) { lastFocused.focus(); lastFocused = null; }
   }
@@ -110,47 +148,47 @@ if (modal && iframe && closeBtn) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 }
 
-// Formulaire de contact via Formspree
+// Formulaire de contact via Formspree. Les textes affichés viennent du HTML
+// (attribut data-sending et modèles #formOk / #formErr) : ils suivent la langue de la page
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  const status = document.getElementById('formStatus');
+  const status  = document.getElementById('formStatus');
+  const btn     = contactForm.querySelector('button[type="submit"]');
+  const label   = btn.textContent;
+  const showMsg = id => {
+    const tpl = document.getElementById(id);
+    if (tpl) status.replaceChildren(tpl.content.cloneNode(true));
+  };
+  let sending = false;
 
   contactForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const btn = contactForm.querySelector('button[type="submit"]');
-    const original = btn.textContent;
-    const announce = msg => {
-      btn.textContent = msg;
-      if (status) status.textContent = msg;
-    };
+    if (sending) return;
+    sending = true;
 
-    announce('Envoi en cours...');
-    btn.disabled = true;
+    // aria-disabled plutôt que disabled : le bouton garde le focus pendant l'envoi
+    btn.setAttribute('aria-disabled', 'true');
+    btn.textContent = contactForm.dataset.sending;
+    status.replaceChildren();
 
+    let ok = false;
     try {
-      const res = await fetch('https://formspree.io/f/xpqnleaw', {
+      const res = await fetch(contactForm.action, {
         method: 'POST',
         body: new FormData(contactForm),
         headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
-        announce('Message envoyé ✓');
-        btn.style.background = '#22c55e';
-        contactForm.reset();
-      } else {
-        announce('Erreur, réessayez');
-        btn.style.background = '#ef4444';
-      }
+      ok = res.ok;
     } catch {
-      announce('Erreur, réessayez');
-      btn.style.background = '#ef4444';
+      ok = false;
     }
 
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.style.background = '';
-      btn.disabled = false;
-      if (status) status.textContent = '';
-    }, 3000);
+    // Le résultat reste affiché : en cas d'échec, le message saisi est conservé
+    // et l'adresse email est proposée en solution de repli
+    if (ok) contactForm.reset();
+    showMsg(ok ? 'formOk' : 'formErr');
+    btn.textContent = label;
+    btn.removeAttribute('aria-disabled');
+    sending = false;
   });
 }

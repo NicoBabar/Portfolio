@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mentions légales | BabarStudio</title>
@@ -25,14 +25,14 @@
     <div class="aurora aurora-2"></div>
   </div>
 
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar" class="scrolled" aria-label="Navigation principale">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="./" class="nav-logo" aria-label="BabarStudio, accueil">
         <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Retour au site</a></li>
+      <ul class="nav-links nav-static">
+        <li><a href="./">Retour au site</a></li>
       </ul>
       <div class="lang-switch">
         <a href="mentions-legales.html" hreflang="fr" class="active" aria-current="true">FR</a>
@@ -107,7 +107,7 @@
     <div class="container">
       <p>&copy; 2026 Nicolas Barette — EI BabarStudio — Tous droits réservés</p>
       <nav class="footer-links" aria-label="Informations légales">
-        <a href="index.html">Accueil</a>
+        <a href="./">Accueil</a>
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="cgv.html">CGV</a>
         <a href="confidentialite.html">Confidentialité</a>

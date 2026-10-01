@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms and conditions of sale | BabarStudio</title>
@@ -25,14 +25,14 @@
     <div class="aurora aurora-2"></div>
   </div>
 
-  <nav id="navbar" class="scrolled">
+  <nav id="navbar" class="scrolled" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="./" class="nav-logo" aria-label="BabarStudio, home">
         <img src="../Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Back to site</a></li>
+      <ul class="nav-links nav-static">
+        <li><a href="./">Back to site</a></li>
       </ul>
       <div class="lang-switch">
         <a href="../cgv.html" hreflang="fr">FR</a>
@@ -45,7 +45,7 @@
   <main class="legal">
     <div class="container">
       <h1>Terms and conditions <span class="neon-text">of sale</span></h1>
-      <p class="legal-updated">Last updated: 12 September 2026</p>
+      <p class="legal-updated">Last updated: 1 October 2026</p>
 
       <p class="legal-todo">This is a courtesy translation. In the event of any discrepancy, the <a href="../cgv.html">French version</a> prevails.</p>
 
@@ -81,18 +81,20 @@
 
       <h2>Article 4 — Prices</h2>
       <p>Prices are expressed in euros and are net of tax.</p>
-      <p><strong>VAT not applicable under Article 293 B of the French General Tax Code</strong> (small-business VAT exemption).</p>
+      <p><strong>VAT not applicable under Article 293 B of the French General Tax Code</strong> (small-business VAT exemption), for clients established in France and for consumer clients.</p>
+      <p>For a business client established in another European Union member state, VAT is payable by the Client (reverse charge); for a business client established outside the European Union, the service is outside the scope of French VAT (Article 259-1° of the French General Tax Code).</p>
       <p>Any additional costs (travel beyond the agreed area, hire of specific equipment, purchase of music, image or font licences, third-party suppliers) are stated in the quote or re-invoiced to the Client subject to prior written agreement.</p>
 
       <h2>Article 5 — Deposit and payment terms</h2>
       <p>Depending on the nature and scale of the project, the Provider may require a deposit on order. Where a deposit is required, it amounts to <strong>30% of the total price</strong>, unless stated otherwise in the quote.</p>
-      <p>The balance falls due on delivery of the service.</p>
+      <p>The balance is invoiced on delivery of the service.</p>
       <p>Payments are made by bank transfer to the details shown on the invoice. Invoices are payable within <strong>30 days</strong> of their date of issue, unless otherwise stated in the quote.</p>
-      <p><strong>Late payment.</strong> In accordance with Article L.441-10 of the French Commercial Code, any late payment automatically incurs, without prior formal notice:</p>
+      <p><strong>Late payment (business clients).</strong> In accordance with Article L.441-10 of the French Commercial Code, any late payment automatically incurs, without prior formal notice:</p>
       <ul>
         <li>late-payment interest at the rate applied by the European Central Bank to its most recent refinancing operation, plus 10 percentage points;</li>
-        <li>a fixed recovery fee of <strong>€40</strong> for business clients, without prejudice to further compensation on production of supporting evidence.</li>
+        <li>a fixed recovery fee of <strong>€40</strong>, without prejudice to further compensation on production of supporting evidence.</li>
       </ul>
+      <p><strong>Late payment (consumer clients).</strong> Sums outstanding bear interest at the statutory rate from the date of formal notice (Article 1231-6 of the French Civil Code).</p>
       <p>In the event of non-payment, the Provider may suspend the service in progress after a formal notice has remained without effect for 8 days.</p>
 
       <h2>Article 6 — Client obligations and supplied materials</h2>
@@ -110,7 +112,7 @@
       <p>A "round of revisions" means a set of change requests submitted together and in writing. Requests must reach the Provider within <strong>7 days</strong> of delivery of the version concerned.</p>
       <p>Included revisions cover adjustments to work delivered in line with the original brief (pacing, choice of takes, subtitles, colour, miscellaneous corrections).</p>
       <p>Any further round of revisions, and any request that substantially alters the original brief (change of angle, format, duration, editorial direction, or addition of unplanned sequences), is subject to an additional quote and further invoicing.</p>
-      <p>If the Client does not respond within 7 days of delivery, the service is deemed accepted without reservation.</p>
+      <p>For business clients, if no response is received within 7 days of delivery, the service is deemed accepted without reservation. Consumer clients retain the benefit of the statutory guarantees in all cases.</p>
 
       <h2>Article 9 — Delivery</h2>
       <p>Final files are delivered electronically (download link), in the format and resolution set out in the quote.</p>
@@ -122,16 +124,19 @@
       <p>Upon full payment, the Provider assigns to the Client the exploitation rights (reproduction and representation) in the deliverables, for the media, term and territory defined in the quote. Failing any such details, the assignment is granted for use on the Client's own communication channels (website and social media), worldwide, for the legal term of protection.</p>
       <p>Any use not provided for in the quote — in particular paid advertising distribution, assignment to a third party, or television or cinema exploitation — is subject to an amendment and additional remuneration.</p>
       <p>In accordance with Article L.121-1 of the French Intellectual Property Code, the author's moral right is inalienable: the Provider retains the right to be credited and to the integrity of the work.</p>
+      <p><strong>UGC content.</strong> Where the Provider appears on screen or lends their voice in UGC content, they authorise the Client, upon full payment, to use their image, voice and performance in that content, for the media, term and territory set out in the quote. Any use beyond that is subject to an amendment.</p>
       <p><strong>Portfolio.</strong> Unless the Client objects in writing, the Provider may showcase the work produced in its portfolio, on its website and on its social media, as a professional reference. The Client may request its removal at any time.</p>
 
       <h2>Article 11 — Right of withdrawal (consumer clients)</h2>
       <p>In accordance with Article L.221-18 of the French Consumer Code, a Client acting as a consumer who has entered into the contract at a distance or away from business premises has <strong>14 days</strong> from the conclusion of the contract to exercise the right of withdrawal, without having to give reasons.</p>
-      <p>To do so, the Client shall notify its decision by an unambiguous statement sent by email to <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a> or by post to the address given in Article 1.</p>
+      <p>To do so, the Client shall notify its decision by an unambiguous statement sent by email to <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a> or by post to the address given in Article 1. The Client may use the <a href="#withdrawal">model withdrawal form</a> in the appendix for this purpose, but is not obliged to.</p>
+      <p>A consumer Client who wishes the service to begin before the end of the withdrawal period shall expressly request this in writing, for example in the email accepting the quote.</p>
       <p>Under Article L.221-25 of the same code, if the Client expressly requests that performance begin before the end of the withdrawal period, it remains liable for the amount corresponding to the service supplied up to the point of notification. Where the service has been <strong>fully performed</strong> before the end of the period, with the Client's prior express consent and express waiver of the right of withdrawal, that right can no longer be exercised.</p>
       <p>This right of withdrawal does not apply to business clients acting in the course of their professional activity.</p>
 
       <h2>Article 12 — Cancellation and termination</h2>
-      <p>If the Client cancels after work has begun, the deposit is retained by the Provider as compensation, and work already carried out is payable pro rata to its progress.</p>
+      <p>This article applies subject to the consumer Client's exercise of the right of withdrawal (Article 11).</p>
+      <p>If the Client cancels after work has begun, work already carried out is payable pro rata to its progress. For business clients, the deposit is also retained by the Provider as compensation.</p>
       <p>If the Client cancels a shoot less than 48 hours before the agreed date, the Provider may invoice 50% of the filming fee for holding the date.</p>
       <p>The Provider may terminate the contract in the event of a serious breach by the Client, in particular non-payment or supply of unlawful materials, after formal notice has remained without effect for 15 days.</p>
 
@@ -139,6 +144,7 @@
       <p>The Provider is bound by an obligation of means in performing its services.</p>
       <p>It shall not be liable for indirect losses such as loss of revenue, loss of clientele, reputational harm or commercial loss. In any event, the Provider's liability is limited to the amount actually paid by the Client for the service concerned.</p>
       <p>The Provider is not responsible for the commercial performance, reach or engagement of the delivered content, which depend on factors beyond its control.</p>
+      <p>The limitations of liability in this article apply to business clients only. Towards consumer clients, the Provider is liable for its failures under the ordinary rules of law.</p>
 
       <h2>Article 14 — Confidentiality</h2>
       <p>Each party undertakes to treat as confidential any non-public information it becomes aware of under the contract, and not to disclose it to third parties, for the term of the contract and for 2 years thereafter.</p>
@@ -155,11 +161,28 @@
       <p>Any complaint should be sent by email to <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a> or by post to the address given in Article 1. The Provider undertakes to respond within 15 days.</p>
 
       <h2>Article 18 — Governing law and disputes</h2>
-      <p>These Terms are governed by French law.</p>
-      <p>In the event of a dispute, the parties shall endeavour to reach an amicable settlement. Failing agreement, the dispute shall be brought before the competent French courts. For business clients, express jurisdiction is granted to the courts having jurisdiction over the Provider's place of business, even in the case of multiple defendants or third-party proceedings. For consumer clients, the statutory rules of jurisdiction apply.</p>
+      <p>These Terms are governed by French law. This choice does not deprive a consumer Client residing in another country of the protection afforded by the mandatory provisions of the law of their country of habitual residence (Article 6 of Regulation (EC) No 593/2008, "Rome I").</p>
+      <p>In the event of a dispute, the parties shall endeavour to reach an amicable settlement. Failing agreement, the dispute shall be brought before the competent court.</p>
+      <p>Between businesses, and to the extent permitted by law (in particular Article 48 of the French Code of Civil Procedure), express jurisdiction is granted to the courts having jurisdiction over the Provider's place of business, even in the case of multiple defendants or third-party proceedings.</p>
+      <p>A consumer Client may bring proceedings, at their choice, before any court with territorial jurisdiction under the French Code of Civil Procedure or before the court of the place where they lived when the contract was concluded or when the harmful event occurred (Article R.631-3 of the French Consumer Code).</p>
 
       <h2>Article 19 — Amendments</h2>
       <p>The Provider reserves the right to amend these Terms at any time. The applicable Terms are those in force on the date the quote is accepted.</p>
+
+      <h2 id="withdrawal">Appendix — Model withdrawal form</h2>
+      <p>(Complete and return this form only if you wish to withdraw from the contract.)</p>
+      <div class="legal-box">
+        <p>
+          To Nicolas Barette — EI BabarStudio, 4 Rue Serge Sabatier, 13140 Miramas, France — <a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a>:<br><br>
+          I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract for the provision of the following service:<br>
+          Ordered on (*):<br>
+          Name of consumer(s):<br>
+          Address of consumer(s):<br>
+          Signature of consumer(s) (only if this form is notified on paper):<br>
+          Date:<br><br>
+          (*) Delete as appropriate.
+        </p>
+      </div>
     </div>
   </main>
 
@@ -167,7 +190,7 @@
     <div class="container">
       <p>&copy; 2026 Nicolas Barette — EI BabarStudio — All rights reserved</p>
       <nav class="footer-links" aria-label="Legal information">
-        <a href="index.html">Home</a>
+        <a href="./">Home</a>
         <a href="legal-notice.html">Legal notice</a>
         <a href="terms.html">Terms of sale</a>
         <a href="privacy.html">Privacy</a>
