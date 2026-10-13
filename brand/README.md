@@ -46,11 +46,19 @@ Couleurs de la marque :
 | `icon-512.png` | Symbole champagne sur fond sombre, 512 px | Icône d'application / PWA, raccourci Android |
 | `avatar-1024.png` | Symbole champagne sur fond sombre, 1024 px, carré | **Avatar réseaux sociaux** : YouTube, Instagram, LinkedIn, TikTok, Malt (les plateformes rognent en rond : le symbole est centré avec marge) |
 
+## Signature e-mail
+
+| Fichier | Contenu | Usage |
+|---|---|---|
+| `signature-banner.jpg` | Bannière 600 × 150 (symbole, nom, spécialités, portrait), hébergée sur babarstudio.fr | Bas de signature des e-mails (chargée par adresse, sans pièce jointe) |
+| `signature.html` | Signature complète : nom, titre, site, e-mail et bannière | À ouvrir dans un navigateur, tout copier, puis coller dans Gmail > Paramètres > Signature |
+
 ## Conseils d'usage
 
 - **Site** : `mark.svg` / `lockup.svg` en SVG ; le site utilise `/logo.svg` (symbole champagne) dans la barre de navigation.
 - **Favicon** : `favicon-64.png` (tuile ivoire, lisible sur onglet clair comme sombre).
 - **Avatar réseaux** : `avatar-1024.png`.
+- **E-mails** : `signature.html` (mode d'emploi en tête du fichier) ; la tâche de prospection automatique ajoute la même signature.
 - **Filigrane vidéo** : `mark-champagne-1024.png` (sur image sombre) ou `mark-ink-1024.png` (sur image claire), 20–40 % d'opacité, en bas à droite ; `lockup-dark-2000.png` pour les génériques.
 - **Print** : toujours les SVG (`lockup-ivory.svg` sur fond clair, `lockup-dark.svg` sur fond sombre) ; les imprimeurs les acceptent et ils restent nets à toute taille. Pour un fichier bitmap, les PNG 2000 px conviennent jusqu'à ~17 cm de large à 300 dpi.
 - Garder une marge libre autour du logo d'au moins la hauteur de l'œil de l'éléphant × 4 ; ne pas étirer, ne pas changer les couleurs hors de la palette ci-dessus.
