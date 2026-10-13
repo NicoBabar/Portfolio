@@ -776,6 +776,9 @@ img, svg { display: block; }
    ont donc exactement la même hauteur, qu'elles soient en 16:9 ou en 9:16.
    --row-h  : hauteur de référence, qui décide du passage à la ligne ;
    --row-max : hauteur maximale d'une vignette (évite les verticales géantes). */
+/* Une rubrique peut empiler plusieurs rangées (ex. épisode complet au-dessus des extraits) */
+.pf-row + .pf-row { margin-top: 1.25rem; }
+
 .pf-row {
   --row-h: 13rem;
   --row-max: 29rem;
