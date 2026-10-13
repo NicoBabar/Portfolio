@@ -761,31 +761,17 @@ a { text-decoration: none; color: inherit; }
     align-items: flex-start;
     gap: 1.5rem 2.5rem;
   }
+  /* Même en-tête que les autres rubriques (numéro, titre, filet), simplement
+     placé en colonne à gauche des cartes */
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-head {
     flex: 0 1 16rem;
     max-width: 16rem;
-    display: block;
     margin: 0;
-    padding: 0.35rem 0 0 0.75rem;
-    background: none;
-  }
-  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-num {
-    display: block;
-    font-size: 2.2rem;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 18px rgba(201, 168, 76, 0.25);
-  }
-  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.7rem;
+    padding-top: 0.35rem;
+    align-content: start;
   }
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-lead {
     max-width: 34ch;
-    font-size: 1rem;
-    padding-bottom: 1.2rem;
-    background: linear-gradient(var(--neon), var(--neon)) left bottom / 2.5rem 2px no-repeat;
   }
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-row {
     flex: 1 1 0;
