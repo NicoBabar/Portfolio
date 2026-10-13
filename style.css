@@ -53,9 +53,9 @@
   --chip-bg:      transparent;              /* pastille : filet seul, comme sur fond sombre */
   --chip-line:    rgba(28, 24, 20, 0.26);   /* filet de pastille : 14 % serait trop pâle fermé */
   --chip-text:    var(--text);
-  --red:          #cc2200;  /* bouton principal, lecture et bouton flottant uniquement */
-  --red-hover:    #dc2d0c;
-  --red-text:     #b81f00;  /* petit texte rouge (erreur) : 5.6:1 sur ivoire */
+  --red:          #1f6b66;  /* accent pétrole : bouton principal, lecture et bouton flottant uniquement */
+  --red-hover:    #257f79;
+  --red-text:     #1b5f5a;  /* petit texte accent (erreur) : 6.1:1 sur ivoire */
   --radius:       12px;     /* un seul rayon pour tout le site */
   --shadow:       0 16px 40px rgba(28, 24, 20, 0.18);
   --font-display: 'Unbounded', 'Inter', sans-serif;
@@ -102,7 +102,7 @@ footer {
   --chip-bg:      transparent;
   --chip-line:    var(--line);
   --chip-text:    var(--text-2);
-  --red-text:     #ee5538;  /* 5.5:1 */
+  --red-text:     #6fd3c9;  /* 9.6:1 sur sombre */
   color: var(--text);
 }
 
@@ -158,7 +158,7 @@ img, svg { display: block; }
   letter-spacing: -0.01em;
   overflow-wrap: break-word;
 }
-/* Le seul accent rouge de chaque section : un court trait au-dessus du titre */
+/* Le seul accent pétrole de chaque section : un court trait au-dessus du titre */
 .section-title::before {
   content: '';
   display: block;
@@ -418,7 +418,7 @@ img, svg { display: block; }
 
 /* ============================================================
    HERO : bloc sombre pleine largeur, même typographie que la maquette sombre.
-   Le dégradé rouge est centré sur le nom, pas sur le bord haut, pour que la
+   Le dégradé pétrole est centré sur le nom, pas sur le bord haut, pour que la
    barre de navigation (opaque, de la même couleur) se fonde dans le bloc.
 ============================================================ */
 #hero {
@@ -433,7 +433,7 @@ img, svg { display: block; }
   text-align: center;
   padding: 8rem 0 5rem;
   background:
-    radial-gradient(55% 50% at 50% 48%, rgba(204, 34, 0, 0.14) 0%, rgba(204, 34, 0, 0) 70%),
+    radial-gradient(55% 50% at 50% 48%, rgba(31, 107, 102, 0.16) 0%, rgba(31, 107, 102, 0) 70%),
     radial-gradient(60% 50% at 100% 100%, rgba(214, 192, 138, 0.10) 0%, rgba(214, 192, 138, 0) 70%),
     var(--bg);
 }
@@ -1221,7 +1221,7 @@ img, svg { display: block; }
 .form-status:empty { padding: 0; border: 0; }
 .form-status:focus { outline: none; }
 .form-status .form-ok  { color: var(--gold); font-weight: 600; }
-.form-status .form-err { color: var(--red-text); font-weight: 600; }
+.form-status .form-err { color: #a8321f; font-weight: 600; } /* erreur : reste rouge, 5.6:1 sur ivoire */
 .form-status a {
   color: var(--gold);
   text-decoration: underline;
