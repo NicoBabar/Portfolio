@@ -329,11 +329,14 @@ img, svg { display: block; }
 .logo-babar  { color: var(--text); }
 .logo-studio { color: var(--gold); }
 
-/* Marque : la mascotte en monochrome champagne (Logo.png), sans le bandeau
-   de texte ; petite, pour que le wordmark reste la marque principale */
+/* Marque : le symbole (tête d'éléphant) en SVG carré, champagne cuit dans le
+   fichier (logo.svg) puisque la barre est toujours sombre ; petit, pour que le
+   wordmark reste la marque principale. flex: none pour qu'il ne rétrécisse
+   jamais quand la barre se resserre. */
 .nav-logo-img {
   height: 36px;
   width: auto;
+  flex: none;
   object-fit: contain;
 }
 
