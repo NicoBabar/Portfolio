@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com https://intra.vkstudio.fr; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -605,6 +605,10 @@
       </div>
     </div>
   </div>
+
+  <!-- Mesure d'audience : image invisible chargée depuis le serveur de VK Studio, qui compte
+       les visites pour le compte de BabarStudio (voir la politique de confidentialité, rubrique 6) -->
+  <img src="https://intra.vkstudio.fr/api/portfolio/track?t=f965989f3eee4421881e27929b60ce0c" alt="" width="1" height="1" class="track-pixel" aria-hidden="true">
 
   <script src="script.js" defer></script>
 </body>

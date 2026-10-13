@@ -222,6 +222,15 @@ img, svg { display: block; }
 }
 
 /* Champ piège anti-robots : hors de l'écran, jamais vu ni atteint par un humain */
+/* Pixel de mesure d'audience : hors de la mise en page, invisible */
+.track-pixel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .hp {
   position: absolute;
   left: -9999px;
