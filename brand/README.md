@@ -11,7 +11,7 @@ Couleurs de la marque :
 - Bronze `#946f28` (« Studio » sur clair) · Pétrole `#1f6b66` (accent)
 - Sur fond sombre : Ivoire clair `#ece6dc` (texte « Babar »), Champagne `#d6c08a` (symbole, « Studio »), Pétrole clair `#2a8a83` (bas du symbole en bichrome)
 
-## Symbole seul (la tête d'éléphant)
+## Symbole seul (la tête d'éléphant, vue de face)
 
 | Fichier | Contenu | Quand l'utiliser |
 |---|---|---|
@@ -22,7 +22,7 @@ Couleurs de la marque :
 | `mark-champagne-1024.png` | Symbole champagne sur fond transparent, 1024 px | Sur fond sombre quand le SVG n'est pas accepté ; **filigrane vidéo** (à 20–40 % d'opacité dans un coin) |
 | `mark-duotone-ivory-1024.png` | Bichrome encre + pétrole, transparent, 1024 px | Idem duotone-ivory en bitmap |
 | `mark-duotone-dark-1024.png` | Bichrome champagne + pétrole, transparent, 1024 px | Idem duotone-dark en bitmap |
-| `Logo-512.png` | Symbole champagne sur transparent, 512 px | Copie utilisée par le site (`/Logo.png`, logo déclaré à Google) |
+| `Logo-512.png` | Symbole champagne sur transparent, 512 px | Symbole seul en PNG, pour poser sur un fond sombre (montage, présentation) |
 
 ## Logo complet (symbole + « BabarStudio »)
 
@@ -43,7 +43,7 @@ Couleurs de la marque :
 | `favicon-32.png` | Symbole encre sur tuile ivoire arrondie, 32 px | Favicon (petite taille) |
 | `favicon-64.png` | Symbole encre sur tuile ivoire arrondie, 64 px | Favicon du site (copie en `/favicon.png`) |
 | `apple-touch-icon-180.png` | Symbole champagne sur fond sombre, 180 px | Icône d'accueil iPhone / iPad (copie en `/apple-touch-icon.png`) |
-| `icon-512.png` | Symbole champagne sur fond sombre, 512 px | Icône d'application / PWA, raccourci Android |
+| `icon-512.png` | Symbole champagne sur fond sombre, 512 px | Icône d'application / PWA, raccourci Android ; copie utilisée par le site (`/Logo.png`, logo déclaré à Google, lisible sur fond blanc) |
 | `avatar-1024.png` | Symbole champagne sur fond sombre, 1024 px, carré | **Avatar réseaux sociaux** : YouTube, Instagram, LinkedIn, TikTok, Malt (les plateformes rognent en rond : le symbole est centré avec marge) |
 
 ## Signature e-mail
@@ -62,3 +62,9 @@ Couleurs de la marque :
 - **Filigrane vidéo** : `mark-champagne-1024.png` (sur image sombre) ou `mark-ink-1024.png` (sur image claire), 20–40 % d'opacité, en bas à droite ; `lockup-dark-2000.png` pour les génériques.
 - **Print** : toujours les SVG (`lockup-ivory.svg` sur fond clair, `lockup-dark.svg` sur fond sombre) ; les imprimeurs les acceptent et ils restent nets à toute taille. Pour un fichier bitmap, les PNG 2000 px conviennent jusqu'à ~17 cm de large à 300 dpi.
 - Garder une marge libre autour du logo d'au moins la hauteur de l'œil de l'éléphant × 4 ; ne pas étirer, ne pas changer les couleurs hors de la palette ci-dessus.
+
+## Archive
+
+Le dossier `archive/` conserve l'ancien symbole (tête d'éléphant de profil), remplacé par la version de face :
+`logo-profil.svg` (monochrome, `currentColor`) et `logo-profil-champagne-1024.png` (champagne sur transparent).
+Il n'est plus utilisé sur le site ; il est gardé pour référence.
