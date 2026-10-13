@@ -71,10 +71,10 @@ if (stickyCta && heroBtns && contact) {
   ctaObserver.observe(contact);
 }
 
-// Effet 3D sur les cartes : uniquement à la souris, et jamais si l'utilisateur
-// a demandé des animations réduites
+// Effet 3D sur les cartes vidéo uniquement (pas sur les blocs de texte : tarifs,
+// clients) : à la souris, et jamais si l'utilisateur a demandé des animations réduites
 if (finePointer && !reducedMotion) {
-  document.querySelectorAll('.video-card, .tarif-big-card, .client-card').forEach(card => {
+  document.querySelectorAll('.video-card').forEach(card => {
     let frame = null;
 
     card.addEventListener('mousemove', e => {

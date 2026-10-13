@@ -2,6 +2,8 @@
    POLICES AUTO-HÉBERGÉES
    Sous-ensembles variables : aucune requête vers Google,
    aucune adresse IP de visiteur transmise à un tiers.
+   - Inter      : texte courant (100-900)
+   - Unbounded  : titres (500-700), géométrique large, remplace Orbitron
 ============================================================ */
 @font-face {
   font-family: 'Inter';
@@ -12,37 +14,100 @@
 }
 
 @font-face {
-  font-family: 'Orbitron';
+  font-family: 'Unbounded';
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 500 700;
   font-display: swap;
-  src: url('fonts/orbitron.woff2') format('woff2');
+  src: url('fonts/unbounded.woff2') format('woff2');
 }
 
 /* ============================================================
    VARIABLES & RESET
+   Rythme vertical : multiples de 4 / 8 px (0.25rem / 0.5rem)
+
+   « Ivoire + blocs sombres » : la page est ivoire, et certains blocs
+   (navigation, hero, cartes vidéo, avis client, tarifs, lecteur, pied de
+   page) sont sombres. Un bloc est entièrement clair ou entièrement sombre.
+   Les composants n'utilisent que les jetons ci-dessous ; les blocs sombres
+   redéfinissent les mêmes jetons (voir « CONTEXTE SOMBRE »), si bien qu'un
+   même composant garde ses proportions et change seulement de palette.
 ============================================================ */
 :root {
-  --bg:           #0a0605;
-  --bg-mid:       #110808;
-  --neon:         #cc2200;
-  --neon-glow:    rgba(204, 34, 0, 0.55);
-  --neon-dark:    rgba(204, 34, 0, 0.12);
-  --neon-text:    #f04018; /* rouge éclairci pour les petits textes : lisible sur fond sombre */
-  --cyan:         #c9a84c;
-  --cyan-glow:    rgba(201, 168, 76, 0.5);
-  --cyan-dark:    rgba(201, 168, 76, 0.1);
-  --price:        #22cc66;
-  --price-glow:   rgba(34, 204, 102, 0.45);
-  --text:         #f0ebe5;
-  --text-dim:     #9a887c;
-  --card:         #150c0a;
-  --border:       rgba(201, 168, 76, 0.22);
-  --radius:       12px;
+  /* --- Page ivoire (thème par défaut) --- */
+  --bg:           #f4efe6;  /* ivoire chaud, jamais blanc pur */
+  --bg-2:         #ede6d9;  /* fond d'attente des vignettes */
+  --surface:      #fbf8f2;  /* cartes claires : clients, champs, encadrés */
+  --surface-2:    #ede6d9;  /* survol des cartes claires */
+  --text:         #1c1814;  /* encre : titres, 15.4:1 */
+  --text-2:       #4a433c;  /* paragraphes, 8.5:1 */
+  --text-3:       #6b635a;  /* mentions secondaires, 5.1:1 */
+  /* Or sur ivoire : un bronze saturé (teinte 39°), et non un champagne assombri
+     qui virerait au kaki ; même famille de teinte que le champagne des blocs sombres */
+  --gold:         #7f5b1a;  /* bronze foncé : petit texte doré (12-15 px), 5.4:1 */
+  --gold-soft:    #946f28;  /* bronze : mot accentué des titres, icônes, filets, 4.0:1 */
+  --gold-12:      rgba(148, 111, 40, 0.12);
+  --gold-20:      rgba(148, 111, 40, 0.20);
+  --gold-32:      rgba(148, 111, 40, 0.36);
+  --line:         rgba(28, 24, 20, 0.14);   /* le seul filet sur ivoire */
+  --line-strong:  rgba(28, 24, 20, 0.32);
+  --chip-bg:      transparent;              /* pastille : filet seul, comme sur fond sombre */
+  --chip-line:    rgba(28, 24, 20, 0.26);   /* filet de pastille : 14 % serait trop pâle fermé */
+  --chip-text:    var(--text);
+  --red:          #cc2200;  /* bouton principal, lecture et bouton flottant uniquement */
+  --red-hover:    #dc2d0c;
+  --red-text:     #b81f00;  /* petit texte rouge (erreur) : 5.6:1 sur ivoire */
+  --radius:       12px;     /* un seul rayon pour tout le site */
+  --shadow:       0 16px 40px rgba(28, 24, 20, 0.18);
+  --font-display: 'Unbounded', 'Inter', sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* anciens noms conservés : les pages légales et la version anglaise les utilisent */
+  --radius-s:   var(--radius);
+  --radius-l:   var(--radius);
+  --neon:       var(--red);
+  --neon-text:  var(--red-text);
+  --cyan:       var(--gold);
+  --card:       var(--surface);
+  --border:     var(--line);
+  --text-dim:   var(--text-2);
+}
+
+/* ------------------------------------------------------------
+   CONTEXTE SOMBRE : les blocs qui reprennent la maquette sombre.
+   Mêmes jetons, valeurs sombres ; la couleur du texte est posée
+   explicitement car elle ne se recalcule pas toute seule.
+------------------------------------------------------------ */
+#navbar,
+#hero,
+.video-card,
+.testimonial,
+.tarif-big-card,
+.modal-content,
+footer {
+  --bg:           #0f0c0a;
+  --bg-2:         #0e0b0a;
+  --surface:      #120d0b;
+  --surface-2:    #171210;
+  --text:         #ece6dc;  /* 15.6:1 */
+  --text-2:       #a89d90;  /* 7.3:1 */
+  --text-3:       #8f8479;  /* 5.3:1 */
+  --gold:         #d6c08a;  /* champagne, 10.8:1 */
+  --gold-soft:    #d6c08a;
+  --gold-12:      rgba(214, 192, 138, 0.12);
+  --gold-20:      rgba(214, 192, 138, 0.20);
+  --gold-32:      rgba(214, 192, 138, 0.32);
+  --line:         rgba(214, 192, 138, 0.14);  /* le seul filet sur fond sombre */
+  --line-strong:  rgba(214, 192, 138, 0.30);
+  --chip-bg:      transparent;
+  --chip-line:    var(--line);
+  --chip-text:    var(--text-2);
+  --red-text:     #ee5538;  /* 5.5:1 */
+  color: var(--text);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 /* Un élément atteint au clavier ne doit jamais finir caché sous la barre de
    navigation fixe (en haut) ni sous le bouton de contact flottant (en bas) */
@@ -52,14 +117,17 @@ html { scroll-behavior: smooth; }
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 a { text-decoration: none; color: inherit; }
+img, svg { display: block; }
 
 /* ============================================================
    UTILITIES
@@ -70,29 +138,55 @@ a { text-decoration: none; color: inherit; }
   padding: 0 2rem;
 }
 
-.neon-text {
-  color: var(--neon);
-  text-shadow:
-    0 0 20px var(--neon-glow),
-    0 0 50px var(--neon-glow),
-    0 0 90px rgba(204, 34, 0, 0.25);
+/* Mot accentué des titres : champagne, sans halo (grand texte : 3:1 suffit) */
+.neon-text { color: var(--gold-soft); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .section-title {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.8rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+/* Le seul accent rouge de chaque section : un court trait au-dessus du titre */
+.section-title::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--red);
+  margin-bottom: 1.25rem;
 }
 
 .section-subtitle {
-  text-align: center;
-  color: var(--text-dim);
-  font-size: 1.05rem;
-  margin-bottom: 3.5rem;
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 44ch;
+}
+
+/* Lignes équilibrées : pas d'orpheline ; un mot composé ne se coupe jamais
+   sur son trait d'union (« ci-dessous ») */
+.section-subtitle, .pf-cat-lead, .tarif-note { text-wrap: balance; }
+.nobr { white-space: nowrap; }
+
+@media (min-width: 760px) {
+  .section-head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    column-gap: 4rem;
+    align-items: end;
+  }
+  .section-subtitle { text-align: right; justify-self: end; }
 }
 
 /* Texte réservé aux lecteurs d'écran */
@@ -107,6 +201,26 @@ a { text-decoration: none; color: inherit; }
   border: 0;
 }
 
+/* Sprite d'icônes SVG : hors écran, référencé par <use> */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Icône filaire (trait fin) héritant de la couleur du texte */
+.ic {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* Champ piège anti-robots : hors de l'écran, jamais vu ni atteint par un humain */
 .hp {
   position: absolute;
@@ -118,64 +232,80 @@ a { text-decoration: none; color: inherit; }
 
 /* Navigation au clavier bien visible */
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--gold-soft);
   outline-offset: 3px;
 }
+/* Carte sombre posée sur la page ivoire : l'anneau se dessine sur l'ivoire,
+   donc en encre (le champagne du contexte sombre n'y serait pas visible) */
+.pf-row > .video-card:focus-visible { outline-color: #1c1814; }
 
 /* ============================================================
    BUTTONS
 ============================================================ */
 .btn {
-  display: inline-block;
-  padding: 0.85rem 2.2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
   font-family: inherit;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s, transform 0.25s var(--ease);
 }
 
 .btn-primary {
-  background: var(--neon);
+  background: var(--red);
+  border-color: var(--red);
   color: #fff;
-  box-shadow: 0 0 20px var(--neon-glow), 0 0 40px rgba(204, 34, 0, 0.2);
 }
 .btn-primary:hover {
-  box-shadow: 0 0 35px var(--neon-glow), 0 0 70px rgba(204, 34, 0, 0.35);
-  transform: translateY(-2px);
+  background: var(--red-hover);
+  border-color: var(--red-hover);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--cyan);
-  border: 1.5px solid var(--cyan);
+  color: var(--text);
+  border-color: var(--line-strong);
 }
 .btn-outline:hover {
-  background: var(--cyan-dark);
-  box-shadow: 0 0 20px var(--cyan-glow);
-  transform: translateY(-2px);
+  border-color: var(--gold-soft);
+  color: var(--gold);
+  transform: translateY(-1px);
 }
 
 /* ============================================================
    NAVIGATION
 ============================================================ */
+/* Toujours sombre : opaque en haut de page (elle se fond dans le hero, et
+   reste lisible sur les pages légales, claires), légèrement translucide
+   une fois la page défilée */
 #navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1.2rem 0;
-  transition: background 0.4s, border-color 0.4s;
+  padding: 1rem 0;
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, padding 0.4s;
 }
 
 #navbar.scrolled {
-  background: rgba(10, 6, 5, 0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(15, 12, 10, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--line);
+  padding: 0.75rem 0;
 }
 
 .nav-container {
@@ -188,78 +318,73 @@ a { text-decoration: none; color: inherit; }
   position: relative;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+.nav-logo { display: flex; align-items: center; gap: 0.625rem; }
 
 .nav-logo-text {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
 }
-.logo-babar { color: #ffffff; }
-.logo-studio {
-  color: var(--neon);
-  text-shadow: 0 0 12px var(--neon-glow), 0 0 28px rgba(204, 34, 0, 0.3);
-}
+.logo-babar  { color: var(--text); }
+.logo-studio { color: var(--gold); }
 
+/* Marque : la mascotte en monochrome champagne (Logo.png), sans le bandeau
+   de texte ; petite, pour que le wordmark reste la marque principale */
 .nav-logo-img {
-  height: 68px;
+  height: 36px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px var(--neon-glow));
-  transition: filter 0.3s;
 }
-.nav-logo-img:hover { filter: drop-shadow(0 0 16px var(--neon-glow)); }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 2.25rem;
 }
 
 .nav-links a {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cyan);
-  transition: color 0.3s;
+  color: var(--text-2);
+  transition: color 0.25s;
   position: relative;
+  padding: 0.25rem 0;
 }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 1px;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan);
-  transition: width 0.3s;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
 }
-.nav-links a:hover { color: #fff; }
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
 
 /* Sélecteur de langue FR / EN */
 .lang-switch {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  margin-left: 2rem;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-left: 2.25rem;
 }
 .lang-switch a {
-  color: var(--text-dim);
-  transition: color 0.3s;
+  color: var(--text-3);
+  transition: color 0.25s;
 }
-.lang-switch a:hover { color: #fff; }
-.lang-switch a.active {
-  color: var(--cyan);
-  text-shadow: 0 0 10px var(--cyan-glow);
-}
-.lang-switch span { color: var(--border); }
+.lang-switch a:hover { color: var(--text); }
+.lang-switch a.active { color: var(--gold); }
+.lang-switch span { color: var(--line-strong); }
 
 .nav-toggle {
   display: none;
@@ -268,106 +393,37 @@ a { text-decoration: none; color: inherit; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px;
 }
 .nav-toggle span {
-  width: 24px;
-  height: 2px;
+  width: 22px;
+  height: 1.5px;
   background: var(--text);
   display: block;
   transition: all 0.3s;
 }
 
 /* ============================================================
-   BACKGROUND LIGHTS — AURORA
+   FOND : ivoire uni. Le calque .page-bg reste dans le HTML (toutes les pages
+   le portent) mais ne peint plus rien : un voile fixe se verrait comme une
+   bande claire au milieu des blocs lors du défilement.
 ============================================================ */
 .page-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
-
-.aurora {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.aurora-1 {
-  width: 80vw;
-  height: 80vh;
-  background: radial-gradient(circle, rgba(180, 20, 0, 0.28) 0%, rgba(180, 20, 0, 0.1) 40%, transparent 65%);
-  filter: blur(100px);
-  top: -30vh;
-  left: -20vw;
-  animation: aurora-1 16s ease-in-out infinite;
-}
-
-.aurora-2 {
-  width: 75vw;
-  height: 75vh;
-  background: radial-gradient(circle, rgba(140, 60, 0, 0.22) 0%, rgba(140, 60, 0, 0.08) 40%, transparent 65%);
-  filter: blur(100px);
-  bottom: -30vh;
-  right: -20vw;
-  animation: aurora-2 20s ease-in-out infinite;
-  animation-delay: -7s;
-}
-
-.aurora-3 {
-  width: 60vw;
-  height: 60vh;
-  background: radial-gradient(circle, rgba(204, 34, 0, 0.18) 0%, transparent 60%);
-  filter: blur(80px);
-  top: 15vh;
-  left: 5vw;
-  animation: aurora-3 14s ease-in-out infinite;
-  animation-delay: -4s;
-}
-
-.aurora-4 {
-  width: 55vw;
-  height: 55vh;
-  background: radial-gradient(circle, rgba(160, 80, 0, 0.14) 0%, transparent 60%);
-  filter: blur(80px);
-  top: 40vh;
-  right: 5vw;
-  animation: aurora-4 18s ease-in-out infinite;
-  animation-delay: -11s;
-}
-
-@keyframes aurora-1 {
-  0%   { transform: translate(0,      0)     scale(1);    }
-  20%  { transform: translate(10vw,   7vh)   scale(1.1);  }
-  45%  { transform: translate(-5vw,  -10vh)  scale(0.9);  }
-  70%  { transform: translate(14vw,   4vh)   scale(1.05); }
-  100% { transform: translate(0,      0)     scale(1);    }
-}
-@keyframes aurora-2 {
-  0%   { transform: translate(0,      0)     scale(1);    }
-  25%  { transform: translate(-12vw, -8vh)   scale(1.08); }
-  50%  { transform: translate(8vw,   12vh)   scale(0.92); }
-  75%  { transform: translate(-6vw,   5vh)   scale(1.04); }
-  100% { transform: translate(0,      0)     scale(1);    }
-}
-@keyframes aurora-3 {
-  0%   { transform: translate(0,      0)     scale(1);    }
-  30%  { transform: translate(15vw,  -9vh)   scale(1.12); }
-  60%  { transform: translate(-8vw,   8vh)   scale(0.88); }
-  100% { transform: translate(0,      0)     scale(1);    }
-}
-@keyframes aurora-4 {
-  0%   { transform: translate(0,      0)     scale(1);    }
-  35%  { transform: translate(-10vw,  9vh)   scale(1.1);  }
-  65%  { transform: translate(12vw,  -11vh)  scale(0.9);  }
-  100% { transform: translate(0,      0)     scale(1);    }
+  background: none;
 }
 
 /* ============================================================
-   HERO
+   HERO : bloc sombre pleine largeur, même typographie que la maquette sombre.
+   Le dégradé rouge est centré sur le nom, pas sur le bord haut, pour que la
+   barre de navigation (opaque, de la même couleur) se fonde dans le bloc.
 ============================================================ */
 #hero {
-  min-height: 78vh;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -375,186 +431,203 @@ a { text-decoration: none; color: inherit; }
   z-index: 1;
   overflow: hidden;
   text-align: center;
+  padding: 8rem 0 5rem;
+  background:
+    radial-gradient(55% 50% at 50% 48%, rgba(204, 34, 0, 0.14) 0%, rgba(204, 34, 0, 0) 70%),
+    radial-gradient(60% 50% at 100% 100%, rgba(214, 192, 138, 0.10) 0%, rgba(214, 192, 138, 0) 70%),
+    var(--bg);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 820px;
+  max-width: 880px;
   padding: 0 2rem;
 }
 
 .hero-greeting {
-  font-size: 1rem;
-  color: var(--text-dim);
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .hero-title {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(3rem, 10vw, 6.5rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8.5vw, 6rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--text-dim);
-  letter-spacing: 0.12em;
-  margin-bottom: 2.5rem;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 36ch;
+  margin: 0 auto 3rem;
 }
 .hero-btns {
   display: flex;
-  gap: 1.2rem;
+  gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 /* ============================================================
-   ABOUT
+   SECTIONS : rythme vertical commun
 ============================================================ */
-#about {
-  padding: 4rem 0 8rem;
+#about, #portfolio, #clients, #tarifs, #pricing, #contact {
+  padding: 7rem 0;
   position: relative;
   z-index: 1;
-  scroll-margin-top: 4rem; /* via le menu, le titre s'arrête sous la barre de navigation */
 }
+#about { scroll-margin-top: 1rem; }
 
+/* ============================================================
+   ABOUT
+============================================================ */
 .about-grid {
   display: grid;
-  grid-template-columns: 280px 1fr 1fr;
-  gap: 3.5rem;
+  grid-template-columns: 280px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
   align-items: start;
-  margin-top: 3rem;
 }
 
 .about-photo { flex-shrink: 0; }
 .about-photo picture { display: block; }
 
-/* Photo déjà recadrée en 3:4 à la source : aucun transform nécessaire */
+/* Photo déjà recadrée en 3:4 à la source : aucun transform nécessaire.
+   Un seul dispositif de cadrage (l'ombre) : pas de filet en plus, le fond
+   brique de la photo tranche déjà sur l'ivoire */
 .about-img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 16px;
-  border: 2px solid rgba(201, 168, 76, 0.8);
-  box-shadow: 0 0 10px rgba(201, 168, 76, 0.5), 0 0 28px rgba(201, 168, 76, 0.25), 0 0 55px rgba(201, 168, 76, 0.1);
+  border-radius: var(--radius);
+  border: 0;
+  box-shadow: var(--shadow);
 }
 
 .about-text p {
-  color: var(--text-dim);
-  font-size: 1.05rem;
-  line-height: 1.85;
+  color: var(--text-2);
+  font-size: 1.0625rem;
+  line-height: 1.8;
   margin-bottom: 1.5rem;
 }
+.about-text p:last-of-type { margin-bottom: 0; }
 
 .about-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.5rem;
   margin-top: 2rem;
 }
 
-.tag {
-  padding: 0.4rem 1.1rem;
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  font-size: 0.82rem;
-  color: var(--neon-text);
-  letter-spacing: 0.06em;
+/* ------------------------------------------------------------
+   Pastilles : une seule taille, une seule forme, une seule construction
+   pour tout le site (.tag, .chip, .gear-chip) : un filet, pas de fond.
+   Sur ivoire : encre, filet encre à 26 % ; sur bloc sombre : filet doré.
+------------------------------------------------------------ */
+.tag, .chip, .gear-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--chip-line);
+  border-radius: 999px;
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
+/* Les pastilles d'À propos restent neutres : l'or est réservé à la première
+   pastille d'une carte vidéo et à « Avis client » */
+.gear-chip .ic { width: 0.875rem; height: 0.875rem; }
 
 .about-skills h3 {
-  font-family: 'Orbitron', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 2rem;
+  color: var(--text-3);
+  margin-bottom: 1.25rem;
 }
 
+/* Compétences : une liste éditoriale sur deux colonnes (filets, pas de boîtes) */
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
+  gap: 0 2rem;
 }
 
 .skill-chip {
-  padding: 0.75rem 1rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.5rem;
+  padding: 0.625rem 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  transition: border-color 0.25s;
   cursor: default;
 }
+.skill-chip .ic { color: var(--gold-soft); }
 .skill-chip:hover {
-  border-color: var(--neon);
-  box-shadow: 0 0 14px var(--neon-glow);
-  transform: translateY(-2px);
+  background: none;
+  border-color: var(--line-strong);
 }
 
 /* Matériel de tournage */
-.about-skills h3.gear-title {
-  margin-top: 2.6rem;
-  margin-bottom: 1rem;
-}
+.about-skills h3.gear-title { margin-top: 2.5rem; }
 
 .gear-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-
-.gear-chip {
-  padding: 0.38rem 0.85rem;
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  font-size: 0.78rem;
-  color: var(--text);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.gear-chip:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan-dark);
-}
+.gear-chip { transition: border-color 0.25s; }
+.gear-chip:hover { border-color: var(--line-strong); }
 
 /* ============================================================
    PORTFOLIO
 ============================================================ */
-#portfolio { padding: 8rem 0; position: relative; z-index: 1; }
-
 .video-card {
-  background: var(--card);
+  background: var(--surface);
   border-radius: var(--radius);
-  border: 1px solid rgba(201, 168, 76, 0.22);
+  border: 1px solid var(--line);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.4s var(--ease), border-color 0.3s, box-shadow 0.4s;
 }
 .video-card:hover,
 .video-card:focus-visible {
-  border-color: var(--cyan);
-  box-shadow: 0 0 28px rgba(201, 168, 76, 0.25), 0 8px 35px rgba(0,0,0,0.45);
-  transform: translateY(-6px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
 }
 
 .video-thumb {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--bg-mid);
+  background: var(--bg-2);
 }
 
 .video-thumb-img {
@@ -564,110 +637,116 @@ a { text-decoration: none; color: inherit; }
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  transition: transform 0.6s var(--ease);
 }
+.video-card:hover .video-thumb-img { transform: scale(1.03); }
 
 .vertical-card .video-thumb { aspect-ratio: 9 / 16; }
 
+/* Voile léger, seulement dans le bas de la vignette : la vidéo reste lumineuse au repos */
 .thumb-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.38);
+  background: linear-gradient(180deg, rgba(11, 9, 8, 0) 45%, rgba(11, 9, 8, 0.35) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: background 0.3s;
+  transition: opacity 0.3s;
 }
-.video-card:hover .thumb-overlay { background: rgba(0,0,0,0.18); }
+.video-card:hover .thumb-overlay { opacity: 0.85; }
 
 .play-btn {
   width: 56px;
   height: 56px;
-  background: var(--neon);
+  background: var(--red);
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 0 20px var(--neon-glow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s var(--ease), background-color 0.25s;
 }
-.play-btn:hover { transform: scale(1.12); box-shadow: 0 0 38px var(--neon-glow); }
+.video-card:hover .play-btn { transform: scale(1.06); background: var(--red-hover); }
 .play-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   fill: #fff;
   margin-left: 3px;
 }
 
-.video-info { padding: 1.2rem 1.4rem 1.5rem; }
+.video-info { padding: 1.25rem 1.5rem 1.5rem; }
 
 .video-info h4 {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.35;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.375rem;
   overflow-wrap: break-word;
 }
 
 .video-info p {
-  font-size: 0.85rem;
-  color: var(--text-dim);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-2);
 }
 
 /* ------------------------------------------------------------
    Rubriques du portfolio (Podcast, Immobilier, ...)
-   Chaque rubrique est un cadre : en-tête (numéro, titre, accroche)
-   puis une rangée « justifiée » de cartes.
+   Pas de cadre : chaque rubrique est une « entrée » éditoriale posée sur
+   l'ivoire, séparée de la précédente par un simple filet, avec son en-tête
+   (numéro, titre, accroche) puis une rangée « justifiée » de cartes sombres.
+   Les cartes gardent ainsi toute la largeur du conteneur, et les seules
+   boîtes de la section sont les vidéos elles-mêmes.
 ------------------------------------------------------------ */
 .pf-cats {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .pf-cat {
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background:
-    linear-gradient(135deg, rgba(204, 34, 0, 0.07) 0%, rgba(201, 168, 76, 0.025) 45%, transparent 75%),
-    rgba(15, 9, 8, 0.72);
+  padding: 2.5rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
   scroll-margin-top: 6rem;
+}
+/* La première rubrique suit déjà le filet de l'en-tête de section */
+.pf-cat:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .pf-cat-head {
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: 0.9rem;
-  row-gap: 0.3rem;
+  column-gap: 1rem;
+  row-gap: 0.375rem;
   align-items: baseline;
-  padding-bottom: 1.1rem;
-  margin-bottom: 1.4rem;
-  /* Filet doré, amorcé par un court trait rouge */
-  background:
-    linear-gradient(var(--neon), var(--neon)) left bottom / 2.5rem 2px no-repeat,
-    linear-gradient(rgba(201, 168, 76, 0.18), rgba(201, 168, 76, 0.18)) left bottom / 100% 1px no-repeat;
+  padding-bottom: 0;
+  margin-bottom: 1.75rem;
+  border-bottom: 0;
 }
 
-/* Numéro en Inter : le zéro barré d'Orbitron se lirait « Ø1 » */
 .pf-cat-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   font-variant-numeric: tabular-nums;
-  color: var(--cyan);
+  color: var(--gold);
 }
 
 .pf-cat-title {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(1rem, 2.4vw, 1.25rem);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  font-weight: 500;
   line-height: 1.3;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   overflow-wrap: break-word;
   min-width: 0;
 }
@@ -675,8 +754,8 @@ a { text-decoration: none; color: inherit; }
 .pf-cat-lead {
   grid-column: 2;
   max-width: 62ch;
-  color: var(--text-dim);
-  font-size: 0.92rem;
+  color: var(--text-2);
+  font-size: 0.9375rem;
   line-height: 1.55;
 }
 
@@ -704,36 +783,22 @@ a { text-decoration: none; color: inherit; }
 .pf-row > .vertical-card { --ar: 0.5625; } /* 9:16 */
 
 /* Cartes verticales : texte un peu plus compact, la colonne étant étroite */
-.pf-row > .vertical-card .video-info { padding: 0.95rem 0.95rem 1.1rem; }
-.pf-row > .vertical-card .video-info h4 { font-size: 0.95rem; }
-.pf-row > .vertical-card .video-info h4 + p { font-size: 0.8rem; line-height: 1.5; }
+.pf-row > .vertical-card .video-info { padding: 1rem 1rem 1.125rem; }
+.pf-row > .vertical-card .video-info h4 { font-size: 0.9375rem; }
+.pf-row > .vertical-card .video-info h4 + p { font-size: 0.8125rem; line-height: 1.5; }
 
-/* Pastilles : la première dit ce qu'est la vidéo (rouge), les suivantes précisent (doré) */
+/* Pastilles : la première dit ce qu'est la vidéo (dorée), les suivantes précisent */
 .video-info .video-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 0.65rem;
-}
-
-.chip {
-  display: inline-block;
-  padding: 0.14rem 0.6rem;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  border-radius: 50px;
-  background: var(--cyan-dark);
-  color: var(--cyan);
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
 }
 .video-tags .chip:first-child,
 .testimonial-chip {
-  border-color: rgba(204, 34, 0, 0.4);
-  background: var(--neon-dark);
-  color: var(--neon-text);
+  color: var(--gold);
+  border-color: var(--gold-32);
+  background: var(--gold-12);
 }
 
 /* Grand écran, entre 1024 et 1199 px : dans une rangée avec des verticales, on
@@ -751,202 +816,202 @@ a { text-decoration: none; color: inherit; }
 
 /* Grand écran : une rubrique composée uniquement de vidéos verticales
    (Podcast) place son en-tête à côté des cartes au lieu d'au-dessus,
-   pour ne pas laisser un grand vide à droite des deux verticales.
-   L'en-tête est une colonne étroite, alignée en haut ; les cartes
-   prennent le reste de la largeur (dans la limite de --row-max). */
+   pour ne pas laisser un grand vide à droite des deux verticales. */
 @media (min-width: 880px) {
   .pf-cat:not(:has(.video-card:not(.vertical-card))) {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 1.5rem 2.5rem;
+    gap: 1.5rem 3rem;
   }
-  /* Même en-tête que les autres rubriques (numéro, titre, filet), simplement
-     placé en colonne à gauche des cartes */
+  /* Composition à deux colonnes : l'en-tête absorbe le mou, les cartes se
+     calent sur le bord droit */
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-head {
-    flex: 0 1 16rem;
-    max-width: 16rem;
+    flex: 1 1 16rem;
+    max-width: none;
     margin: 0;
-    padding-top: 0.35rem;
+    padding-top: 0.5rem;
     align-content: start;
   }
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-lead {
     max-width: 34ch;
   }
   .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-row {
-    flex: 1 1 0;
+    flex: 0 0 auto;
+    justify-content: flex-end;
     min-width: 0;
+  }
+  /* Les verticales prennent leur largeur maximale, sans dépendre de l'espace libre */
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-row > .vertical-card {
+    flex: 0 0 calc(var(--ar) * var(--row-max) + 2px);
   }
 }
 
 /* ------------------------------------------------------------
    Avis client en vidéo (section « Ils m'ont fait confiance »)
+   Un seul bloc sombre, sur toute la largeur du conteneur : la vignette et
+   le texte vivent dans la même bande (la carte vidéo n'a ni fond ni filet
+   propres, pour ne pas empiler deux surfaces sombres). La grille des
+   clients suit à 2,5 rem : bande + grille se lisent comme un seul objet.
 ------------------------------------------------------------ */
 .testimonial {
-  display: flex;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
   align-items: center;
-  gap: 2.2rem;
-  max-width: 46rem;
-  margin: 2.5rem auto 3rem;
+  gap: 3rem;
+  margin: 0 0 2.5rem;
+  padding: 2rem 3rem 2rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .testimonial-card {
-  flex: 0 0 230px;
   width: 230px;
+  background: transparent;
+  border: 0;
 }
+.testimonial-card:hover,
+.testimonial-card:focus-visible { box-shadow: none; }
 
-.testimonial-body { min-width: 0; }
+.testimonial-body { min-width: 0; max-width: 56ch; }
 
 .testimonial-chip {
-  display: inline-block;
-  margin-bottom: 0.9rem;
-  background: #210904; /* --neon-dark aplati sur le fond : contraste stable sur les aurores */
+  display: inline-flex;
+  margin-bottom: 1.25rem;
 }
 
 .testimonial-name {
   display: block;
-  font-family: 'Orbitron', monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0;
   color: var(--text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.375rem;
 }
 
 .testimonial-type {
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  color: var(--text-dim);
-  margin-bottom: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin-bottom: 1rem;
 }
 
 .testimonial-note {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
 }
 
 /* ============================================================
-   CLIENTS
+   CLIENTS : grille à filets (une cellule claire par client)
 ============================================================ */
-#clients {
-  padding: 8rem 0;
-  position: relative;
-  z-index: 1;
-}
-
 .clients-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.4rem;
-  margin-top: 3.5rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .client-card {
-  padding: 1.4rem 1.6rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 1.75rem 1rem;
+  background: var(--surface);
   text-align: center;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s;
+  /* Jamais soulevée hors de la grille à filets (l'effet 3D est réservé aux vidéos) */
+  transform: none !important;
 }
-.client-card:hover {
-  border-color: var(--neon);
-  transform: translateY(-4px);
-  box-shadow: 0 0 22px rgba(204, 34, 0, 0.18);
-}
+.client-card:hover { background: var(--surface-2); }
 
 .client-name {
-  font-family: 'Orbitron', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--text);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
 .client-type {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
+  color: var(--text-2);
 }
 
 /* ============================================================
    TARIFS
 ============================================================ */
-#tarifs,
-#pricing {
-  padding: 8rem 0;
-  position: relative;
-  z-index: 1;
-}
-
+/* Trois colonnes à partir de 1200 px seulement. Chaque carte a sa hauteur
+   propre (pas d'étirement) : sur ivoire, un bloc sombre étiré laisserait
+   un vide sombre sous ses lignes, bien plus visible que sur une page sombre */
 .tarifs-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
 }
 
-/* En nombre impair, la dernière carte reste centrée au lieu de rester seule à gauche */
-@media (min-width: 701px) {
+/* En nombre impair sur deux colonnes, la dernière carte reste centrée */
+@media (min-width: 701px) and (max-width: 1199px) {
+  .tarifs-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tarifs-cards > .tarif-big-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
-    max-width: calc(50% - 1rem);
+    max-width: calc(50% - 0.75rem);
     margin-inline: auto;
+    width: 100%;
   }
 }
 
 .tarif-big-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  transform: none !important; /* pas d'effet 3D sur un bloc de texte */
+  transition: border-color 0.3s, box-shadow 0.4s;
 }
 .tarif-big-card:hover {
-  border-color: var(--neon);
-  box-shadow: 0 0 35px rgba(204, 34, 0, 0.14);
-  transform: translateY(-4px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
 }
 
 .tarif-card-header {
-  padding: 2rem 2rem 1.6rem;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(204, 34, 0, 0.09) 0%, rgba(201, 168, 76, 0.03) 100%);
-  text-align: center;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .tarif-card-title {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.3;
   margin-bottom: 0.5rem;
 }
 
 .tarif-card-subtitle {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-2);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.tarif-card-body {
-  padding: 0.4rem 2rem 1.8rem;
-}
+.tarif-card-body { flex: 1; padding: 0.5rem 1.75rem 1.75rem; }
 
 .tarif-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.1rem 0;
+  padding: 1.125rem 0;
   gap: 1rem;
 }
 .tarif-pack-row + .tarif-line,
 .tarif-line + .tarif-line {
-  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-top: 1px solid var(--line);
 }
 
 .tarif-line-info {
@@ -956,87 +1021,86 @@ a { text-decoration: none; color: inherit; }
 }
 
 .tarif-line-name {
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--text);
 }
 
 .tarif-line-desc {
-  font-size: 0.78rem;
-  color: var(--text-dim);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-2);
 }
 
+/* Le prix mène la ligne : plus grand que le nom (15 px) qu'il accompagne */
 .tarif-line-price {
-  font-family: 'Orbitron', monospace;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--price);
-  text-shadow: 0 0 12px var(--price-glow);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .tarif-devis {
-  color: var(--cyan);
-  text-shadow: 0 0 10px var(--cyan-glow);
-  font-size: 0.88rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--gold);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  transition: color 0.3s;
+  transition: color 0.25s;
 }
-.tarif-devis:hover { color: #fff; }
+.tarif-devis:hover { color: var(--text); }
 
 .tarif-note a {
-  color: var(--cyan);
+  color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.tarif-note a:hover { color: #fff; }
+.tarif-note a:hover { color: var(--text); }
 
 .tarif-pack-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.55rem 1rem;
-  background: rgba(201, 168, 76, 0.05);
-  border: 1px solid rgba(201, 168, 76, 0.14);
-  border-radius: 8px;
-  margin-bottom: 0.2rem;
-  font-size: 0.78rem;
-  color: var(--text-dim);
+  padding: 0.625rem 1rem;
+  background: var(--gold-12);
+  border: 1px solid var(--gold-20);
+  border-radius: var(--radius-s);
+  margin-bottom: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--text);
 }
 .tarif-pack-row .pack-price {
-  font-family: 'Orbitron', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--price);
-  text-shadow: 0 0 8px var(--price-glow);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gold);
 }
 
+/* Une phrase centrée, sans encadré : elle n'a pas besoin de boîte */
 .tarif-note {
   text-align: center;
-  color: var(--text-dim);
-  font-size: 0.88rem;
-  margin-top: 2rem;
-  padding: 1rem 2rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--neon-dark);
-  max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  margin: 2.5rem auto 0;
+  padding: 0;
+  border: 0;
+  max-width: 60ch;
 }
 
 .tarif-ugc-note {
-  margin-top: 1.2rem;
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius);
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  font-size: 0.88rem;
-  color: var(--text-dim);
-  line-height: 1.5;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-s);
+  background: var(--gold-12);
+  border: 1px solid var(--gold-20);
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.55;
 }
 
 .tarif-ugc-contact {
@@ -1045,27 +1109,19 @@ a { text-decoration: none; color: inherit; }
 }
 
 .tarif-ugc-contact a {
-  color: var(--neon-text);
-  text-decoration: none;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
   font-weight: 600;
 }
-
-.tarif-ugc-contact a:hover {
-  text-decoration: underline;
-}
+.tarif-ugc-contact a:hover { color: var(--text); }
 
 /* ============================================================
    CONTACT
 ============================================================ */
-#contact {
-  padding: 8rem 0;
-  position: relative;
-  z-index: 1;
-}
-
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.8fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
   gap: 5rem;
   align-items: start;
 }
@@ -1073,177 +1129,189 @@ a { text-decoration: none; color: inherit; }
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
+/* L'icône filaire bronze seule, calée sur le libellé en petites capitales :
+   pas de carré arrondi autour (une boîte de plus sur une colonne qui en a déjà) */
 .contact-icon {
-  font-size: 1.4rem;
-  width: 50px;
-  height: 50px;
-  background: var(--neon-dark);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  width: auto;
+  height: auto;
+  padding-top: 0.2rem;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--gold-soft);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
+.contact-icon .ic { width: 1.25rem; height: 1.25rem; }
 
 .contact-item h3 {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 0.3rem;
+  color: var(--text-3);
+  margin-bottom: 0.375rem;
 }
 .contact-item > div { min-width: 0; }
 .contact-item p { font-size: 1rem; overflow-wrap: anywhere; }
-.contact-item p a { transition: color 0.3s; }
-.contact-item p a:hover { color: var(--cyan); }
+.contact-item p a { transition: color 0.25s; }
+.contact-item p a:hover { color: var(--gold); }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
 
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
 
 .form-group label {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text-2);
 }
 
 .form-group input,
 .form-group textarea {
-  background: var(--card);
+  background: var(--surface);
   /* Bordure assez contrastée pour que le champ se repère du premier coup d'œil */
-  border: 1px solid rgba(201, 168, 76, 0.55);
-  border-radius: var(--radius);
-  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(28, 24, 20, 0.55);
+  border-radius: var(--radius-s);
+  padding: 0.875rem 1rem;
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem; /* 16px minimum : sinon l'iPhone zoome à chaque champ touché */
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.25s, box-shadow 0.25s;
   resize: vertical;
   outline: none;
 }
-/* Anneau de focus rouge bien visible (remplace le contour par défaut) */
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--neon);
-  box-shadow: 0 0 0 2px var(--neon), 0 0 15px rgba(204, 34, 0, 0.25);
+  border-color: var(--gold-soft);
+  box-shadow: 0 0 0 3px var(--gold-20);
 }
 .form-group input::placeholder,
-.form-group textarea::placeholder { color: var(--text-dim); opacity: 0.9; }
+.form-group textarea::placeholder { color: var(--text-3); opacity: 1; }
 
 .form-optional {
   text-transform: none;
   letter-spacing: 0.02em;
   font-size: 0.85em;
+  font-weight: 400;
 }
 
 /* Résultat de l'envoi : reste affiché (pas de disparition après 3 s) */
 .form-status {
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--card);
-  font-size: 0.95rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.9375rem;
   line-height: 1.6;
 }
 /* Vide, la zone reste dans la page (pour être annoncée) mais ne prend aucune place */
 .form-status:empty { padding: 0; border: 0; }
 .form-status:focus { outline: none; }
-.form-status .form-ok { color: var(--price); font-weight: 600; }
-.form-status .form-err { color: var(--neon-text); font-weight: 600; }
+.form-status .form-ok  { color: var(--gold); font-weight: 600; }
+.form-status .form-err { color: var(--red-text); font-weight: 600; }
 .form-status a {
-  color: var(--cyan);
+  color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 3px;
   overflow-wrap: anywhere;
 }
 
 .contact-form button[aria-disabled="true"] { opacity: 0.7; cursor: wait; }
+.contact-form .btn { align-self: flex-start; }
 
 .form-privacy {
-  font-size: 0.8rem;
-  color: var(--text-dim);
+  font-size: 0.8125rem;
+  color: var(--text-3);
   line-height: 1.6;
 }
 .form-privacy a {
-  color: var(--cyan);
+  color: var(--text-2);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.form-privacy a:hover { color: var(--gold); }
 
 /* Étapes « Comment ça se passe » dans la colonne d'infos de contact */
 .contact-steps {
   margin-top: 0.5rem;
-  padding: 1.4rem 1.5rem;
-  background: var(--card);
-  border: 1px solid var(--border);
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 .contact-steps h3 {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 1rem;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
 }
 .contact-steps ol {
   list-style: none;
   counter-reset: step;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 .contact-steps li {
   counter-increment: step;
   display: flex;
-  gap: 0.8rem;
+  gap: 0.875rem;
   align-items: baseline;
-  font-size: 0.92rem;
+  font-size: 0.9375rem;
   line-height: 1.55;
+  color: var(--text-2);
 }
 .contact-steps li::before {
   content: counter(step);
   flex-shrink: 0;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.625rem;
+  height: 1.625rem;
   border-radius: 50%;
-  background: var(--neon);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 700;
+  border: 1px solid var(--gold-32);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-1px);
+  transform: translateY(0.125rem);
 }
 .contact-steps-note {
-  margin-top: 1.1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.85rem;
-  color: var(--text-dim);
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--text-2);
 }
 
 /* ============================================================
    FOOTER
 ============================================================ */
+/* Bloc sombre pleine largeur, qui répond au hero ; le bord ivoire/sombre
+   tient lieu de filet. Le bas (7,5 rem) laisse la place au bouton flottant */
 footer {
-  padding: 2rem 0;
+  padding: 5rem 0 7.5rem;
   position: relative;
   z-index: 1;
-  border-top: 1px solid var(--border);
+  background: var(--bg);
   text-align: center;
-  color: var(--text-dim);
-  font-size: 0.875rem;
+  color: var(--text-2);
+  font-size: 0.8125rem;
 }
 
 /* ============================================================
@@ -1252,7 +1320,7 @@ footer {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(15, 12, 10, 0.88);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -1275,37 +1343,38 @@ footer {
 .modal-content {
   position: relative;
   width: min(900px, 95vw, calc((100dvh - 2rem) * 16 / 9));
-  border: 1px solid var(--border);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   overflow: hidden;
-  background: var(--bg-mid);
-  box-shadow: 0 0 40px rgba(204, 34, 0, 0.22), 0 0 80px rgba(201, 168, 76, 0.08);
+  background: var(--bg);
+  box-shadow: 0 32px 96px rgba(0, 0, 0, 0.6);
 }
 
 .modal-close {
   position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
+  top: 0.75rem;
+  right: 0.75rem;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.65);
-  border: 1px solid var(--border);
+  background: rgba(15, 12, 10, 0.7);
+  border: 1px solid var(--line-strong);
   color: var(--text);
   width: 36px;
   height: 36px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s, border-color 0.2s;
 }
-.modal-close:hover { background: var(--neon); border-color: var(--neon); }
+.modal-close .ic { width: 1rem; height: 1rem; }
+.modal-close:hover { background: var(--red); border-color: var(--red); color: #fff; }
 
 .modal-iframe-wrapper {
   position: relative;
   aspect-ratio: 16 / 9;
-  width: 100%;}
+  width: 100%;
+}
 .modal-iframe-wrapper iframe,
 .modal-iframe-wrapper video {
   position: absolute;
@@ -1322,12 +1391,12 @@ footer {
 .modal.modal-vertical .modal-iframe-wrapper { aspect-ratio: 9 / 16; }
 
 /* ============================================================
-   REVEAL ANIMATIONS
+   REVEAL ANIMATIONS (discrètes)
 ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(16px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 .reveal.visible {
   opacity: 1;
@@ -1343,48 +1412,49 @@ footer {
 ============================================================ */
 .portfolio-cta {
   text-align: center;
-  margin-top: 3.5rem;
-  color: var(--text);
-  font-size: 1.05rem;
+  margin-top: 4rem;
+  color: var(--text-2);
+  font-size: 1.0625rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem 1.4rem;
+  gap: 1rem 1.5rem;
 }
 
 /* Bouton « Contactez-moi » flottant : apparaît une fois le haut de page
    dépassé, disparaît quand le formulaire de contact est à l'écran */
 .sticky-cta {
   position: fixed;
-  right: 1.6rem;
-  bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  right: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   z-index: 900; /* sous la navigation (1000) et le lecteur vidéo (9999) */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.75rem 1.6rem;
-  border-radius: 50px;
-  background: var(--neon);
+  gap: 0.625rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.75rem; /* mêmes réglages que .btn */
+  border-radius: var(--radius-s);
+  background: var(--red);
   color: #fff;
   font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   white-space: nowrap;
-  box-shadow: 0 0 20px var(--neon-glow), 0 6px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 32px rgba(28, 24, 20, 0.28);
   opacity: 0;
   visibility: hidden;
   transform: translateY(1rem);
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s, box-shadow 0.3s;
+  transition: opacity 0.35s ease, transform 0.35s var(--ease), visibility 0.35s, background-color 0.25s;
 }
 .sticky-cta.show {
   opacity: 1;
   visibility: visible;
   transform: none;
 }
-.sticky-cta:hover { box-shadow: 0 0 35px var(--neon-glow), 0 6px 24px rgba(0, 0, 0, 0.5); }
+.sticky-cta:hover { background: var(--red-hover); }
 .sticky-cta-icon { width: 18px; height: 18px; flex-shrink: 0; }
 .sticky-cta-extra { font-weight: 400; opacity: 0.9; }
 
@@ -1399,69 +1469,68 @@ footer {
 .legal .container { max-width: 880px; }
 
 .legal h1 {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
 }
 
 .legal-updated {
-  color: var(--text-dim);
-  font-size: 0.82rem;
+  color: var(--text-2);
+  font-size: 0.8125rem;
   letter-spacing: 0.05em;
-  padding-bottom: 1.6rem;
+  padding-bottom: 1.5rem;
   margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 
 .legal h2[id] { scroll-margin-top: 7.5rem; }
 .legal h2 {
-  font-family: 'Orbitron', monospace;
+  font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin: 2.8rem 0 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--gold);
+  margin: 3rem 0 1rem;
 }
 
 .legal h3 {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--text);
-  margin: 1.8rem 0 0.7rem;
+  margin: 1.75rem 0 0.75rem;
 }
 
 .legal p,
 .legal li {
-  color: var(--text-dim);
-  font-size: 0.95rem;
-  line-height: 1.85;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  line-height: 1.8;
 }
 .legal p { margin-bottom: 1rem; }
-.legal ul { padding-left: 1.3rem; margin-bottom: 1.3rem; }
-.legal li { margin-bottom: 0.55rem; }
+.legal ul { padding-left: 1.25rem; margin-bottom: 1.25rem; }
+.legal li { margin-bottom: 0.5rem; }
 .legal strong { color: var(--text); font-weight: 600; }
 
 /* Souligné en permanence : un lien ne doit pas se distinguer par sa seule couleur */
 .legal a:not(.btn) {
-  color: var(--neon-text);
+  color: var(--gold);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   overflow-wrap: anywhere;
-  transition: color 0.3s;
+  transition: color 0.25s;
 }
-.legal a:not(.btn):hover { color: var(--cyan); }
+.legal a:not(.btn):hover { color: var(--text); }
 
 .legal-box {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.4rem 1.7rem;
-  margin-bottom: 1.4rem;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
 }
 .legal-box p { margin-bottom: 0; }
 
@@ -1477,27 +1546,29 @@ footer {
 }
 
 .legal-todo {
-  background: var(--neon-dark);
-  border-left: 3px solid var(--neon);
-  border-radius: 6px;
-  padding: 0.9rem 1.2rem;
+  background: var(--gold-12);
+  border-left: 2px solid var(--gold);
+  border-radius: var(--radius-s);
+  padding: 1rem 1.25rem;
   font-style: italic;
 }
 
-/* Liens légaux du pied de page */
+/* Liens légaux du pied de page : mêmes capitales espacées que la navigation */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.6rem;
-  margin-top: 0.9rem;
+  gap: 2rem;
+  margin-top: 1.25rem;
 }
 .footer-links a {
-  color: var(--text-dim);
-  font-size: 0.82rem;
-  transition: color 0.3s;
+  color: var(--text-3);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.25s;
 }
-.footer-links a:hover { color: var(--cyan); }
+.footer-links a:hover { color: var(--gold); }
 
 /* Respect du réglage système "réduire les animations" */
 @media (prefers-reduced-motion: reduce) {
@@ -1520,19 +1591,21 @@ footer {
 /* ============================================================
    RESPONSIVE
 ============================================================ */
+@media (max-width: 1023px) {
+  .tarifs-cards { gap: 1.25rem; }
+}
+
 @media (max-width: 960px) {
-  .about-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .about-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; }
   .about-photo { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .clients-grid { grid-template-columns: repeat(3, 1fr); }
-  .tarifs-cards { grid-template-columns: 1fr 1fr; }
+  .clients-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* Portfolio, tablette : les rangées mixtes passent à la ligne
    (horizontales en pleine largeur, verticales groupées et centrées).
    Une rubrique 100 % horizontale garde ses cartes côte à côte tant qu'il y a la place. */
 @media (max-width: 1023px) {
-  .pf-cat { padding: 1.25rem; }
   .pf-row { --row-h: 21rem; --row-max: 24rem; gap: 1rem; }
   .pf-row:not(:has(.vertical-card)) { --row-h: 11rem; }
 }
@@ -1602,9 +1675,14 @@ footer {
 }
 
 @media (max-width: 700px) {
-  .about-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-photo { max-width: 220px; }
   .tarifs-cards { grid-template-columns: 1fr; }
+  #about, #portfolio, #clients, #tarifs, #pricing, #contact { padding: 5rem 0; }
+  .section-head { margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+  .hero-greeting { margin-bottom: 1.5rem; }
+  .hero-title { margin-bottom: 1.5rem; }
+  .hero-subtitle { margin-bottom: 2.5rem; }
 }
 
 /* Menu complet trop large sous 960px (tablettes, téléphones à l'horizontale) :
@@ -1617,16 +1695,22 @@ footer {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(10, 6, 5, 0.97);
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--border);
-    gap: 1.5rem;
+    background: rgba(15, 12, 10, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 1.5rem 2rem 1.75rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    gap: 1.25rem;
   }
+  #navbar.scrolled .nav-links:not(.nav-static) { margin-top: 0.75rem; }
+  .nav-links a { font-size: 0.8125rem; }
   .nav-links.open { display: flex; }
   .nav-toggle { display: flex; }
   /* Le bouton menu précède les liens dans le code (ordre clavier logique) ;
      visuellement il reste tout à droite */
-  .lang-switch { order: 1; margin-left: auto; margin-right: 1.4rem; }
+  .lang-switch { order: 1; margin-left: auto; margin-right: 1rem; }
   .nav-toggle { order: 2; }
   /* Pages légales : le lien « Retour au site » reste visible */
   .nav-links.nav-static {
@@ -1636,17 +1720,24 @@ footer {
     background: none;
     border: 0;
     padding: 0;
+    margin: 0;
     order: 1;
     margin-left: auto;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
-  .nav-links.nav-static + .lang-switch { margin-left: 1.4rem; margin-right: 0; }
+  .nav-links.nav-static + .lang-switch { margin-left: 1.25rem; margin-right: 0; }
   /* Page 404 : ni menu ni bouton burger, le sélecteur de langue reste calé à droite */
   .nav-logo + .lang-switch { margin-right: 0; }
 }
 
 @media (max-width: 600px) {
+  .container, .nav-container { padding: 0 1.25rem; }
+  .hero-content { padding: 0 1.25rem; }
   /* Place libérée pour le sélecteur de langue : le logo suffit à identifier la marque */
   .nav-logo-text { display: none; }
+  .nav-logo-img { height: 32px; }
+  .about-text p { font-size: 1rem; line-height: 1.7; }
   .nav-links.nav-static a { font-size: 0.72rem; letter-spacing: 0.06em; }
   .nav-links.nav-static + .lang-switch { margin-left: 1rem; }
   /* Bouton flottant centré, dans la zone du pouce */
@@ -1654,24 +1745,28 @@ footer {
     right: 50%;
     transform: translate(50%, 1rem);
     bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-    padding: 0.75rem 1.4rem;
+    padding: 0.75rem 1.25rem;
   }
   .sticky-cta.show { transform: translate(50%, 0); }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-btns { flex-direction: column; align-items: center; }
-  /* Rubriques : cadre élargi jusqu'à 16 px du bord, deux verticales par ligne */
-  .pf-cats { gap: 1.5rem; }
-  .pf-cat {
-    margin-inline: -1rem;
-    padding: 1.1rem 0.75rem 0.85rem;
-    border-radius: 14px;
-  }
-  .pf-cat-head { column-gap: 0.7rem; margin-bottom: 1rem; padding: 0 0.25rem 0.9rem; }
-  .pf-cat-lead { grid-column: 1 / -1; font-size: 0.88rem; }
+  .clients-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* 15 clients sur deux colonnes : le dernier occupe toute la largeur
+     (sinon une cellule vide apparaîtrait dans la grille à filets) */
+  .client-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns .btn { width: 100%; }
+  /* Rubriques : les cartes prennent toute la marge de texte (20 px), deux
+     verticales par ligne (170 px chacune), pastilles à la taille du site */
+  .pf-cats { gap: 3rem; }
+  .pf-cat { padding: 1.5rem 0 0; }
+  .pf-cat-head { column-gap: 0.75rem; margin-bottom: 1rem; padding: 0; }
+  .pf-cat-lead { grid-column: 1 / -1; font-size: 0.875rem; }
   .pf-row { --row-h: 12.5rem; --row-max: 21rem; gap: 0.625rem; }
-  .pf-row > .vertical-card .video-info { padding: 0.8rem 0.7rem 0.95rem; }
-  .video-info .video-tags { gap: 0.3rem; }
-  .chip { padding: 0.12rem 0.5rem; letter-spacing: 0.02em; }
+  .pf-row > .vertical-card .video-info { padding: 0.875rem 0.75rem 1rem; }
+  .video-info .video-tags { gap: 0.25rem; }
+  .tag, .chip, .gear-chip { padding: 0.25rem 0.625rem; letter-spacing: 0.02em; }
+  .pf-row > .vertical-card .play-btn { width: 44px; height: 44px; }
+  .pf-row > .vertical-card .play-btn svg { width: 18px; height: 18px; }
+  .skill-chip { padding: 0.625rem 0; font-size: 0.8125rem; gap: 0.625rem; }
   /* Une verticale seule dans une rangée mixte (Villa de Luxe) : plutôt qu'une
      carte étroite centrée, la même carte « en ligne » que sur tablette */
   .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card:not(.vertical-card + .vertical-card):not(:has(+ .vertical-card)) {
@@ -1683,12 +1778,16 @@ footer {
   }
   /* Avis client : vignette au-dessus, texte centré */
   .testimonial {
-    flex-direction: column;
-    gap: 1.4rem;
-    margin-top: 2.2rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
     text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
-  .testimonial-card { flex-basis: auto; width: 200px; }
+  .testimonial-card { width: 200px; }
+  .tarif-card-header { padding: 1.5rem 1.25rem 1.25rem; }
+  .tarif-card-body { padding: 0.25rem 1.25rem 1.25rem; }
+  .contact-form .btn { align-self: stretch; }
 }
 
 /* Très petits écrans : une verticale par ligne, pour garder un texte lisible */
@@ -1698,13 +1797,12 @@ footer {
 
 @media (max-width: 480px) {
   /* minmax(0, 1fr) : les colonnes peuvent rétrécir sous la largeur du plus long nom */
-  .clients-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
-  .client-card { padding: 1.1rem 0.7rem; }
+  .client-card { padding: 1.25rem 0.75rem; }
   .client-name { overflow-wrap: anywhere; }
   .legal h1 { overflow-wrap: anywhere; }
 }
 
 @media (max-width: 360px) {
-  .hero-content { padding: 0 1.25rem; }
+  .hero-content { padding: 0 1rem; }
   .sticky-cta-extra { display: none; } /* « Contactez-moi » seul sur les plus petits écrans */
 }

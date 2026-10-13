@@ -12,7 +12,7 @@
   <link rel="alternate" hreflang="fr" href="https://babarstudio.fr/">
   <link rel="alternate" hreflang="en" href="https://babarstudio.fr/en/">
   <link rel="alternate" hreflang="x-default" href="https://babarstudio.fr/">
-  <meta name="theme-color" content="#0a0605">
+  <meta name="theme-color" content="#0f0c0a">
 
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -36,7 +36,7 @@
   <meta name="twitter:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
 
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/orbitron.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 
   <script type="application/ld+json">
@@ -71,18 +71,33 @@
 </head>
 <body>
 
-  <div class="page-bg" aria-hidden="true">
-    <div class="aurora aurora-1"></div>
-    <div class="aurora aurora-2"></div>
-    <div class="aurora aurora-3"></div>
-    <div class="aurora aurora-4"></div>
-  </div>
+  <!-- Icônes filaires (trait 1.5) : définies une fois, référencées par <use> -->
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-clapper" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".6" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".6" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1a1.6 1.6 0 0 1 1.7-1.7h2c3 0 5.5-2.5 5.5-5.6C22 6 17.5 2 12 2Z"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.9 15.5a2 2 0 0 0-1.4-1.4L2.4 12.5a.5.5 0 0 1 0-1L8.5 9.9a2 2 0 0 0 1.4-1.4l1.6-6.1a.5.5 0 0 1 1 0l1.6 6.1a2 2 0 0 0 1.4 1.4l6.1 1.6a.5.5 0 0 1 0 1l-6.1 1.6a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0Z"/><path d="M20 3v4"/><path d="M22 5h-4"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 4.7a.7.7 0 0 0-1.2-.5L6.4 7.6A1.4 1.4 0 0 1 5.4 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.4a1.4 1.4 0 0 1 1 .4l3.4 3.4a.7.7 0 0 0 1.2-.5Z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.4 18.4a9 9 0 0 0 0-12.8"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3"/><path d="M14 2v4M8 10v4M16 18v4"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+    <symbol id="i-light" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+    <symbol id="i-tripod" viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="5" rx="1"/><path d="M12 8v5"/><path d="m12 13-5.5 8"/><path d="m12 13 5.5 8"/><path d="M12 13v8"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8"/><path d="M12 16v4"/></symbol>
+    <symbol id="i-drone" viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="m7 7 2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/></symbol>
+    <symbol id="i-goggles" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3.5l-1.6-2h-3.8l-1.6 2H5a2 2 0 0 1-2-2Z"/><path d="M2 11h1M21 11h1"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9 5.7a1.9 1.9 0 0 1-2 0L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  </svg>
+
+  <div class="page-bg" aria-hidden="true"></div>
 
   <!-- ===== NAVIGATION ===== -->
   <nav id="navbar" aria-label="Navigation principale">
     <div class="nav-container">
       <a href="#hero" class="nav-logo" aria-label="BabarStudio, haut de page">
-        <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="240">
+        <img src="Logo.png" alt="BabarStudio" class="nav-logo-img" width="306" height="223">
         <span class="nav-logo-text"><span class="logo-babar">Babar</span><span class="logo-studio">Studio</span></span>
       </a>
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks" data-label-open="Ouvrir le menu" data-label-close="Fermer le menu">
@@ -121,7 +136,9 @@
   <!-- ===== À PROPOS ===== -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title">À <span class="neon-text">propos</span></h2>
+      <div class="section-head">
+        <h2 class="section-title">À <span class="neon-text">propos</span></h2>
+      </div>
       <div class="about-grid reveal">
         <div class="about-photo">
           <picture>
@@ -145,23 +162,23 @@
         <div class="about-skills">
           <h3>Outils &amp; Compétences</h3>
           <div class="skills-grid">
-            <div class="skill-chip"><span aria-hidden="true">🎬</span> DaVinci Resolve</div>
-            <div class="skill-chip"><span aria-hidden="true">🎨</span> Color Grading</div>
-            <div class="skill-chip"><span aria-hidden="true">✨</span> Motion Design</div>
-            <div class="skill-chip"><span aria-hidden="true">🔊</span> Sound Design</div>
-            <div class="skill-chip"><span aria-hidden="true">🎥</span> Montage Vidéo</div>
-            <div class="skill-chip"><span aria-hidden="true">📐</span> Étalonnage</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clapper"/></svg> DaVinci Resolve</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg> Color Grading</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-sparkles"/></svg> Motion Design</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-sound"/></svg> Sound Design</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-video"/></svg> Montage Vidéo</div>
+            <div class="skill-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-sliders"/></svg> Étalonnage</div>
           </div>
 
           <h3 class="gear-title">Matériel de tournage</h3>
           <div class="gear-grid">
-            <span class="gear-chip"><span aria-hidden="true">📷</span> Lumix S5 II</span>
-            <span class="gear-chip"><span aria-hidden="true">🎤</span> Micros cravate</span>
-            <span class="gear-chip"><span aria-hidden="true">💡</span> 2 spots LED</span>
-            <span class="gear-chip"><span aria-hidden="true">📐</span> Trépied</span>
-            <span class="gear-chip"><span aria-hidden="true">🟩</span> Fond vert</span>
-            <span class="gear-chip"><span aria-hidden="true">🚁</span> Drone stabilisé</span>
-            <span class="gear-chip"><span aria-hidden="true">🎮</span> Drone FPV</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg> Lumix S5 II</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mic"/></svg> Micros cravate</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-light"/></svg> 2 spots LED</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-tripod"/></svg> Trépied</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-screen"/></svg> Fond vert</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drone"/></svg> Drone stabilisé</span>
+            <span class="gear-chip"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-goggles"/></svg> Drone FPV</span>
           </div>
         </div>
       </div>
@@ -177,8 +194,10 @@
        lecteur d'écran les entend. -->
   <section id="portfolio">
     <div class="container">
-      <h2 class="section-title">Mon <span class="neon-text">Portfolio</span></h2>
-      <p class="section-subtitle">Quelques projets qui me représentent</p>
+      <div class="section-head">
+        <h2 class="section-title">Mon <span class="neon-text">Portfolio</span></h2>
+        <p class="section-subtitle">Quelques projets qui me représentent</p>
+      </div>
       <div class="pf-cats">
 
         <div class="pf-cat reveal" id="pf-podcast">
@@ -377,7 +396,9 @@
   <!-- ===== ILS M'ONT FAIT CONFIANCE ===== -->
   <section id="clients">
     <div class="container">
-      <h2 class="section-title">Ils m'ont fait <span class="neon-text">confiance</span></h2>
+      <div class="section-head">
+        <h2 class="section-title">Ils m'ont fait <span class="neon-text">confiance</span></h2>
+      </div>
       <!-- Avis client en vidéo, hébergé sur le site (aucune requête vers YouTube) -->
       <figure class="testimonial reveal">
         <div class="video-card vertical-card testimonial-card" data-video-src="videos/temoignage-lebunkerbtc.mp4" role="button" tabindex="0" aria-label="Lire l'avis client en vidéo : Gégé, LeBunkerBTC">
@@ -420,8 +441,10 @@
   <!-- ===== TARIFS ===== -->
   <section id="tarifs">
     <div class="container">
-      <h2 class="section-title">Mes <span class="neon-text">Tarifs</span></h2>
-      <p class="section-subtitle">Des formules claires, sans surprise</p>
+      <div class="section-head">
+        <h2 class="section-title">Mes <span class="neon-text">Tarifs</span></h2>
+        <p class="section-subtitle">Des formules claires, sans surprise</p>
+      </div>
       <div class="tarifs-cards reveal">
 
         <div class="tarif-big-card">
@@ -496,16 +519,18 @@
   <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Me <span class="neon-text">contacter</span></h2>
-      <p class="section-subtitle">Contactez-moi par mail ou via le formulaire ci-dessous. Devis gratuit et sans engagement.</p>
+      <div class="section-head">
+        <h2 class="section-title">Me <span class="neon-text">contacter</span></h2>
+        <p class="section-subtitle">Contactez-moi par mail ou via le formulaire <span class="nobr">ci-dessous</span>. Devis gratuit et sans engagement.</p>
+      </div>
       <div class="contact-grid reveal">
         <div class="contact-info">
           <div class="contact-item">
-            <div class="contact-icon" aria-hidden="true">📧</div>
+            <div class="contact-icon" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></div>
             <div><h3>Email</h3><p><a href="mailto:nicolas.babarstudio@gmail.com">nicolas.babarstudio@gmail.com</a></p></div>
           </div>
           <div class="contact-item">
-            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div class="contact-icon" aria-hidden="true"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg></div>
             <div><h3>Localisation</h3><p>Miramas (13)</p></div>
           </div>
           <div class="contact-steps">
@@ -572,7 +597,7 @@
   <!-- ===== VIDEO MODAL ===== -->
   <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo" aria-hidden="true">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Fermer la vidéo">✕</button>
+      <button class="modal-close" id="modalClose" aria-label="Fermer la vidéo"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button>
       <div class="modal-iframe-wrapper">
         <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Lecteur vidéo YouTube"></iframe>
         <!-- Lecteur natif pour les vidéos hébergées sur le site (avis client) -->
