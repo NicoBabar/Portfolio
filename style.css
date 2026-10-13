@@ -535,19 +535,6 @@ a { text-decoration: none; color: inherit; }
 ============================================================ */
 #portfolio { padding: 8rem 0; position: relative; z-index: 1; }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.8rem;
-}
-
-.horizontal-videos {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem;
-}
-
 .video-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -580,30 +567,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 .vertical-card .video-thumb { aspect-ratio: 9 / 16; }
-
-.grid-divider {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin: 0.5rem 0;
-  color: var(--text-dim);
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.text-cyan {
-  color: var(--cyan);
-  text-shadow: 0 0 8px var(--cyan-glow);
-}
-
-.grid-divider::before,
-.grid-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
 
 .thumb-overlay {
   position: absolute;
@@ -640,25 +603,241 @@ a { text-decoration: none; color: inherit; }
 
 .video-info { padding: 1.2rem 1.4rem 1.5rem; }
 
-.video-cat {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--neon-text);
-  display: block;
-  margin-bottom: 0.45rem;
-}
-
-.video-info h3 {
+.video-info h4 {
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1.35;
   margin-bottom: 0.35rem;
+  overflow-wrap: break-word;
 }
 
 .video-info p {
   font-size: 0.85rem;
   color: var(--text-dim);
+}
+
+/* ------------------------------------------------------------
+   Rubriques du portfolio (Podcast, Immobilier, ...)
+   Chaque rubrique est un cadre : en-tête (numéro, titre, accroche)
+   puis une rangée « justifiée » de cartes.
+------------------------------------------------------------ */
+.pf-cats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pf-cat {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(204, 34, 0, 0.07) 0%, rgba(201, 168, 76, 0.025) 45%, transparent 75%),
+    rgba(15, 9, 8, 0.72);
+  scroll-margin-top: 6rem;
+}
+
+.pf-cat-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.9rem;
+  row-gap: 0.3rem;
+  align-items: baseline;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.4rem;
+  /* Filet doré, amorcé par un court trait rouge */
+  background:
+    linear-gradient(var(--neon), var(--neon)) left bottom / 2.5rem 2px no-repeat,
+    linear-gradient(rgba(201, 168, 76, 0.18), rgba(201, 168, 76, 0.18)) left bottom / 100% 1px no-repeat;
+}
+
+/* Numéro en Inter : le zéro barré d'Orbitron se lirait « Ø1 » */
+.pf-cat-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cyan);
+}
+
+.pf-cat-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.pf-cat-lead {
+  grid-column: 2;
+  max-width: 62ch;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Rangée justifiée : la largeur de chaque carte est proportionnelle au format
+   de sa vidéo (--ar = largeur / hauteur). Toutes les vignettes d'une même ligne
+   ont donc exactement la même hauteur, qu'elles soient en 16:9 ou en 9:16.
+   --row-h  : hauteur de référence, qui décide du passage à la ligne ;
+   --row-max : hauteur maximale d'une vignette (évite les verticales géantes). */
+.pf-row {
+  --row-h: 13rem;
+  --row-max: 29rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.pf-row > .video-card {
+  --ar: 1.7778; /* 16:9 */
+  /* + 2px : la bordure de la carte, pour que les vignettes s'alignent au pixel près */
+  flex: var(--ar) 1 calc(var(--ar) * var(--row-h) + 2px);
+  max-width: calc(var(--ar) * var(--row-max) + 2px);
+  min-width: 0;
+}
+.pf-row > .vertical-card { --ar: 0.5625; } /* 9:16 */
+
+/* Cartes verticales : texte un peu plus compact, la colonne étant étroite */
+.pf-row > .vertical-card .video-info { padding: 0.95rem 0.95rem 1.1rem; }
+.pf-row > .vertical-card .video-info h4 { font-size: 0.95rem; }
+.pf-row > .vertical-card .video-info h4 + p { font-size: 0.8rem; line-height: 1.5; }
+
+/* Pastilles : la première dit ce qu'est la vidéo (rouge), les suivantes précisent (doré) */
+.video-info .video-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.14rem 0.6rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 50px;
+  background: var(--cyan-dark);
+  color: var(--cyan);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.video-tags .chip:first-child,
+.testimonial-chip {
+  border-color: rgba(204, 34, 0, 0.4);
+  background: var(--neon-dark);
+  color: var(--neon-text);
+}
+
+/* Grand écran, entre 1024 et 1199 px : dans une rangée avec des verticales, on
+   force le passage à la ligne plus tôt (l'horizontale de « Publicités » passe
+   sous les deux verticales) plutôt que de laisser les verticales rétrécir
+   sous 190 px, où leurs pastilles ne tiendraient plus sur une ligne */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .pf-row:has(.vertical-card) { --row-h: 21rem; }
+}
+/* Au-delà, un plancher pour que l'ajout d'une vidéo ne compresse jamais
+   une verticale sous 155 px (sans effet sur le contenu actuel) */
+@media (min-width: 1200px) {
+  .pf-row:has(.vertical-card) { --row-h: 17rem; }
+}
+
+/* Grand écran : une rubrique composée uniquement de vidéos verticales
+   (Podcast) place son en-tête à côté des cartes au lieu d'au-dessus,
+   pour ne pas laisser un grand vide à droite des deux verticales.
+   L'en-tête est une colonne étroite, alignée en haut ; les cartes
+   prennent le reste de la largeur (dans la limite de --row-max). */
+@media (min-width: 880px) {
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.5rem 2.5rem;
+  }
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-head {
+    flex: 0 1 16rem;
+    max-width: 16rem;
+    display: block;
+    margin: 0;
+    padding: 0.35rem 0 0 0.75rem;
+    background: none;
+  }
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-num {
+    display: block;
+    font-size: 2.2rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 18px rgba(201, 168, 76, 0.25);
+  }
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-cat-lead {
+    max-width: 34ch;
+    font-size: 1rem;
+    padding-bottom: 1.2rem;
+    background: linear-gradient(var(--neon), var(--neon)) left bottom / 2.5rem 2px no-repeat;
+  }
+  .pf-cat:not(:has(.video-card:not(.vertical-card))) .pf-row {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* ------------------------------------------------------------
+   Avis client en vidéo (section « Ils m'ont fait confiance »)
+------------------------------------------------------------ */
+.testimonial {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  max-width: 46rem;
+  margin: 2.5rem auto 3rem;
+}
+
+.testimonial-card {
+  flex: 0 0 230px;
+  width: 230px;
+}
+
+.testimonial-body { min-width: 0; }
+
+.testimonial-chip {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  background: #210904; /* --neon-dark aplati sur le fond : contraste stable sur les aurores */
+}
+
+.testimonial-name {
+  display: block;
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-type {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+}
+
+.testimonial-note {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
 }
 
 /* ============================================================
@@ -1141,13 +1320,17 @@ footer {
   position: relative;
   aspect-ratio: 16 / 9;
   width: 100%;}
-.modal-iframe-wrapper iframe {
+.modal-iframe-wrapper iframe,
+.modal-iframe-wrapper video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
+.modal-iframe-wrapper video { background: #000; }
+/* Un seul lecteur à la fois : l'autre est masqué par l'attribut hidden */
+.modal-iframe-wrapper [hidden] { display: none; }
 
 .modal.modal-vertical .modal-content { width: min(380px, 92vw, calc((100dvh - 2rem) * 9 / 16)); }
 .modal.modal-vertical .modal-iframe-wrapper { aspect-ratio: 9 / 16; }
@@ -1341,18 +1524,95 @@ footer {
   }
 
   .reveal { opacity: 1; transform: none; }
+
+  /* Sans transition du tout sur le lecteur et son contenu : sinon la visibilité
+     (héritée) basculerait avec 0,01 ms de retard et le bouton Fermer, encore
+     masqué à cet instant, ne pourrait pas recevoir le focus à l'ouverture */
+  .modal, .modal-content { transition: none !important; }
 }
 
 /* ============================================================
    RESPONSIVE
 ============================================================ */
 @media (max-width: 960px) {
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .about-photo { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .tarifs-cards { grid-template-columns: 1fr 1fr; }
+}
+
+/* Portfolio, tablette : les rangées mixtes passent à la ligne
+   (horizontales en pleine largeur, verticales groupées et centrées).
+   Une rubrique 100 % horizontale garde ses cartes côte à côte tant qu'il y a la place. */
+@media (max-width: 1023px) {
+  .pf-cat { padding: 1.25rem; }
+  .pf-row { --row-h: 21rem; --row-max: 24rem; gap: 1rem; }
+  .pf-row:not(:has(.vertical-card)) { --row-h: 11rem; }
+}
+
+/* Tablette (601 à 1023 px) : dans une rangée qui mélange les formats, les
+   verticales deviennent des cartes « en ligne » (vignette 9:16 à gauche, texte
+   à droite) rangées sur deux colonnes ; les horizontales gardent toute la
+   largeur. Une rangée 100 % verticale (Podcast) reste côte à côte.
+   Sélecteurs :
+   - rangée mixte   : .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card))
+   - verticale seule : sans autre verticale juste avant ni juste après */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .video-card {
+    max-width: none;
+  }
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .video-card:not(.vertical-card) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card {
+    display: grid;
+    grid-template-columns: min(42%, 11rem) minmax(0, 1fr);
+    align-items: center;
+  }
+  /* Verticale seule sur sa ligne de grille : elle occupe les deux colonnes */
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card:not(.vertical-card + .vertical-card):not(:has(+ .vertical-card)),
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card:not(.vertical-card + .vertical-card) + .vertical-card + .vertical-card:not(:has(+ .vertical-card)) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Sous 720 px, deux cartes-lignes côte à côte seraient trop étroites */
+@media (min-width: 601px) and (max-width: 719px) {
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card {
+    grid-column: 1 / -1;
+  }
+}
+
+/* De 1024 à 1199 px, une rangée mixte à deux verticales (Publicités) garde
+   la grille de cartes-lignes au lieu de deux verticales centrées dans le vide */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .pf-row:has(.vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .pf-row:has(.vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) > .video-card {
+    max-width: none;
+  }
+  .pf-row:has(.vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) > .video-card:not(.vertical-card) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .pf-row:has(.vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card {
+    display: grid;
+    grid-template-columns: min(42%, 11rem) minmax(0, 1fr);
+    align-items: center;
+  }
+  .pf-row:has(.vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card:not(.vertical-card + .vertical-card) + .vertical-card + .vertical-card:not(:has(+ .vertical-card)) {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 700px) {
@@ -1411,13 +1671,46 @@ footer {
     padding: 0.75rem 1.4rem;
   }
   .sticky-cta.show { transform: translate(50%, 0); }
-  .portfolio-grid { grid-template-columns: 1fr; }
   .clients-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-btns { flex-direction: column; align-items: center; }
+  /* Rubriques : cadre élargi jusqu'à 16 px du bord, deux verticales par ligne */
+  .pf-cats { gap: 1.5rem; }
+  .pf-cat {
+    margin-inline: -1rem;
+    padding: 1.1rem 0.75rem 0.85rem;
+    border-radius: 14px;
+  }
+  .pf-cat-head { column-gap: 0.7rem; margin-bottom: 1rem; padding: 0 0.25rem 0.9rem; }
+  .pf-cat-lead { grid-column: 1 / -1; font-size: 0.88rem; }
+  .pf-row { --row-h: 12.5rem; --row-max: 21rem; gap: 0.625rem; }
+  .pf-row > .vertical-card .video-info { padding: 0.8rem 0.7rem 0.95rem; }
+  .video-info .video-tags { gap: 0.3rem; }
+  .chip { padding: 0.12rem 0.5rem; letter-spacing: 0.02em; }
+  /* Une verticale seule dans une rangée mixte (Villa de Luxe) : plutôt qu'une
+     carte étroite centrée, la même carte « en ligne » que sur tablette */
+  .pf-row:has(.vertical-card):has(.video-card:not(.vertical-card)) > .vertical-card:not(.vertical-card + .vertical-card):not(:has(+ .vertical-card)) {
+    flex: 1 1 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: min(42%, 11rem) minmax(0, 1fr);
+    align-items: center;
+  }
+  /* Avis client : vignette au-dessus, texte centré */
+  .testimonial {
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-top: 2.2rem;
+    text-align: center;
+  }
+  .testimonial-card { flex-basis: auto; width: 200px; }
+}
+
+/* Très petits écrans : une verticale par ligne, pour garder un texte lisible */
+@media (max-width: 359px) {
+  .pf-row { --row-h: 15rem; }
 }
 
 @media (max-width: 480px) {
-  .horizontal-videos { grid-template-columns: 1fr; }
   /* minmax(0, 1fr) : les colonnes peuvent rétrécir sous la largeur du plus long nom */
   .clients-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
   .client-card { padding: 1.1rem 0.7rem; }

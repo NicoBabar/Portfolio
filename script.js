@@ -97,9 +97,11 @@ if (finePointer && !reducedMotion) {
   });
 }
 
-// Modal vidéo
+// Modal vidéo : lecteur YouTube (data-video-id) ou lecteur natif pour une vidéo
+// hébergée sur le site (data-video-src, par exemple l'avis client)
 const modal    = document.getElementById('videoModal');
 const iframe   = document.getElementById('modalIframe');
+const video    = document.getElementById('modalVideo');
 const closeBtn = document.getElementById('modalClose');
 
 if (modal && iframe && closeBtn) {
@@ -110,13 +112,25 @@ if (modal && iframe && closeBtn) {
   const setBackgroundInert = on => background.forEach(el => { el.inert = on; });
 
   function openModal(card) {
-    const id = card.dataset.videoId;
+    const src = card.dataset.videoSrc;
+    const id  = card.dataset.videoId;
+    // Seuls les fichiers .mp4 du dossier videos/ du site sont lus en natif
+    const local = Boolean(video) && /^(\.\.\/)?videos\/[A-Za-z0-9_-]+\.mp4$/.test(src || '');
     // Un identifiant YouTube fait toujours 11 caractères parmi [A-Za-z0-9_-]
-    if (!/^[A-Za-z0-9_-]{11}$/.test(id || '')) return;
+    if (!local && !/^[A-Za-z0-9_-]{11}$/.test(id || '')) return;
     lastFocused = card;
     modal.classList.toggle('modal-vertical', card.classList.contains('vertical-card'));
-    // youtube-nocookie : pas de cookie publicitaire déposé tant que la vidéo n'est pas lue
-    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+    if (local) {
+      iframe.hidden = true;
+      video.hidden = false;
+      video.src = src;
+      video.play().catch(() => {}); // lecture refusée (ex. autoplay bloqué) : les contrôles restent
+    } else {
+      if (video) video.hidden = true;
+      iframe.hidden = false;
+      // youtube-nocookie : pas de cookie publicitaire déposé tant que la vidéo n'est pas lue
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+    }
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     setBackgroundInert(true);
@@ -129,6 +143,14 @@ if (modal && iframe && closeBtn) {
     modal.classList.remove('active', 'modal-vertical');
     modal.setAttribute('aria-hidden', 'true');
     iframe.src = '';
+    iframe.hidden = false;
+    if (video) {
+      // Arrêt complet : sans load(), le navigateur garderait la vidéo en mémoire
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      video.hidden = true;
+    }
     setBackgroundInert(false);
     document.body.style.overflow = '';
     if (lastFocused) { lastFocused.focus(); lastFocused = null; }

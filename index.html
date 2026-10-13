@@ -169,133 +169,203 @@
   </section>
 
   <!-- ===== PORTFOLIO ===== -->
+  <!-- Une rubrique = un cadre. Dans chaque rubrique, les vignettes d'une même ligne
+       ont toutes la même hauteur, quel que soit le format (16:9 ou 9:16).
+       Pour ajouter une vidéo : copier une carte ; garder la classe « vertical-card »
+       pour un format vertical (le lecteur passe alors en 9:16). Les pastilles sont
+       reprises entre parenthèses dans l'aria-label : c'est le seul endroit où un
+       lecteur d'écran les entend. -->
   <section id="portfolio">
     <div class="container">
       <h2 class="section-title">Mon <span class="neon-text">Portfolio</span></h2>
       <p class="section-subtitle">Quelques projets qui me représentent</p>
-      <div class="portfolio-grid">
+      <div class="pf-cats">
 
-        <div class="grid-divider">
-          <span>Formats <span class="text-cyan">Horizontaux</span></span>
-        </div>
+        <div class="pf-cat reveal" id="pf-podcast">
+          <div class="pf-cat-head">
+            <span class="pf-cat-num" aria-hidden="true">01</span>
+            <h3 class="pf-cat-title">Podcast</h3>
+            <p class="pf-cat-lead">Montage d'épisodes, trailers et extraits verticaux pour les réseaux.</p>
+          </div>
+          <div class="pf-row">
 
-        <div class="horizontal-videos">
-
-          <div class="video-card reveal" data-video-id="zdWbBPdNTyc" role="button" tabindex="0" aria-label="Lire la vidéo : Dream of Farm">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/zdWbBPdNTyc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-              <div class="thumb-overlay">
-                <span class="play-btn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </span>
+            <div class="video-card vertical-card" data-video-id="95V0pEUtV80" role="button" tabindex="0" aria-label="Lire la vidéo : Extrait podcast 1 (Podcast, Short)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/95V0pEUtV80/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Podcast</span><span class="chip">Short</span></p>
+                <h4>Extrait podcast 1</h4>
+                <p>Passage clé d'un épisode, dynamisé et sous-titré pour les réseaux.</p>
               </div>
             </div>
-            <div class="video-info">
-              <span class="video-cat">Interview</span>
-              <h3>Dream of Farm</h3>
-              <p>Location saisonnière à la ferme, vie au grand air et produits bio et locaux.</p>
-            </div>
-          </div>
 
-          <div class="video-card reveal" data-video-id="qSYP_4bzUGI" role="button" tabindex="0" aria-label="Lire la vidéo : LeBunkerBTC, trailer">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/qSYP_4bzUGI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-              <div class="thumb-overlay">
-                <span class="play-btn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </span>
+            <div class="video-card vertical-card" data-video-id="v4FMoiIoyGo" role="button" tabindex="0" aria-label="Lire la vidéo : Extrait podcast 2 (Podcast, Short)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/v4FMoiIoyGo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Podcast</span><span class="chip">Short</span></p>
+                <h4>Extrait podcast 2</h4>
+                <p>B-rolls, effets de zoom et sous-titres personnalisés.</p>
               </div>
             </div>
-            <div class="video-info">
-              <span class="video-cat">YouTube</span>
-              <h3>LeBunkerBTC : Trailer</h3>
-              <p>Trailer de lancement de la chaîne YouTube crypto &amp; blockchain LeBunkerBTC.</p>
-            </div>
-          </div>
 
-          <div class="video-card reveal" data-video-id="kVLXleCpIW0" role="button" tabindex="0" aria-label="Lire la vidéo : Bulgarie Edit">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/kVLXleCpIW0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-              <div class="thumb-overlay">
-                <span class="play-btn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </span>
+          </div>
+        </div>
+
+        <div class="pf-cat reveal" id="pf-immobilier">
+          <div class="pf-cat-head">
+            <span class="pf-cat-num" aria-hidden="true">02</span>
+            <h3 class="pf-cat-title">Immobilier</h3>
+            <p class="pf-cat-lead">Interviews, visites et contenus UGC pour mettre en valeur un bien ou une location.</p>
+          </div>
+          <div class="pf-row">
+
+            <div class="video-card" data-video-id="zdWbBPdNTyc" role="button" tabindex="0" aria-label="Lire la vidéo : Dream of Farm (Interview, Location saisonnière)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/zdWbBPdNTyc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Interview</span><span class="chip">Location saisonnière</span></p>
+                <h4>Dream of Farm</h4>
+                <p>Location saisonnière à la ferme, vie au grand air et produits bio et locaux.</p>
               </div>
             </div>
-            <div class="video-info">
-              <span class="video-cat">Vlog Edit</span>
-              <h3>Bulgarie Edit</h3>
-              <p>Montage cinématique de vacances en Bulgarie, paysages et moments forts.</p>
-            </div>
-          </div>
 
-          <div class="video-card reveal" data-video-id="X0KjoYI2nD8" role="button" tabindex="0" aria-label="Lire la vidéo : Harley-Davidson Dyna Fat Bob 2017">
-            <div class="video-thumb">
-              <img class="video-thumb-img" src="https://img.youtube.com/vi/X0KjoYI2nD8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-              <div class="thumb-overlay">
-                <span class="play-btn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-                </span>
+            <div class="video-card vertical-card" data-video-id="GKtKZHxiiGo" role="button" tabindex="0" aria-label="Lire la vidéo : Villa de Luxe (UGC, Short)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/GKtKZHxiiGo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">UGC</span><span class="chip">Short</span></p>
+                <h4>Villa de Luxe</h4>
+                <p>Création UGC clé en main pour une villa de luxe, du script au rendu final.</p>
               </div>
             </div>
-            <div class="video-info">
-              <span class="video-cat">Film Moto</span>
-              <h3>Harley-Davidson Dyna Fat Bob 2017</h3>
-              <p>Présentation cinématique d'une Harley-Davidson Dyna Fat Bob 2017, tournée et montée de A à Z.</p>
-            </div>
-          </div>
 
-        </div>
-
-        <div class="grid-divider">
-          <span>Formats <span class="text-cyan">Verticaux</span></span>
-        </div>
-
-        <div class="video-card vertical-card reveal" data-video-id="T-bBaKqZy_k" role="button" tabindex="0" aria-label="Lire la vidéo : Boutique Vêtements">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/T-bBaKqZy_k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-            <div class="thumb-overlay">
-              <span class="play-btn" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </span>
-            </div>
-          </div>
-          <div class="video-info">
-            <span class="video-cat">Short · Mode</span>
-            <h3>Boutique Vêtements</h3>
-            <p>Montage d'une vidéo promotionnelle pour une boutique de mode.</p>
           </div>
         </div>
 
-        <div class="video-card vertical-card reveal" data-video-id="GKtKZHxiiGo" role="button" tabindex="0" aria-label="Lire la vidéo : Villa de Luxe">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/GKtKZHxiiGo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-            <div class="thumb-overlay">
-              <span class="play-btn" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </span>
-            </div>
+        <div class="pf-cat reveal" id="pf-pub">
+          <div class="pf-cat-head">
+            <span class="pf-cat-num" aria-hidden="true">03</span>
+            <h3 class="pf-cat-title">Publicités et réseaux sociaux</h3>
+            <p class="pf-cat-lead">Pubs, UGC et trailers pensés pour capter l'attention dès les premières secondes.</p>
           </div>
-          <div class="video-info">
-            <span class="video-cat">UGC · Immobilier</span>
-            <h3>Villa de Luxe</h3>
-            <p>Création UGC clé en main pour une villa de luxe, du script au rendu final.</p>
+          <div class="pf-row">
+
+            <div class="video-card vertical-card" data-video-id="T-bBaKqZy_k" role="button" tabindex="0" aria-label="Lire la vidéo : Boutique Vêtements (Publicité, Mode)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/T-bBaKqZy_k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Publicité</span><span class="chip">Mode</span></p>
+                <h4>Boutique Vêtements</h4>
+                <p>Montage d'une vidéo promotionnelle pour une boutique de mode.</p>
+              </div>
+            </div>
+
+            <div class="video-card vertical-card" data-video-id="kZ1iMu0Qw80" role="button" tabindex="0" aria-label="Lire la vidéo : Million Lords (UGC, Jeu mobile)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/kZ1iMu0Qw80/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">UGC</span><span class="chip">Jeu mobile</span></p>
+                <h4>Million Lords</h4>
+                <p>Création UGC clé en main : concept, tournage et montage.</p>
+              </div>
+            </div>
+
+            <div class="video-card" data-video-id="qSYP_4bzUGI" role="button" tabindex="0" aria-label="Lire la vidéo : LeBunkerBTC, trailer (Trailer, YouTube)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/qSYP_4bzUGI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Trailer</span><span class="chip">YouTube</span></p>
+                <h4>LeBunkerBTC : Trailer</h4>
+                <p>Trailer de lancement de la chaîne YouTube crypto &amp; blockchain LeBunkerBTC.</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class="video-card vertical-card reveal" data-video-id="kZ1iMu0Qw80" role="button" tabindex="0" aria-label="Lire la vidéo : Million Lords">
-          <div class="video-thumb">
-            <img class="video-thumb-img" src="https://img.youtube.com/vi/kZ1iMu0Qw80/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
-            <div class="thumb-overlay">
-              <span class="play-btn" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-              </span>
-            </div>
+        <div class="pf-cat reveal" id="pf-creations">
+          <div class="pf-cat-head">
+            <span class="pf-cat-num" aria-hidden="true">04</span>
+            <h3 class="pf-cat-title">Créations</h3>
+            <p class="pf-cat-lead">Films et montages cinématiques, tournés et montés de A à Z.</p>
           </div>
-          <div class="video-info">
-            <span class="video-cat">UGC</span>
-            <h3>Million Lords</h3>
-            <p>Création UGC clé en main : concept, tournage et montage.</p>
+          <div class="pf-row">
+
+            <div class="video-card" data-video-id="X0KjoYI2nD8" role="button" tabindex="0" aria-label="Lire la vidéo : Harley-Davidson Dyna Fat Bob 2017 (Film moto, Tournage + montage)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/X0KjoYI2nD8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Film moto</span><span class="chip">Tournage + montage</span></p>
+                <h4>Harley-Davidson Dyna Fat Bob 2017</h4>
+                <p>Présentation cinématique d'une Harley-Davidson Dyna Fat Bob 2017, tournée et montée de A à Z.</p>
+              </div>
+            </div>
+
+            <div class="video-card" data-video-id="kVLXleCpIW0" role="button" tabindex="0" aria-label="Lire la vidéo : Bulgarie Edit (Vlog, Voyage)">
+              <div class="video-thumb">
+                <img class="video-thumb-img" src="https://img.youtube.com/vi/kVLXleCpIW0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <div class="thumb-overlay">
+                  <span class="play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="video-info">
+                <p class="video-tags"><span class="chip">Vlog</span><span class="chip">Voyage</span></p>
+                <h4>Bulgarie Edit</h4>
+                <p>Montage cinématique de vacances en Bulgarie, paysages et moments forts.</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -308,6 +378,25 @@
   <section id="clients">
     <div class="container">
       <h2 class="section-title">Ils m'ont fait <span class="neon-text">confiance</span></h2>
+      <!-- Avis client en vidéo, hébergé sur le site (aucune requête vers YouTube) -->
+      <figure class="testimonial reveal">
+        <div class="video-card vertical-card testimonial-card" data-video-src="videos/temoignage-lebunkerbtc.mp4" role="button" tabindex="0" aria-label="Lire l'avis client en vidéo : LeBunkerBTC">
+          <div class="video-thumb">
+            <img class="video-thumb-img" src="videos/temoignage-lebunkerbtc.jpg" alt="" width="540" height="960" loading="lazy" decoding="async">
+            <div class="thumb-overlay">
+              <span class="play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <figcaption class="testimonial-body">
+          <span class="chip testimonial-chip">Avis client</span>
+          <strong class="testimonial-name">LeBunkerBTC</strong>
+          <p class="testimonial-type">Chaîne YouTube crypto &amp; Bitcoin</p>
+          <p class="testimonial-note">Son retour en vidéo sur notre collaboration (22&nbsp;s).</p>
+        </figcaption>
+      </figure>
       <div class="clients-grid reveal">
         <div class="client-card"><p class="client-name">Dream of Farm</p><p class="client-type">Location saisonnière</p></div>
         <div class="client-card"><p class="client-name">LeBunkerBTC</p><p class="client-type">Crypto &amp; Bitcoin</p></div>
@@ -486,6 +575,8 @@
       <button class="modal-close" id="modalClose" aria-label="Fermer la vidéo">✕</button>
       <div class="modal-iframe-wrapper">
         <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Lecteur vidéo YouTube"></iframe>
+        <!-- Lecteur natif pour les vidéos hébergées sur le site (avis client) -->
+        <video id="modalVideo" controls playsinline preload="none" hidden></video>
       </div>
     </div>
   </div>
