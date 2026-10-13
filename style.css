@@ -827,6 +827,9 @@ img, svg { display: block; }
    une verticale sous 155 px (sans effet sur le contenu actuel) */
 @media (min-width: 1200px) {
   .pf-row:has(.vertical-card) { --row-h: 17rem; }
+  /* Trois verticales + une horizontale : l'horizontale passe sur sa propre ligne
+     plutôt que de réduire les verticales à ~175 px */
+  .pf-row:has(.vertical-card + .vertical-card + .vertical-card):has(.video-card:not(.vertical-card)) { --row-h: 21rem; }
 }
 
 /* Grand écran : une rubrique composée uniquement de vidéos verticales
