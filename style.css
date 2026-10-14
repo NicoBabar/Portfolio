@@ -434,8 +434,8 @@ img, svg { display: block; }
    barre de navigation (opaque, de la même couleur) se fonde dans le bloc.
 ============================================================ */
 #hero {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 84vh;
+  min-height: 84svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1589,6 +1589,94 @@ footer {
 .footer-links a:hover { color: var(--gold); }
 
 /* Respect du réglage système "réduire les animations" */
+
+/* ============================================================
+   HAUT DE PAGE : FILIGRANE ET BANDEAU CLIENTS
+============================================================ */
+/* Filigrane : la tête d'éléphant en très léger champagne, coupée par le bord */
+#hero::before {
+  content: '';
+  position: absolute;
+  right: -6vw;
+  bottom: -12vh;
+  width: min(62vh, 640px);
+  aspect-ratio: 1;
+  background: url('logo.svg') center / contain no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Bandeau ivoire sous le pli : les clients défilent lentement, en boucle, sans JavaScript */
+.hero-band {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+  overflow: hidden;
+}
+.hero-band-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.hero-band-label {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+.hero-band-track {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  overflow: hidden;
+  /* fondu sur les bords pour que les noms apparaissent et disparaissent en douceur */
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.hero-band-list {
+  flex: none;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  animation: band-scroll 70s linear infinite;
+}
+.hero-band-list li {
+  padding: 0 1.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.hero-band-list li::after {
+  content: '·';
+  margin-left: 3.2rem;
+  color: var(--gold);
+}
+.hero-band:hover .hero-band-list { animation-play-state: paused; }
+@keyframes band-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (max-width: 600px) {
+  #hero::before { width: 72vw; right: -22vw; bottom: -6vh; opacity: 0.07; }
+  .hero-band-inner { flex-direction: column; gap: 0.6rem; padding: 0 1rem; }
+  .hero-band-label { font-size: 0.66rem; }
+  .hero-band-track { width: 100%; }
+  .hero-band-list li { font-size: 0.7rem; padding: 0 1rem; }
+  .hero-band-list li::after { margin-left: 2rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -1599,6 +1687,9 @@ footer {
   }
 
   .reveal { opacity: 1; transform: none; }
+  .hero-band-list { animation: none; flex-wrap: wrap; }
+  .hero-band-list[aria-hidden="true"] { display: none; }
+  .hero-band-track { mask-image: none; -webkit-mask-image: none; }
 
   /* Sans transition du tout sur le lecteur et son contenu : sinon la visibilité
      (héritée) basculerait avec 0,01 ms de retard et le bouton Fermer, encore
