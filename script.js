@@ -74,8 +74,11 @@ if (stickyCta && heroBtns && contact) {
 // Effet 3D sur les cartes vidéo uniquement (pas sur les blocs de texte : tarifs,
 // clients) : à la souris, et jamais si l'utilisateur a demandé des animations réduites
 if (finePointer && !reducedMotion) {
-  document.querySelectorAll('.video-card').forEach(card => {
+  document.querySelectorAll('.video-card, .tarif-big-card').forEach(card => {
     let frame = null;
+    // Les cartes de tarifs s'inclinent moins (bloc de texte) et reçoivent un reflet
+    const tarif = card.classList.contains('tarif-big-card');
+    const maxDeg = tarif ? 3.5 : 6;
 
     card.addEventListener('mousemove', e => {
       if (frame) return;
@@ -85,7 +88,11 @@ if (finePointer && !reducedMotion) {
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
         card.style.transition = 'transform 0.12s ease-out, border-color 0.35s ease, box-shadow 0.35s ease';
-        card.style.transform = `perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-4px)`;
+        card.style.transform = `perspective(900px) rotateX(${(-y * maxDeg).toFixed(2)}deg) rotateY(${(x * maxDeg).toFixed(2)}deg) translateY(-4px)`;
+        if (tarif) {
+          card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+          card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+        }
       });
     });
 

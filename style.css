@@ -984,17 +984,33 @@ img, svg { display: block; }
 .tarif-big-card {
   display: flex;
   flex-direction: column;
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  transform: none !important; /* pas d'effet 3D sur un bloc de texte */
-  transition: border-color 0.3s, box-shadow 0.4s;
+  /* Relief : la carte s'incline légèrement vers la souris (script.js) et un reflet
+     champagne la suit ; --mx / --my sont posés par le script, en pourcentage */
+  --mx: 50%;
+  --my: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.45s ease, border-color 0.3s, box-shadow 0.4s;
+}
+.tarif-big-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 55% at var(--mx) var(--my), rgba(214, 192, 138, 0.14) 0%, rgba(214, 192, 138, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 .tarif-big-card:hover {
   border-color: var(--line-strong);
-  box-shadow: var(--shadow);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 6px 18px rgba(0, 0, 0, 0.18);
 }
+.tarif-big-card:hover::after { opacity: 1; }
 
 .tarif-card-header {
   padding: 1.75rem 1.75rem 1.5rem;
@@ -1735,6 +1751,8 @@ footer {
 
   .reveal { opacity: 1; transform: none; }
   .hero-band-list { animation: none; flex-wrap: wrap; }
+  .tarif-big-card { transform: none !important; }
+  .tarif-big-card::after { display: none; }
   .hero-band-list[aria-hidden="true"] { display: none; }
   .hero-band-track { mask-image: none; -webkit-mask-image: none; }
 
