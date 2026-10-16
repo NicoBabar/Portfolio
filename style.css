@@ -1108,6 +1108,8 @@ img, svg { display: block; }
   font-size: 0.8125rem;
   color: var(--text);
 }
+/* Deux packs qui se suivent (podcast) : un petit espace entre les deux bandes */
+.tarif-pack-row + .tarif-pack-row { margin-top: 0.5rem; }
 .tarif-pack-row .pack-price {
   font-family: var(--font-display);
   font-size: 1rem;
