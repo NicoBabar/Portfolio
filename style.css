@@ -1113,6 +1113,21 @@ img, svg { display: block; }
   font-size: 1rem;
   font-weight: 500;
   color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+/* Pack avec détail du contenu (podcast) : nom au-dessus, contenu en dessous */
+.tarif-pack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.tarif-pack-info > span:first-child { font-weight: 600; }
+.tarif-pack-desc {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-2);
 }
 
 /* Une phrase centrée, sans encadré : elle n'a pas besoin de boîte */
