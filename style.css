@@ -866,18 +866,26 @@ img, svg { display: block; }
 }
 
 /* ------------------------------------------------------------
-   Avis client en vidéo (section « Ils m'ont fait confiance »)
-   Un seul bloc sombre, sur toute la largeur du conteneur : la vignette et
-   le texte vivent dans la même bande (la carte vidéo n'a ni fond ni filet
-   propres, pour ne pas empiler deux surfaces sombres). La grille des
-   clients suit à 2,5 rem : bande + grille se lisent comme un seul objet.
+   Avis clients en vidéo (section « Ils m'ont fait confiance »)
+   Une bande sombre par avis : la vignette et le texte vivent dans la même
+   bande (la carte vidéo n'a ni fond ni filet propres, pour ne pas empiler
+   deux surfaces sombres). Les bandes s'empilent, puis se placent côte à
+   côte sur grand écran. La grille des clients suit à 2,5 rem : bandes +
+   grille se lisent comme un seul objet.
 ------------------------------------------------------------ */
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 0 0 2.5rem;
+}
+
 .testimonial {
   display: grid;
   grid-template-columns: 230px minmax(0, 1fr);
   align-items: center;
   gap: 3rem;
-  margin: 0 0 2.5rem;
+  margin: 0;
   padding: 2rem 3rem 2rem 2rem;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -919,6 +927,22 @@ img, svg { display: block; }
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
+}
+
+/* Deux avis côte à côte dès qu'il y a la place : vignette plus petite,
+   texte plus serré, pour que chaque bande garde un bloc de texte lisible.
+   (Placé après les règles de base, qu'il doit pouvoir remplacer.) */
+@media (min-width: 1024px) {
+  .testimonials { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .testimonial {
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 1.75rem;
+    padding: 1.5rem 1.75rem 1.5rem 1.5rem;
+  }
+  .testimonial-card { width: 160px; }
+  .testimonial-chip { margin-bottom: 1rem; }
+  .testimonial-name { font-size: 1.125rem; }
+  .testimonial-note { font-size: 0.9375rem; }
 }
 
 /* ============================================================
