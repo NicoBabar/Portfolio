@@ -1,0 +1,169 @@
+babarstudio.fr HTTPS / DNS diagnostic report
+Generated (UTC): 2026-11-06 14:23:00
+Note: HTTPS from this environment goes through a proxy, so TLS certificate details are not those of the real server.
+
+########## 1. HTTP/HTTPS behaviour without -L (one hop) ##########
+== http://babarstudio.fr/
+HTTP/1.1 301 Moved Permanently
+server: GitHub.com
+location: https://babarstudio.fr/
+FINAL 301 redirect=https://babarstudio.fr/
+== https://babarstudio.fr/
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+server: GitHub.com
+FINAL 200 redirect=
+== http://www.babarstudio.fr/
+HTTP/1.1 301 Moved Permanently
+server: GitHub.com
+location: https://babarstudio.fr/
+FINAL 301 redirect=https://babarstudio.fr/
+== https://www.babarstudio.fr/
+HTTP/1.1 200 Connection Established
+HTTP/2 301 
+server: GitHub.com
+location: https://babarstudio.fr/
+FINAL 301 redirect=https://babarstudio.fr/
+== http://nicobabar.github.io/
+HTTP/1.1 404 Not Found
+server: GitHub.com
+FINAL 404 redirect=
+== https://nicobabar.github.io/
+HTTP/1.1 200 Connection Established
+HTTP/2 404 
+server: GitHub.com
+FINAL 404 redirect=
+== https://babarstudio.fr/en/
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+server: GitHub.com
+FINAL 200 redirect=
+== https://babarstudio.fr/brand/signature-banner.jpg
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+server: GitHub.com
+FINAL 200 redirect=
+
+########## 2. Same URLs with -L --max-redirs 5 (url_effective http_code) ##########
+== http://babarstudio.fr/
+https://babarstudio.fr/ 200
+== https://babarstudio.fr/
+https://babarstudio.fr/ 200
+== http://www.babarstudio.fr/
+https://babarstudio.fr/ 200
+== https://www.babarstudio.fr/
+https://babarstudio.fr/ 200
+== http://nicobabar.github.io/
+http://nicobabar.github.io/ 404
+== https://nicobabar.github.io/
+https://nicobabar.github.io/ 404
+== https://babarstudio.fr/en/
+https://babarstudio.fr/en/ 200
+== https://babarstudio.fr/brand/signature-banner.jpg
+https://babarstudio.fr/brand/signature-banner.jpg 200
+
+########## 3. DNS via Cloudflare DNS-over-HTTPS ##########
+== babarstudio.fr A
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"babarstudio.fr","type":1}],"Answer":[{"name":"babarstudio.fr","type":1,"TTL":3600,"data":"185.199.111.153"},{"name":"babarstudio.fr","type":1,"TTL":3600,"data":"185.199.109.153"},{"name":"babarstudio.fr","type":1,"TTL":3600,"data":"185.199.108.153"},{"name":"babarstudio.fr","type":1,"TTL":3600,"data":"185.199.110.153"}]}
+== babarstudio.fr AAAA
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"babarstudio.fr","type":28}],"Authority":[{"name":"babarstudio.fr","type":6,"TTL":600,"data":"ns1069.ui-dns.org. hostmaster.1und1.com. 2017060111 28800 7200 604800 600"}]}
+== www.babarstudio.fr A
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"www.babarstudio.fr","type":1}],"Answer":[{"name":"www.babarstudio.fr","type":5,"TTL":3600,"data":"nicobabar.github.io."},{"name":"nicobabar.github.io","type":1,"TTL":3600,"data":"185.199.108.153"},{"name":"nicobabar.github.io","type":1,"TTL":3600,"data":"185.199.109.153"},{"name":"nicobabar.github.io","type":1,"TTL":3600,"data":"185.199.110.153"},{"name":"nicobabar.github.io","type":1,"TTL":3600,"data":"185.199.111.153"}]}
+== www.babarstudio.fr CNAME
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"www.babarstudio.fr","type":5}],"Answer":[{"name":"www.babarstudio.fr","type":5,"TTL":3600,"data":"nicobabar.github.io."}]}
+== babarstudio.fr TXT
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"babarstudio.fr","type":16}],"Answer":[{"name":"babarstudio.fr","type":16,"TTL":3600,"data":"\"v=spf1 include:_spf-eu.ionos.com ~all\""}]}
+== babarstudio.fr MX
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"babarstudio.fr","type":15}],"Answer":[{"name":"babarstudio.fr","type":15,"TTL":3600,"data":"10 mx01.ionos.fr."},{"name":"babarstudio.fr","type":15,"TTL":3600,"data":"10 mx00.ionos.fr."}]}
+== _dmarc.babarstudio.fr TXT
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"_dmarc.babarstudio.fr","type":16}],"Answer":[{"name":"_dmarc.babarstudio.fr","type":5,"TTL":3600,"data":"dmarc.ionos.fr."},{"name":"dmarc.ionos.fr","type":16,"TTL":86400,"data":"\"v=DMARC1; p=none;\""}]}
+== _github-pages-challenge-nicobabar.babarstudio.fr TXT
+{"Status":3,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"_github-pages-challenge-nicobabar.babarstudio.fr","type":16}],"Authority":[{"name":"babarstudio.fr","type":6,"TTL":600,"data":"ns1069.ui-dns.org. hostmaster.1und1.com. 2017060111 28800 7200 604800 600"}]}
+== babarstudio.fr NS
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"babarstudio.fr","type":2}],"Answer":[{"name":"babarstudio.fr","type":2,"TTL":86400,"data":"ns1069.ui-dns.org."},{"name":"babarstudio.fr","type":2,"TTL":86400,"data":"ns1100.ui-dns.biz."},{"name":"babarstudio.fr","type":2,"TTL":86400,"data":"ns1068.ui-dns.de."},{"name":"babarstudio.fr","type":2,"TTL":86400,"data":"ns1021.ui-dns.com."}]}
+
+########## 4. First 40 lines of HTML (with -L) ##########
+== https://babarstudio.fr/
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com https://intra.vkstudio.fr; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise</title>
+  <meta name="description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise : montage, motion design, étalonnage et tournage. Devis rapide et sans surprise.">
+  <link rel="canonical" href="https://babarstudio.fr/">
+  <link rel="alternate" hreflang="fr" href="https://babarstudio.fr/">
+  <link rel="alternate" hreflang="en" href="https://babarstudio.fr/en/">
+  <link rel="alternate" hreflang="x-default" href="https://babarstudio.fr/">
+  <meta name="theme-color" content="#0f0c0a">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Aperçu lors du partage du lien (WhatsApp, LinkedIn, Instagram...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BabarStudio">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:url" content="https://babarstudio.fr/">
+  <meta property="og:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta property="og:description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta property="og:image" content="https://babarstudio.fr/og-image.jpg?v=4">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta name="twitter:description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta name="twitter:image" content="https://babarstudio.fr/og-image.jpg?v=4">
+  <meta name="twitter:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
+
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+
+== https://www.babarstudio.fr/
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://img.youtube.com https://intra.vkstudio.fr; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise</title>
+  <meta name="description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise : montage, motion design, étalonnage et tournage. Devis rapide et sans surprise.">
+  <link rel="canonical" href="https://babarstudio.fr/">
+  <link rel="alternate" hreflang="fr" href="https://babarstudio.fr/">
+  <link rel="alternate" hreflang="en" href="https://babarstudio.fr/en/">
+  <link rel="alternate" hreflang="x-default" href="https://babarstudio.fr/">
+  <meta name="theme-color" content="#0f0c0a">
+
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Aperçu lors du partage du lien (WhatsApp, LinkedIn, Instagram...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BabarStudio">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:url" content="https://babarstudio.fr/">
+  <meta property="og:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta property="og:description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta property="og:image" content="https://babarstudio.fr/og-image.jpg?v=4">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BabarStudio | Monteur vidéo — UGC, YouTube &amp; film d'entreprise">
+  <meta name="twitter:description" content="Nicolas Barette, monteur vidéo freelance, à distance. De la vidéo UGC au film d'entreprise, laissez-moi donner vie à vos idées.">
+  <meta name="twitter:image" content="https://babarstudio.fr/og-image.jpg?v=4">
+  <meta name="twitter:image:alt" content="BabarStudio — Nicolas Barette, monteur vidéo">
+
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+
